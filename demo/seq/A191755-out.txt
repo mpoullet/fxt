@@ -1,0 +1,40 @@
+// output of ./demo/seq/A191755-demo.cc:
+// Description:
+//% OEIS sequence A191755:
+//% Binary self-shuffle words.
+
+arg 1: 3 == n  [Length 2*n words:  n>0]  default=3
+Shuffle-words:
+  ......  yes
+  ....11  yes
+  ...1.1  yes
+  ...11.  NO
+  ..1..1  yes
+  ..1.1.  yes
+  ..11..  yes
+  ..1111  yes
+  .1...1  NO
+  .1..1.  yes
+  .1.1..  yes
+  .1.111  yes
+  .11...  NO
+  .11.11  yes
+  .111.1  NO
+  .1111.  NO
+  1....1  NO
+  1...1.  NO
+  1..1..  yes
+  1..111  NO
+  1.1...  yes
+  1.1.11  yes
+  1.11.1  yes
+  1.111.  NO
+  11....  yes
+  11..11  yes
+  11.1.1  yes
+  11.11.  yes
+  111..1  NO
+  111.1.  yes
+  1111..  yes
+  111111  yes
+ ct=22
