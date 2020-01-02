@@ -1,5 +1,6 @@
 
 #include "comb/mixedradix-sl-gray.h"
+#include "comb/mixedradix-sl-gray-rank.h"
 
 #include "comb/check-mixedradix.h"
 
@@ -48,7 +49,7 @@ main(int argc, char **argv)
 
     mixedradix_sl_gray M(n, rr, ( argc > 3 ? r : nullptr ) );
 
-    check_mixedradix chk( M.m1_, M.n_ );
+    check_mixedradix chk( M.nines(), n );
     chk.first( M.data() );
     M.print_nines("Nines: ");
     cout << endl;
@@ -62,29 +63,29 @@ main(int argc, char **argv)
 
 #else
 
-    const ulong *x = M.data();
     do
     {
-#if 0  // weak compositions:  enup order (Gray code)
-        ulong s = 0;
-        for (ulong j=0; j<n; ++j)
-            s += x[j];
-        if ( s != n )  continue;
-#endif
         cout << setw(4) << ct << ":";
         M.print("  ", true );
 
         cout << "  ";
         cout << "  " << M.pos();
+//        cout << "  " << M.track();
         cout << "  " << (M.dir() > 0 ? '+' : '-');
-        print_sign_vec("    ", M.d_, n );
-        cout << "  " << M.tr_;
-        print_multi_deltaset_as_set("    ", x, n, true );
-//        print_multi_deltaset_as_set_alph("    ", M.data(), n, false );
+
+        print_sign_vec("    ", M.directions(), n );
+        cout << "  " << M.track();
+//        print_multi_deltaset_as_set("    ", M.data(), n, true );
+        print_multi_deltaset_as_set_alph("    ", M.data(), n, false );
+
 
         cout << endl;
 
+#if 1  // testing:
         jjassert( ! chk.is_repeat() );
+        jjassert( ct == M.rank() );
+        jjassert( M.OK() );
+#endif
 
         ++ct;
     }

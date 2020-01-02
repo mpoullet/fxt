@@ -1,7 +1,7 @@
 #if !defined  HAVE_KPERM_GRAY_H__
 #define       HAVE_KPERM_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -18,7 +18,7 @@ class kperm_gray
 // CAT algorithm based on mixed radix Gray code
 //   for the factorial number system (falling base).
 {
-public:
+protected:
     ulong *d_;  // mixed radix digits with radix = [n-1, n-2, ..., 2]
     ulong *i_;  // directions
     ulong *ix_; // permutation (inverse perms in Trotter's order)
@@ -27,9 +27,8 @@ public:
     ulong k_;   // permutations of k elements
     ulong sw1_, sw2_;  // indices of elements swapped most recently
 
-private:  // have pointer data
-    kperm_gray(const kperm_gray&);  // forbidden
-    kperm_gray & operator = (const kperm_gray&);  // forbidden
+    kperm_gray(const kperm_gray&) = delete;
+    kperm_gray & operator = (const kperm_gray&) = delete;
 
 public:
     explicit kperm_gray(ulong n)
@@ -56,6 +55,8 @@ public:
     const ulong * data()  const  { return ix_; }
     const ulong * invdata()  const  { return x_; }
     void get_swap(ulong &s1, ulong &s2)  const  { s1=sw1_; s2=sw2_; }
+
+    const ulong * mr_digits()  const  { return d_; }
 
 
     void first(ulong k)

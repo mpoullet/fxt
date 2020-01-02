@@ -1,7 +1,7 @@
 #if !defined HAVE_KPERM_LEX_H__
 #define      HAVE_KPERM_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -26,9 +26,8 @@ public:
     ulong k_;   // permutations of k elements
     ulong u_;   // sort up to position u+1
 
-private:  // have pointer data
-    kperm_lex(const kperm_lex&);  // forbidden
-    kperm_lex & operator = (const kperm_lex&);  // forbidden
+    kperm_lex(const kperm_lex&) = delete;
+    kperm_lex & operator = (const kperm_lex&) = delete;
 
 public:
     explicit kperm_lex(ulong n)

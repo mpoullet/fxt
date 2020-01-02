@@ -1,7 +1,7 @@
 #if !defined HAVE_ARRAY2D_H__
 #define      HAVE_ARRAY2D_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014, 2016, 2017, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2016, 2017, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -31,9 +31,8 @@ protected:
 
     ulong num_elem_;  // number of elements
 
-private:  // have pointer data
-    array2d(const array2d&);  // forbidden
-    array2d & operator = (const array2d&);  // forbidden
+    array2d(const array2d&) = delete;
+    array2d & operator = (const array2d&) = delete;
 
 public:
     explicit array2d(ulong nr, ulong nc, Type *f=nullptr)
@@ -97,12 +96,12 @@ public:
 public:
     void null()
     {
-        for (ulong j=0; j< num_elem_; ++j)  f_[j] = 0;
+        for (ulong j=0; j < num_elem_; ++j)  f_[j] = 0;
     }
 
-    void fill(Type v)
+    void fill(const Type & v)
     {
-        for (ulong j=0; j< num_elem_; ++j)  f_[j] = v;
+        for (ulong j=0; j < num_elem_; ++j)  f_[j] = v;
     }
 };
 // -------------------------

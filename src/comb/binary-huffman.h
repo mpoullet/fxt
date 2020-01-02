@@ -1,7 +1,7 @@
 #if !defined HAVE_BINARY_HUFFMAN_H__
 #define      HAVE_BINARY_HUFFMAN_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -32,9 +32,8 @@ public:
     ulong n_;   // partitions into n parts
     ulong m_;   // last nonzero position (m==0 for n==0)
 
-private:  // have pointer data
-    binary_huffman(const binary_huffman&);  // forbidden
-    binary_huffman & operator = (const binary_huffman&);  // forbidden
+    binary_huffman(const binary_huffman&) = delete;
+    binary_huffman & operator = (const binary_huffman&) = delete;
 
 public:
     explicit binary_huffman(ulong n)

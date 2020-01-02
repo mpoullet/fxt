@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_H__
 #define      HAVE_COMPOSITION_NZ_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -13,6 +13,7 @@
 #include "comb/print-composition-aa.h"
 
 #include "fxttypes.h"
+#include "restrict.h"
 
 //#include "jjassert.h"
 
@@ -26,24 +27,23 @@ class composition_nz
 {
 public:
 #ifndef COMPOSITION_NZ_FIXARRAYS
-    ulong *a_;  // composition: a[1] + a[2] + ... + a[m] = n
+    ulong * restrict const a_;  // composition: a[1] + a[2] + ... + a[m] = n
 #else
     ulong a_[64];
 #endif
     ulong n_;   // composition of n
     ulong m_;   // current composition has m parts
 
-private:  // have pointer data
-    composition_nz(const composition_nz&);  // forbidden
-    composition_nz & operator = (const composition_nz&);  // forbidden
+    composition_nz(const composition_nz&) = delete;
+    composition_nz & operator = (const composition_nz&) = delete;
 
 public:
     explicit composition_nz(ulong n)
+#ifndef COMPOSITION_NZ_FIXARRAYS
+        : a_( new ulong[n+1+(n==0)] )
+#endif
     {
         n_ = n;
-#ifndef COMPOSITION_NZ_FIXARRAYS
-        a_ = new ulong[n_+1+(n_==0)];
-#endif
         a_[0] = 0;  // returned by last_part() when n==0
         a_[1] = 0;  // returned by first_part() when n==0
         first();
@@ -103,7 +103,7 @@ public:
         if ( m_ >= n_ )  return 0;  // current is first
 
         const ulong z = a_[m_];
-        if ( z!=1 )  // easy case
+        if ( z != 1 )  // easy case
         {  // [*, Z] --> [*, Z-1, 1]
             a_[m_] = z - 1;
             ++m_;
@@ -124,7 +124,7 @@ public:
         ulong j = m_;
         do  { --j; }  while ( a_[j] == 1 );  // scan over ones
         // [*, Y, 1, 1, ..., 1]  (q trailing ones) --> [*, Y-1, q+1]
-        --a_[j];
+        a_[j] -= 1;
         a_[j+1] =  m_ - j + 1;
         m_ = j + 1;
         return  m_;

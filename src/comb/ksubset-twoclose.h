@@ -1,7 +1,7 @@
 #if !defined  HAVE_KSUBSET_TWOCLOSE_H__
 #define       HAVE_KSUBSET_TWOCLOSE_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -9,27 +9,20 @@
 #include "aux0/swap.h"
 #include "fxttypes.h"
 
-// If defined, an array is used instead of a pointer, this gives a small speedup:
-//#define KSUBSET_TWOCLOSE_MAX_ARRAY_LEN 64  // default off because limits max n
 
 class ksubset_twoclose
 // k-subsets (kmin<=k<=kmax) in a two-close order with homogeneous moves.
 // Recursive algorithm.
 {
 public:
-#ifndef KSUBSET_TWOCLOSE_MAX_ARRAY_LEN
     ulong *rv_;  // record of visits in graph (delta set)
-#else
-    ulong rv_[KSUBSET_TWOCLOSE_MAX_ARRAY_LEN];
-#endif
     ulong n_;    // subsets of the n-element set
 
     // function to call with each combination:
     void (*visit_)(const ksubset_twoclose &);
 
-private:  // have pointer data
-    ksubset_twoclose(const ksubset_twoclose&);  // forbidden
-    ksubset_twoclose & operator = (const ksubset_twoclose&);  // forbidden
+    ksubset_twoclose(const ksubset_twoclose&) = delete;
+    ksubset_twoclose & operator = (const ksubset_twoclose&) = delete;
 
 public:
     explicit ksubset_twoclose(ulong n)
@@ -80,8 +73,6 @@ private:
     }
 };
 // -------------------------
-
-//#undef KSUBSET_TWOCLOSE_MAX_ARRAY_LEN  // better leave in
 
 
 #endif  // !defined HAVE_KSUBSET_TWOCLOSE_H__

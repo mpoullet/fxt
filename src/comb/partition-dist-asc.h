@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_DIST_ASC_H__
 #define      HAVE_PARTITION_DIST_ASC_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,9 +25,8 @@ public:
     ulong n_;   // integer partitions of n
     ulong m_;   // current partition has m parts
 
-private:  // have pointer data
-    partition_dist_asc(const partition_dist_asc&);  // forbidden
-    partition_dist_asc & operator = (const partition_dist_asc&);  // forbidden
+    partition_dist_asc(const partition_dist_asc&) = delete;
+    partition_dist_asc & operator = (const partition_dist_asc&) = delete;
 
 public:
     explicit partition_dist_asc(ulong n)

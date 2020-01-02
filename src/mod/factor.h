@@ -1,7 +1,7 @@
 #if !defined HAVE_FACTOR_H__
 #define      HAVE_FACTOR_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -17,6 +17,10 @@ class  factorization
 // Factors can be supplied for constructor,
 //   otherwise trial division is used.
 {
+
+    factorization(const factorization &) = delete;
+    const factorization & operator = (const factorization &) = delete;
+
 protected:
     ulong  npr_;
 
@@ -66,10 +70,6 @@ public:
     void reset();
 protected:
     void sort_by_primes();
-
-private:
-    factorization(const factorization &);  // forbidden
-    const factorization & operator = (const factorization &);  // forbidden
 };
 // -------------------------
 

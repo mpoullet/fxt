@@ -1,7 +1,7 @@
 #if !defined  HAVE_PAREN_LEX_H__
 #define       HAVE_PAREN_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014 Joerg Arndt
+// Copyright (C) 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -28,9 +28,8 @@ public:
     char *str_;  // String representation,  e.g. "((())())()"
     // str[] is generated on demand
 
-private:  // have pointer data
-    paren_lex(const paren_lex&);  // forbidden
-    paren_lex & operator = (const paren_lex&);  // forbidden
+    paren_lex(const paren_lex&) = delete;
+    paren_lex & operator = (const paren_lex&) = delete;
 
 public:
     explicit paren_lex(ulong k)

@@ -1,6 +1,7 @@
 // output of ./demo/comb/root-sums-demo.cc:
 // Description:
 //% Zero-sums of roots of unity.
+//% Cf. OEIS sequence A164896.
 
 arg 1: 12 == n  [n-th roots of unity]  default=12
    1:  ............   1   
@@ -23,4 +24,4 @@ arg 1: 12 == n  [n-th roots of unity]  default=12
   18:  .11111.11111   6    0 1 2 3 4 6 7 8 9 10
   19:  111111111111   1    0 1 2 3 4 5 6 7 8 9 10 11
 
- ct=19 act=2 sj=100
+  ct=19  act=2  sj=100

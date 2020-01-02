@@ -143,7 +143,7 @@ main(int argc, char **argv)
 // -------------------------
 
 /*
-gcc 4.8.0:
+GCC 4.8.0:
 
  time ./bin 28
 arg 1: 28 == n  [Compute terms up to perimeter n]  default=6

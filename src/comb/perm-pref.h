@@ -1,7 +1,7 @@
 #if !defined  HAVE_PERM_PREF_H__
 #define       HAVE_PERM_PREF_H__
 // This file is part of the FXT library.
-// Copyright (C) 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -20,9 +20,8 @@ public:
     ulong *ms_;  // permutation in ms[0], ..., ms[n-1], sentinel at [n]
     ulong ln_;   // length of the longest non-increasing prefix
 
-private:  // have pointer data
-    perm_pref(const perm_pref&);  // forbidden
-    perm_pref & operator = (const perm_pref&);  // forbidden
+    perm_pref(const perm_pref&) = delete;
+    perm_pref & operator = (const perm_pref&) = delete;
 
 public:
     explicit perm_pref(ulong n)

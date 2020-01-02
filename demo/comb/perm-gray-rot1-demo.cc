@@ -3,7 +3,6 @@
 // demo-include "comb/mixedradix-gray.h"
 
 #include "comb/comb-print.h"
-#include "comb/mixedradix.h"
 
 //#include "comb/fact2perm.h"
 

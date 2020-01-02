@@ -1,7 +1,7 @@
 #if !defined HAVE_COMBINATION_LEX_H__
 #define      HAVE_COMBINATION_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -16,9 +16,8 @@ public:
     ulong *x_;    // combination: k elements 0<=x[j]<k in increasing order
     ulong n_, k_;  // Combination (n choose k)
 
-private:  // have pointer data
-    combination_lex(const combination_lex&);  // forbidden
-    combination_lex & operator = (const combination_lex&);  // forbidden
+    combination_lex(const combination_lex&) = delete;
+    combination_lex & operator = (const combination_lex&) = delete;
 
 public:
     explicit combination_lex(ulong n, ulong k)

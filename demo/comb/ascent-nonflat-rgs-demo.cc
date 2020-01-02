@@ -43,20 +43,7 @@ main(int argc, char **argv)
     ulong j = n;
     do
     {
-#if 0
-        {  // limit max digit:
-            const ulong *x = A.data();
-            bool q = true;
-            const ulong b = 2;
-            for (ulong j=0; j<n; ++j)
-                if ( x[j] > b )
-                { q=false;  break; }
-            if ( ! q )  continue;
-        }
-#endif
-
         ++ct;
-
 
 #if 1
         cout << setw(4) << ct << ":  ";

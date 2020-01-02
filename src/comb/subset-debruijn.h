@@ -1,7 +1,7 @@
 #if !defined  HAVE_SUBSET_DEBRUIJN_H__
 #define       HAVE_SUBSET_DEBRUIJN_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014, 2017 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2017, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -10,7 +10,7 @@
 #include "comb/binary-debruijn.h"
 
 
-class subset_debruijn : public binary_debruijn
+class subset_debruijn
 // Subsets of the set {0,1,2,...,n-1} in an order
 // determined by a De Bruijn sequence.
 // Note: work per subset is proportional to n.
@@ -19,16 +19,18 @@ protected:
     ulong *x;   // subset as delta set
     ulong el_;  // new element to be shifted in
     ulong num_;  // number of elements in subset
+    ulong n_;
+    binary_debruijn DBS;
 
-private:  // have pointer data
-    subset_debruijn(const subset_debruijn&);  // forbidden
-    subset_debruijn & operator = (const subset_debruijn&);  // forbidden
+    subset_debruijn(const subset_debruijn&) = delete;
+    subset_debruijn & operator = (const subset_debruijn&) = delete;
 
 public:
     explicit subset_debruijn(ulong n)
-        : binary_debruijn(n)
+        : DBS(n)
     {
-        x = new ulong[n_];
+        n_ = n;
+        x = new ulong[ n_];
         first();
     }
 
@@ -39,10 +41,10 @@ public:
     {
         for (ulong j=0; j<n_; ++j)  x[j] = 0;
 
-        el_ = binary_debruijn::first_digit();
+        el_ = DBS.first_digit();
         do  // make empty set the last set
         {
-            el_ = binary_debruijn::next_digit();
+            el_ = DBS.next_digit();
         }
         while ( 0==el_ );
         sync_x();
@@ -54,8 +56,8 @@ public:
 
     ulong next()  // return number of elements
     {
-        el_ = binary_debruijn::next_digit();
-        if ( el_==2 )  el_ = binary_debruijn::first_digit();  // rewind DBS
+        el_ = DBS.next_digit();
+        if ( el_==2 )  el_ = DBS.first_digit();  // rewind DBS
         sync_x();
         return  num_;
     }
@@ -76,7 +78,7 @@ protected:
     }
 
 private:
-    int done()  const;  // forbidden (exists in base class)
+    int done()  const = delete;  // (exists in base class)
 };
 // -------------------------
 

@@ -1,7 +1,7 @@
 #if !defined  HAVE_DESCENT_RGS_H__
 #define       HAVE_DESCENT_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014 Joerg Arndt
+// Copyright (C) 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -32,9 +32,8 @@ public:
 #endif
     ulong n_;   // Number of digits
 
-private:  // have pointer data
-    descent_rgs(const descent_rgs&);  // forbidden
-    descent_rgs & operator = (const descent_rgs&);  // forbidden
+    descent_rgs(const descent_rgs&) = delete;
+    descent_rgs & operator = (const descent_rgs&) = delete;
 
 public:
     explicit descent_rgs(ulong n)

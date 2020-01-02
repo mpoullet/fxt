@@ -1,7 +1,7 @@
 #if !defined  HAVE_OR_CONVOLUTION_H__
 #define       HAVE_OR_CONVOLUTION_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,7 +25,7 @@ inline void slow_or_convolution(const Type *f, const Type *g, ulong ldn, Type *h
     for (ulong j=0; j<n; ++j)  h[j] = 0;
     for (ulong i=0; i<n; ++i)
         for (ulong j=0; j<n; ++j)
-            h[i|j] += f[i] * g[j];
+            h[ i | j ] += f[i] * g[j];
 }
 // -------------------------
 

@@ -1,7 +1,7 @@
 #if !defined  HAVE_DYCK_PREF_H__
 #define       HAVE_DYCK_PREF_H__
 // This file is part of the FXT library.
-// Copyright (C) 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -26,9 +26,8 @@ public:
     ulong len_;  // == k*n (length of Dyck words)
     ulong x_, y_;  // aux
 
-private:  // have pointer data
-    dyck_pref(const dyck_pref&);  // forbidden
-    dyck_pref & operator = (const dyck_pref&);  // forbidden
+    dyck_pref(const dyck_pref&) = delete;
+    dyck_pref & operator = (const dyck_pref&) = delete;
 
 public:
     explicit dyck_pref(ulong n, ulong k)

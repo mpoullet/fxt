@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_GRAY2_H__
 #define      HAVE_COMPOSITION_NZ_GRAY2_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014, 2015 Joerg Arndt
+// Copyright (C) 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -13,10 +13,11 @@
 #include "comb/print-composition-aa.h"
 
 #include "fxttypes.h"
+#include "restrict.h"
 
 
-#define COMPOSITION_NZ_GRAY2_FIXARRAYS  // default on
-// GCC 4.9.0: significant speedup
+//#define COMPOSITION_NZ_GRAY2_FIXARRAYS  // default off
+// GCC 8.3.0: slight speedup
 
 
 class composition_nz_gray2
@@ -32,7 +33,7 @@ class composition_nz_gray2
 {
 public:
 #ifndef COMPOSITION_NZ_GRAY2_FIXARRAYS
-    ulong *a_;  // composition: a[1] + a[2] + ... + a[m] = n
+    ulong * restrict a_;  // composition: a[1] + a[2] + ... + a[m] = n
 #else
     ulong a_[64];
 #endif
@@ -41,8 +42,8 @@ public:
     ulong e_;   // aux: detection of last composition
 
 private:  // have pointer data
-    composition_nz_gray2(const composition_nz_gray2&);  // forbidden
-    composition_nz_gray2 & operator = (const composition_nz_gray2&);  // forbidden
+    composition_nz_gray2(const composition_nz_gray2&) = delete;
+    composition_nz_gray2 & operator = (const composition_nz_gray2&) = delete;
 
 public:
     explicit composition_nz_gray2(ulong n)

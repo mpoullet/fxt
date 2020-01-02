@@ -88,7 +88,7 @@ main(int argc, char **argv)
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
-## gcc 4.5.0:
+## GCC 4.5.0:
  time ./bin 160
 arg 1: 160 == n  [integer partitions of n]  default=14
 arg 2: 0 == aa  [Whether to render as ASCII art]  default=0
@@ -105,7 +105,7 @@ PARTITION_ASC_2REP_SUBSET_LEX_FIXARRAYS is defined
  ==> 1176931746/4.33 == 271,808,717 per second
 
 
-## gcc 4.8.0:
+## GCC 4.8.0:
  time ./bin 160
 arg 1: 160 == n  [integer partitions of n]  default=14
 arg 2: 0 == aa  [Whether to render as ASCII art]  default=0

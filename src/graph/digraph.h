@@ -1,7 +1,7 @@
 #if !defined  HAVE_DIGRAPH_H__
 #define       HAVE_DIGRAPH_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -20,9 +20,8 @@ public:
     ulong *vn_;  // optional: sorted values for nodes
     // if vn is used, then node k must correspond to vn[k]
 
-private:  // have pointer data
-    digraph(const digraph&);  // forbidden
-    digraph & operator = (const digraph&);  // forbidden
+    digraph(const digraph&) = delete;
+    digraph & operator = (const digraph&) = delete;
 
 public:
     explicit digraph(ulong ng, ulong ne, ulong *&ep, ulong *&e, bool vnq=false)

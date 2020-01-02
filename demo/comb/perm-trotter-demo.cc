@@ -2,7 +2,6 @@
 #include "comb/perm-trotter.h"
 
 //#include "comb/fact2perm.h"
-//#include "comb/mixedradix.h"
 
 //#include "perm/perm2ccf.h"
 //#include "perm/printcycles.h"
@@ -96,20 +95,42 @@ main(int argc, char **argv)
 // -------------------------
 
 /*
-Timing:
+Timing: (Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz)
+GCC 8.3.0
 
- time ./bin 12
-arg 1: 12 == n  [Permutations of n elements.]  default=4
+time ./bin 13 0
+arg 1: 13 == n  [Permutations of n elements.]  default=4
 arg 2: 0 == bq  [Whether to go backwards.]  default=0
 PERM_TROTTER_OPT is defined.
-./bin 12  2.48s user 0.00s system 99% cpu 2.486 total
- ==> 12!/2.48 == 193,145,806 per second
+forward:
+ct=6227020800
+./bin 13 0  14.66s user 0.00s system 99% cpu 14.658 total
+ ==> 6227020800 / 14.66 == 424,762,673 per second
 
- time ./bin 12
-arg 1: 12 == n  [Permutations of n elements.]  default=4
+time ./bin 13 1
+arg 1: 13 == n  [Permutations of n elements.]  default=4
+arg 2: 1 == bq  [Whether to go backwards.]  default=0
+PERM_TROTTER_OPT is defined.
+backward:
+ct=6227020800
+./bin 13 1  14.70s user 0.00s system 99% cpu 14.703 total
+ ==> 6227020800 / 14.70 == 423,606,857 per second
+
+
+time ./bin 13 0
+arg 1: 13 == n  [Permutations of n elements.]  default=4
 arg 2: 0 == bq  [Whether to go backwards.]  default=0
-./bin 12  3.28s user 0.00s system 100% cpu 3.283 total
- ==> 12!/3.28 == 146,037,073 per second
+forward:
+ct=6227020800
+./bin 13 0  26.82s user 0.00s system 99% cpu 26.821 total
+
+time ./bin 13 1
+arg 1: 13 == n  [Permutations of n elements.]  default=4
+arg 2: 1 == bq  [Whether to go backwards.]  default=0
+backward:
+ct=6227020800
+./bin 13 1  28.45s user 0.00s system 99% cpu 28.458 total
+
 */
 
 /*
@@ -132,7 +153,7 @@ ct=6227020800
  ==> 6227020800/13.28 == 468,902,168 per second
 
 
- ---- Regression with gcc 4.8.0:
+ ---- Regression with GCC 4.8.0:
 
  time ./bin 13 0
 arg 1: 13 == n  [Permutations of n elements.]  default=4

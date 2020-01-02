@@ -1,7 +1,7 @@
 #if !defined  HAVE_STRING_SUBST_H__
 #define       HAVE_STRING_SUBST_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014, 2015, 2017 Joerg Arndt
+// Copyright (C) 2014, 2015, 2017, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -30,9 +30,8 @@ public:
     ulong maxrlen_;  // max that many symbols in all maps combined
     uchar *end_map_ptr_;  // position in maps_[] after last map
 
-protected:  // have pointer data
-    string_subst(const string_subst&);  // forbidden
-    string_subst & operator = (const string_subst&);  // forbidden
+    string_subst(const string_subst&) = delete;
+    string_subst & operator = (const string_subst&) = delete;
 
 protected:
     void ctor_core(ulong nlev, ulong maxrlen)

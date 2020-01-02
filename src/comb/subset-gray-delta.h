@@ -1,7 +1,7 @@
 #if !defined HAVE_SUBSET_GRAY_DELTA_H__
 #define      HAVE_SUBSET_GRAY_DELTA_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -28,9 +28,8 @@ public:
     ulong ct_;  // gray_code(ct_) corresponds to the current subset
     ulong mct_;  // max value of ct.
 
-private:  // have pointer data
-    subset_gray_delta(const subset_gray_delta&);  // forbidden
-    subset_gray_delta & operator = (const subset_gray_delta&);  // forbidden
+    subset_gray_delta(const subset_gray_delta&) = delete;
+    subset_gray_delta & operator = (const subset_gray_delta&) = delete;
 
 public:
     explicit subset_gray_delta(ulong n)

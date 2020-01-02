@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_MAX_H__
 #define      HAVE_COMPOSITION_NZ_MAX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2015 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -29,9 +29,8 @@ public:
     ulong m_;   // current composition has m parts
     ulong mx_;  // all parts <= mx
 
-private:  // have pointer data
-    composition_nz_max(const composition_nz_max&);  // forbidden
-    composition_nz_max & operator = (const composition_nz_max&);  // forbidden
+    composition_nz_max(const composition_nz_max&) = delete;
+    composition_nz_max & operator = (const composition_nz_max&) = delete;
 
 public:
     explicit composition_nz_max(ulong n, ulong mx)

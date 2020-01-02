@@ -1,7 +1,7 @@
 #if !defined  HAVE_SCHROEDER_PATH_LEX_H__
 #define       HAVE_SCHROEDER_PATH_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2014, 2015 Joerg Arndt
+// Copyright (C) 2012, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -23,9 +23,8 @@ public:
     ulong *a_;
     ulong n_;
 
-private:  // have pointer data
-    schroeder_path_lex(const schroeder_path_lex&);  // forbidden
-    schroeder_path_lex & operator = (const schroeder_path_lex&);  // forbidden
+    schroeder_path_lex(const schroeder_path_lex&) = delete;
+    schroeder_path_lex & operator = (const schroeder_path_lex&) = delete;
 
 public:
     explicit schroeder_path_lex(ulong n)

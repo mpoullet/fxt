@@ -109,9 +109,9 @@ main(int argc, char **argv)
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
-gcc 4.5.0:  todo
+GCC 4.5.0:  todo
 
-gcc 4.8.0:
+GCC 4.8.0:
 
  time ./bin 110 0 0
 arg 1: 110 == n  [integer partitions of n]  default=22

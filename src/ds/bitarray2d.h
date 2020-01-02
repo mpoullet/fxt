@@ -1,7 +1,7 @@
 #if !defined  HAVE_BITARRAY2D_H__
 #define       HAVE_BITARRAY2D_H__
 // This file is part of the FXT library.
-// Copyright (C) 2018 Joerg Arndt
+// Copyright (C) 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,9 +25,8 @@ protected:
 
     ulong num_bits_;  // number of elements
 
-private:  // have pointer data
-    bitarray2d(const bitarray2d&);  // forbidden
-    bitarray2d & operator = (const bitarray2d&);  // forbidden
+    bitarray2d(const bitarray2d&) = delete;
+    bitarray2d & operator = (const bitarray2d&) = delete;
 
 public:
     static bool use_asm_q()
@@ -179,6 +178,7 @@ public:
         return true;
     }
 
+    // ds/bitarray2d.cc:
     void dump_bits()  const;
 };
 // -------------------------

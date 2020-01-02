@@ -1,7 +1,7 @@
 #if !defined HAVE_ORDERED_TREE_BRANCHES_H__
 #define      HAVE_ORDERED_TREE_BRANCHES_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014, 2015 Joerg Arndt
+// Copyright (C) 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -34,9 +34,8 @@ public:
     ulong n_;   // number of non-root nodes
     ulong m_;   // number of branches (composition has m parts)
 
-private:  // have pointer data
-    ordered_tree_branches(const ordered_tree_branches&);  // forbidden
-    ordered_tree_branches & operator = (const ordered_tree_branches&);  // forbidden
+    ordered_tree_branches(const ordered_tree_branches&) = delete;
+    ordered_tree_branches & operator = (const ordered_tree_branches&) = delete;
 
 public:
     explicit ordered_tree_branches(ulong n)

@@ -1,7 +1,7 @@
 #if !defined  HAVE_ASCENT_RGS_H__
 #define       HAVE_ASCENT_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -14,8 +14,10 @@
 
 // whether to use arrays instead of pointers:
 #define ASCENT_RGS_FIXARRAYS  // default on
-// gcc 4.5.0: slight slowdown
-// gcc 4.8.0: speedup
+// GCC 4.5.0: slight slowdown
+// GCC 4.8.0: speedup
+// GCC 8.3.0: speedup
+
 
 class ascent_rgs
 // Ascent sequences (restricted growth strings, RGS), lexicographic order.
@@ -34,9 +36,8 @@ public:
 #endif
     ulong n_;   // Number of digits
 
-private:  // have pointer data
-    ascent_rgs(const ascent_rgs&);  // forbidden
-    ascent_rgs & operator = (const ascent_rgs&);  // forbidden
+    ascent_rgs(const ascent_rgs&) = delete;
+    ascent_rgs & operator = (const ascent_rgs&) = delete;
 
 public:
     explicit ascent_rgs(ulong n)

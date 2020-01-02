@@ -100,7 +100,7 @@ main(int argc, char **argv)
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
-gcc 4.8.0:
+GCC 4.8.0:
 
  time ./bin 14 0
 arg 1: 14 == n  [Length of strings]  default=5

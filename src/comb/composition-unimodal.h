@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_UNIMODAL_H__
 #define      HAVE_COMPOSITION_UNIMODAL_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014 Joerg Arndt
+// Copyright (C) 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -26,9 +26,8 @@ public:
     ulong n_;   // integer compositions of n
     ulong m_;   // current composition has m parts
 
-private:  // have pointer data
-    composition_unimodal(const composition_unimodal&);  // forbidden
-    composition_unimodal & operator = (const composition_unimodal&);  // forbidden
+    composition_unimodal(const composition_unimodal&) = delete;
+    composition_unimodal & operator = (const composition_unimodal&) = delete;
 
 public:
     explicit composition_unimodal(ulong n)

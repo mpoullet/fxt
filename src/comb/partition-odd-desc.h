@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_ODD_DESC_H__
 #define      HAVE_PARTITION_ODD_DESC_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,9 +25,8 @@ public:
     // == 1 + position of last part != 1
     ulong *a_;  // partition: a[1] + a[2] + ... + a[m] = n
 
-private:  // have pointer data
-    partition_odd_desc(const partition_odd_desc&);  // forbidden
-    partition_odd_desc & operator = (const partition_odd_desc&);  // forbidden
+    partition_odd_desc(const partition_odd_desc&) = delete;
+    partition_odd_desc & operator = (const partition_odd_desc&) = delete;
 
 public:
     explicit partition_odd_desc(ulong n)

@@ -21,7 +21,7 @@ main(int argc, char **argv)
     cout << "Running misc tests ... " << endl;
 
     ulong n = 1024*10;
-    if ( argc>1 )  n = strtoul(argv[1], 0, 10);
+    if ( argc>1 )  n = strtoul(argv[1], nullptr, 10);
 
     ulong rep = 30;
     ulong suml = 0;

@@ -1,7 +1,7 @@
 #if !defined  HAVE_YOUNG_TAB_RGS_H__
 #define       HAVE_YOUNG_TAB_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2016 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2016, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -52,9 +52,8 @@ public:
     ulong *r_;   // aux for inversions: r[i] is the row (>=1) the entry i lies in
     // generated on demand only;  elements considered mutable
 
-private:  // have pointer data
-    young_tab_rgs(const young_tab_rgs&);  // forbidden
-    young_tab_rgs & operator = (const young_tab_rgs&);  // forbidden
+    young_tab_rgs(const young_tab_rgs&) = delete;
+    young_tab_rgs & operator = (const young_tab_rgs&) = delete;
 
 public:
     explicit young_tab_rgs(ulong n, ulong m=0)

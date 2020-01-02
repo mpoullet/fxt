@@ -1,7 +1,7 @@
 #if !defined  HAVE_MOTZKIN_PATH_LEX_H__
 #define       HAVE_MOTZKIN_PATH_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2014 Joerg Arndt
+// Copyright (C) 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -21,9 +21,8 @@ public:
     ulong *a_;
     ulong n_;
 
-private:  // have pointer data
-    motzkin_path_lex(const motzkin_path_lex&);  // forbidden
-    motzkin_path_lex & operator = (const motzkin_path_lex&);  // forbidden
+    motzkin_path_lex(const motzkin_path_lex&) = delete;
+    motzkin_path_lex & operator = (const motzkin_path_lex&) = delete;
 
 public:
     explicit motzkin_path_lex(ulong n)

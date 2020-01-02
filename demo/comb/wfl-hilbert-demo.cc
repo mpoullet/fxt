@@ -56,6 +56,19 @@ main(int argc, char **argv)
 // -------------------------
 
 /*
+Timing: (Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz)
+
+GCC 8.30
+
+time ./bin 5 300000000
+arg 1: 5 == d  [dimensions (1<=d<=5)]  default=3
+arg 2: 300000000 == mct  [that many steps]  default=32
+ct=300000000
+./bin 5 300000000  3.93s user 0.01s system 99% cpu 3.942 total
+==> 300000000/3.93 == 76,335,877 per second
+
+
+
 Timing: (AMD Phenom II X4 945 3000MHz)
 
  time ./bin 5 300000000

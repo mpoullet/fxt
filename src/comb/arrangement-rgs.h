@@ -1,7 +1,7 @@
 #if !defined  HAVE_ARRANGEMENT_RGS_H__
 #define       HAVE_ARRANGEMENT_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2014 Joerg Arndt
+// Copyright (C) 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -13,6 +13,8 @@
 
 // whether to use arrays instead of pointers:
 #define ARRANGEMENT_RGS_FIXARRAYS  // default is on
+// speedup with GCC 8.3.0
+
 
 class arrangement_rgs
 // RGS for arrangements (all permutations of all subsets):
@@ -23,7 +25,7 @@ class arrangement_rgs
 // Lexicographic order.
 // Cf. OEIS sequence A000522.
 {
-public:
+protected:
 #ifndef ARRANGEMENT_RGS_FIXARRAYS
     ulong *a_;  // digits of the RGS
     ulong *z_;  // 1 + number of nonzero digits in prefix
@@ -33,9 +35,8 @@ public:
 #endif
     ulong n_;   // Number of digits
 
-private:  // have pointer data
-    arrangement_rgs(const arrangement_rgs&);  // forbidden
-    arrangement_rgs & operator = (const arrangement_rgs&);  // forbidden
+    arrangement_rgs(const arrangement_rgs&) = delete;
+    arrangement_rgs & operator = (const arrangement_rgs&) = delete;
 
 public:
     explicit arrangement_rgs(ulong n)

@@ -47,7 +47,8 @@ main(int argc, char **argv)
     const ulong n = P.num_parts();
 
     cout << "multiplicities: ( ";
-    for (ulong i=0; i<k; ++i)  cout << P.r_[i] << (i<k-1?", ":" ");
+    for (ulong i=0; i<k; ++i)
+        cout << P.multiplicities()[i] << (i<k-1?", ":" ");
     cout << ")";
 //    cout << "  k=" << P.k_ << "  n=" << P.n_;
     cout << "  k=" << P.num_sorts() << "  n=" << P.num_parts();
@@ -77,7 +78,6 @@ main(int argc, char **argv)
     delete [] r;
 
 
-
     cout << " ct=" << ct << endl;
 
     return 0;
@@ -85,35 +85,33 @@ main(int argc, char **argv)
 // -------------------------
 
 /*
-Timing:
+Timing: (Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz)
+GCC 8.3.0
 
  time ./bin 2 2 2 3 3 3
 args: multiplicities of elements
 multiplicities: ( 2, 2, 2, 3, 3, 3 )  k=6  n=15
-ct=756756000
-./bin 2 2 2 3 3 3  8.08s user 0.00s system 100% cpu 8.080 total
- ==> 756756000/8.08 == 93,657,920 per second
+ ct=756756000
+./bin 2 2 2 3 3 3  2.14s user 0.00s system 99% cpu 2.144 total
+ ==> 756756000 / 2.14 == 353,624,299 per second
 
  time ./bin 3 3 3 2 2 2 ## reordered
 args: multiplicities of elements
 multiplicities: ( 3, 3, 3, 2, 2, 2 )  k=6  n=15
-ct=756756000
-./bin 3 3 3 2 2 2  8.19s user 0.00s system 99% cpu 8.247 total
- ==> 756756000/8.19 == 92,400,000 per second
+ ct=756756000
+./bin 3 3 3 2 2 2  2.17s user 0.00s system 99% cpu 2.173 total
+ ==> 756756000 / 2.17 == 348,735,483 per second
 
  time  ./bin 1 1 1 1 1 1 1 1 1 1 1 1  ## permutations of 12
 args: multiplicities of elements
 multiplicities: ( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 )  k=12  n=12
-ct=479001600
-./bin 1 1 1 1 1 1 1 1 1 1 1 1  3.77s user 0.00s system 99% cpu 3.779 total
- ==> 479001600/3.77 == 127,056,127 per second
+ ct=479001600
+./bin 1 1 1 1 1 1 1 1 1 1 1 1  1.30s user 0.00s system 99% cpu 1.302 total
+ ==> 479001600 / 1.30 == 368,462,769 per second
 
  time  ./bin 15 15  ## combination (30 choose 15)
-args: multiplicities of elements
-multiplicities: ( 15, 15 )  k=2  n=30
-ct=155117520
-./bin 15 15  2.61s user 0.00s system 99% cpu 2.608 total
- ==> 155117520/2.61 == 59,432,000 per second
+./bin 15 15  0.58s user 0.00s system 99% cpu 0.583 total
+ ==> 155117520 / 0.58  == 267,444,000 per second
 
 */
 

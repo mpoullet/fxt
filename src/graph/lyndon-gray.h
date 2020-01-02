@@ -1,7 +1,7 @@
 #if !defined  HAVE_LYNDON_GRAY_H__
 #define       HAVE_LYNDON_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014, 2016 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2016, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -53,9 +53,8 @@ public:
     ulong d_;   // bit-wise difference to last pr_ (a word with one bit)
     ulong r_;   // rotation (pr == bit_rotate_left(p, r))
 
-private:  // have pointer data
-    lyndon_gray(const lyndon_gray&);  // forbidden
-    lyndon_gray & operator = (const lyndon_gray&);  // forbidden
+    lyndon_gray(const lyndon_gray&) = delete;
+    lyndon_gray & operator = (const lyndon_gray&) = delete;
 
 public:
     explicit lyndon_gray(ulong n, ulong ncmp=0)

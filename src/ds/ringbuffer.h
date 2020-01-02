@@ -1,7 +1,7 @@
 #if !defined  HAVE_RINGBUFFER_H__
 #define       HAVE_RINGBUFFER_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -19,9 +19,8 @@ public:
     ulong wpos_;  // next position to write in buffer
     ulong fpos_;  // first position to read in buffer
 
-private:  // have pointer data
-    ringbuffer(const ringbuffer&);  // forbidden
-    ringbuffer & operator = (const ringbuffer&);  // forbidden
+    ringbuffer(const ringbuffer&) = delete;
+    ringbuffer & operator = (const ringbuffer&) = delete;
 
 public:
     explicit ringbuffer(ulong n)

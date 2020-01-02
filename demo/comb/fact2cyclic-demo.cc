@@ -10,7 +10,7 @@
 #include "comb/comb-print.h"
 
 //#include "comb/perm-gray-ffact.h"
-#include "comb/mixedradix-lex.h"
+#include "comb/mixedradix.h"
 //#include "comb/mixedradix-gslex.h"
 //#include "comb/mixedradix-gslex-alt.h"
 #include "comb/mixedradix-gray.h"
@@ -41,7 +41,7 @@ main(int argc, char **argv)
 //
 //    print_mixedradix(" Radix == ", m, n2);  cout << endl;
 
-    mixedradix_lex M(n2, rq);
+    mixedradix M(n2, rq);
 //    mixedradix_gray M(n2, rq);
 //    mixedradix_modular_gray M(n2, rq);
 //    mixedradix_gslex M(n2, rq);

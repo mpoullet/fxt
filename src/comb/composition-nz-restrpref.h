@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_RESTRPREF_H__
 #define      HAVE_COMPOSITION_NZ_RESTRPREF_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -24,21 +24,21 @@ public:
     ulong m_;   // current composition has m parts (m!=0 if valid composition)
 
     typedef bool (* cond_func)(const ulong*, ulong);
-    cond_func cond;  // condition function
+    cond_func cond { nullptr };  // condition function
 
 private:  // have pointer data
-    composition_nz_restrpref(const composition_nz_restrpref&);  // forbidden
-    composition_nz_restrpref & operator = (const composition_nz_restrpref&);  // forbidden
+    composition_nz_restrpref(const composition_nz_restrpref&) = delete;
+    composition_nz_restrpref & operator = (const composition_nz_restrpref&) = delete;
 
 public:
-    explicit composition_nz_restrpref(ulong n, cond_func cnd)
+    explicit composition_nz_restrpref(ulong n)
     // Should have n>=1, (for n==0 zero compositions are reported).
+    // cond_func cond must be supplied with call to first().
     {
         n_ = n;
         a_ = new ulong[n_+1+(n_==0)];
         a_[0] = 0;  //  returned by last_part() when n==0
         a_[1] = 0;  //  returned by first_part() when n==0
-        first(cnd);
     }
 
     ~composition_nz_restrpref()
@@ -54,13 +54,13 @@ public:
     ulong num_parts()  const  {  return m_; }
 
 public:
-    void first(cond_func cnd = nullptr)
+    void first(cond_func cnd)
     // Try to generate first composition.
     // Whether this was successful is returned by valid().
     {
-        if ( cnd != nullptr )  cond = cnd;
+        cond = cnd;
 
-        ulong s = n_;
+        ulong s = n_;  // sum of parts in suffix starting at index j
         for (ulong j=1; j<=n_; ++j)
         {
             a_[j] = 1;
@@ -80,7 +80,8 @@ public:
 
                 return;
             }
-            --s;
+
+            s -= 1;  // adjust sum
         }
 
         m_ = n_;
@@ -92,7 +93,7 @@ public:
     {
         if ( m_ <= 1 )  { m_=0;  return 0; } // current is last
 
-        ulong s = a_[m_] - 1;  // sum of parts in tail
+        ulong s = a_[m_] - 1;  // sum of parts in suffix
         a_[m_] = 1;  // leave ones
         ulong j = m_ - 1;
         a_[j] += 1;

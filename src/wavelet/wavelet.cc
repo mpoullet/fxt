@@ -1,5 +1,5 @@
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012 Joerg Arndt
+// Copyright (C) 2010, 2012, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -8,7 +8,6 @@
 
 #include "aux1/copy.h"  // acopy()
 
-#include "fxtalloca.h"
 #include "fxttypes.h"
 
 
@@ -17,8 +16,9 @@ wavelet(double *f, ulong ldn, const wavelet_filter &wf, ulong minm/*=2*/)
 // Wavelet transform
 {
     ulong n = (1UL<<ldn);
-    ALLOCA(double, t, n);
+    double * t = new double[n];
     for (ulong m=n; m>=minm; m>>=1)  wavelet_step(f, m, wf, t);
+    delete [] t;
 }
 // -------------------------
 

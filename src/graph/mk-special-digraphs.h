@@ -1,7 +1,7 @@
 #if !defined  HAVE_MK_SPECIAL_DIGRAPHS_H__
 #define       HAVE_MK_SPECIAL_DIGRAPHS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -57,9 +57,8 @@ public:
     uchar *dd;  // delta sequence of Gray path
     ulong nbits;  // number of bits of Lyndon words
 
-private:  // have pointer data
-    lyngray_dat(const lyngray_dat&);  // forbidden
-    lyngray_dat & operator = (const lyngray_dat&);  // forbidden
+    lyngray_dat(const lyngray_dat&) = delete;
+    lyngray_dat & operator = (const lyngray_dat&) = delete;
 
 public:
     explicit lyngray_dat(ulong ng, ulong nb, ulong *tww);

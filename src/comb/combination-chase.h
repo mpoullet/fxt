@@ -1,7 +1,7 @@
 #if !defined  HAVE_COMBINATION_CHASE_H__
 #define       HAVE_COMBINATION_CHASE_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -24,9 +24,8 @@ public:
     ulong *a_;  // data (a delta set)
     ulong *w_;  // aux
 
-private:  // have pointer data
-    combination_chase(const combination_chase&);  // forbidden
-    combination_chase & operator = (const combination_chase&);  // forbidden
+    combination_chase(const combination_chase&) = delete;
+    combination_chase & operator = (const combination_chase&) = delete;
 
 public:
     explicit combination_chase(ulong n, ulong k)

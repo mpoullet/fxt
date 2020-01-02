@@ -1,7 +1,7 @@
 #if !defined  HAVE_SETPART_RGS_GRAY_H__
 #define       HAVE_SETPART_RGS_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -26,9 +26,8 @@ public:
     ulong *s_;   // RGS
     ulong *d_;   // direction with recursion (+1 or -1)
 
-private:  // have pointer data
-    setpart_rgs_gray(const setpart_rgs_gray&);  // forbidden
-    setpart_rgs_gray & operator = (const setpart_rgs_gray&);  // forbidden
+    setpart_rgs_gray(const setpart_rgs_gray&) = delete;
+    setpart_rgs_gray & operator = (const setpart_rgs_gray&) = delete;
 
 public:
     explicit setpart_rgs_gray(ulong n, int dr0=+1)

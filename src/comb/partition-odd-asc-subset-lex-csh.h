@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_ODD_ASC_SUBSET_LEX_CSH_H__
 #define      HAVE_PARTITION_ODD_ASC_SUBSET_LEX_CSH_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -34,9 +34,8 @@ public:
     ulong a_[1000]; // > 10^21
 #endif
 
-private:  // have pointer data
-    partition_odd_asc_subset_lex_csh(const partition_odd_asc_subset_lex_csh&);  // forbidden
-    partition_odd_asc_subset_lex_csh & operator = (const partition_odd_asc_subset_lex_csh&);  // forbidden
+    partition_odd_asc_subset_lex_csh(const partition_odd_asc_subset_lex_csh&) = delete;
+    partition_odd_asc_subset_lex_csh & operator = (const partition_odd_asc_subset_lex_csh&) = delete;
 
 public:
     explicit partition_odd_asc_subset_lex_csh(ulong n)

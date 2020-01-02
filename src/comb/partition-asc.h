@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_ASC_H__
 #define      HAVE_PARTITION_ASC_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -14,9 +14,6 @@
 #include "fxttypes.h"
 
 
-//#define PARTITION_ASC_FIXARRAYS  // default off
-// small speedup with gcc 4.5.0, slowdown with gcc 4.8.0
-
 
 class partition_asc
 // Integer partitions.
@@ -25,26 +22,19 @@ class partition_asc
 // Cf. OEIS sequence A000041.
 {
 public:
-#ifndef PARTITION_ASC_FIXARRAYS
     ulong *a_;  // partition: a[1] + a[2] + ... + a[m] = n
-#else
-    ulong a_[448];  // > 2^66 partitions
-#endif
 
     ulong n_;  // integer partitions of n
     ulong m_;  // current partition has m parts
 
-private:  // have pointer data
-    partition_asc(const partition_asc&);  // forbidden
-    partition_asc & operator = (const partition_asc&);  // forbidden
+    partition_asc(const partition_asc&) = delete;
+    partition_asc & operator = (const partition_asc&) = delete;
 
 public:
     explicit partition_asc(ulong n)
     {
         n_ = n;
-#ifndef PARTITION_ASC_FIXARRAYS
         a_ = new ulong[n_+1 +(n==0)];
-#endif
         a_[0] = 0;  // unused
         a_[1] = 0;  // last part for n==0
         first();
@@ -52,9 +42,7 @@ public:
 
     ~partition_asc()
     {
-#ifndef PARTITION_ASC_FIXARRAYS
         delete [] a_;
-#endif
     }
 
     const ulong * data()  const  { return  a_ + 1; }

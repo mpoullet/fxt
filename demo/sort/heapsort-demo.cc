@@ -41,6 +41,7 @@ print(const char *bla, const double *f, ulong n)
 
 //#define RSEED
 #define SHOW_HEAP
+//#define SORT_DESCENDING
 
 int
 main(int argc, char **argv)
@@ -66,16 +67,29 @@ main(int argc, char **argv)
     jjassert( 0==test_heap(f, n) );
 #endif  // SHOW_HEAP
 
+#ifdef SORT_DESCENDING
+    heap_sort_descending(f, n);
+#else
     heap_sort(f, n);
+#endif
+
     print("sorted values:", f, n);
 
+#ifdef SORT_DESCENDING
+    jjassert( is_sorted_desc(f, n) );
+#else
     jjassert( is_sorted(f, n) );
+#endif
+
 //    jjassert( 0==test_heap(f, n) );  // not the case in general
 
+#ifdef SORT_DESCENDING
+#else
     cout << "searching for v=" << v << endl;
     ulong i = bsearch(f, n, v);
     jjassert( i<n );
     cout << "found at index " << i << endl;
+#endif
 
     delete [] f;
 

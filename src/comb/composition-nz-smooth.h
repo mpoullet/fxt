@@ -1,7 +1,7 @@
 #if !defined  HAVE_COMPOSITION_NZ_SMOOTH_H__
 #define       HAVE_COMPOSITION_NZ_SMOOTH_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,9 +25,8 @@ public:
     ulong n_;   // compositions of n
     ulong m_;   // number of parts in current composition
 
-private:  // have pointer data
-    composition_nz_smooth(const composition_nz_smooth&);  // forbidden
-    composition_nz_smooth & operator = (const composition_nz_smooth&);  // forbidden
+    composition_nz_smooth(const composition_nz_smooth&) = delete;
+    composition_nz_smooth & operator = (const composition_nz_smooth&) = delete;
 
 public:
     explicit composition_nz_smooth(ulong n)

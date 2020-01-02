@@ -10,6 +10,8 @@
 #include "jjassert.h"
 #include "nextarg.h"  // NXARGSTR()
 
+#include <cstring>  // strlen()
+
 //% Demo of the merge sort algorithm.
 
 

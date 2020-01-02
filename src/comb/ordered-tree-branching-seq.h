@@ -1,7 +1,7 @@
 #if !defined  HAVE_ORDERED_TREE_BRANCHING_SEQ_H__
 #define       HAVE_ORDERED_TREE_BRANCHING_SEQ_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014, 2015 Joerg Arndt
+// Copyright (C) 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -34,9 +34,8 @@ public:
     ulong n_;  // number of non-root nodes
     ulong e_;  // index last nonzero value; set to 0 for n==0
 
-private:  // have pointer data
-    ordered_tree_branching_seq(const ordered_tree_branching_seq&);  // forbidden
-    ordered_tree_branching_seq & operator = (const ordered_tree_branching_seq&);  // forbidden
+    ordered_tree_branching_seq(const ordered_tree_branching_seq&) = delete;
+    ordered_tree_branching_seq & operator = (const ordered_tree_branching_seq&) = delete;
 
 
 public:

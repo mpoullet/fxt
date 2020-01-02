@@ -1,7 +1,7 @@
 #if !defined  HAVE_ASCENT_NONFLAT_RGS_H__
 #define       HAVE_ASCENT_NONFLAT_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -27,9 +27,8 @@ public:
     ulong *m_;  // m[k] = number of ascents in prefix a[0,1,..,k]
     ulong n_;   // Number of digits
 
-private:  // have pointer data
-    ascent_nonflat_rgs(const ascent_nonflat_rgs&);  // forbidden
-    ascent_nonflat_rgs & operator = (const ascent_nonflat_rgs&);  // forbidden
+    ascent_nonflat_rgs(const ascent_nonflat_rgs&) = delete;
+    ascent_nonflat_rgs & operator = (const ascent_nonflat_rgs&) = delete;
 
 public:
     explicit ascent_nonflat_rgs(ulong n)

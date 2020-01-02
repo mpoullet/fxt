@@ -30,7 +30,10 @@ test -x "$MKLIST" || { echo " *** $MKLIST: not an executable file." 1>&2; exit 1
 echo  "$0: topics from demo/topics.txt"  1>&2;
 TOPICSTXT=$FXTLOC/demo/topics.txt
 
-DDIRS=$(find $WEBDEMOLOC  -mindepth 1  -type d | sort);
+#DDIRS=$(find $WEBDEMOLOC  -mindepth 1  -type d | sort);
+DDIRS=$(find $WEBDEMOLOC  -mindepth 1  -type d | grep -vF '/attic' | sort);
+#echo 'DDIRS = ' ${DDIRS}
+
 #DDIRS2=$(grep -vE '^#' demo/topics.txt | sed 's/@.*$//g;');
 #test "${DDIRS}" \!= "${DDIRS2}" && { echo  "$0: demo/topics.txt does not contain all directories in demo/ (exiting)"  1>&2; exit 1; }
 

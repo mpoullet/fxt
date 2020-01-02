@@ -1,7 +1,7 @@
 #if !defined HAVE_CATALAN_STEP_RGS_SUBSET_LEXREV_H__
 #define      HAVE_CATALAN_STEP_RGS_SUBSET_LEXREV_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2015 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -34,9 +34,8 @@ public:
     ulong tr_;  // aux: track we are looking at
     ulong n_;   // length of RGS
 
-private:  // have pointer data
-    catalan_step_rgs_subset_lexrev(const catalan_step_rgs_subset_lexrev&);  // forbidden
-    catalan_step_rgs_subset_lexrev & operator = (const catalan_step_rgs_subset_lexrev&);  // forbidden
+    catalan_step_rgs_subset_lexrev(const catalan_step_rgs_subset_lexrev&) = delete;
+    catalan_step_rgs_subset_lexrev & operator = (const catalan_step_rgs_subset_lexrev&) = delete;
 
 public:
     explicit catalan_step_rgs_subset_lexrev(ulong n)

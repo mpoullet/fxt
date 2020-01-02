@@ -49,9 +49,6 @@ main(int argc, char **argv)
 
     ulong ct = 0;
 #ifdef TIMING
-#ifdef MIXEDRADIX_NAF_MAX_ARRAY_LEN
-    cout << "MIXEDRADIX_NAF_MAX_ARRAY_LEN is defined." << endl;
-#endif
     if ( ! bq )
     {
         cout << "forward:" << endl;

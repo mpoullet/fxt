@@ -80,7 +80,7 @@ main(int argc, char **argv)
     cout << endl;
 
 
-    sort_by_key(s, n, e, 0, true);
+    sort_by_key(s, n, e, nullptr, true);
     if ( ksq )
     {
         for (ulong k=0; k<n; ++k)

@@ -1,5 +1,5 @@
 
-#include "comb/mixedradix-lex.h"
+#include "comb/mixedradix.h"
 
 #include "jjassert.h"
 #include "fxttypes.h"
@@ -19,7 +19,7 @@ main(int argc, char **argv)
     ulong m = n;
     NXARG(m, "number of letters (radix, >=2).");
 
-    mixedradix_lex M(n, m);
+    mixedradix M(n, m);
     const ulong *x = M.data();
 
     ulong mct = 0;

@@ -1,7 +1,7 @@
 #if !defined  HAVE_PAREN_H__
 #define       HAVE_PAREN_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -21,9 +21,8 @@ public:
     char *str_;  // String representation,  e.g. "((())())()"
     // str[] is generated on demand
 
-private:  // have pointer data
-    paren(const paren&);  // forbidden
-    paren & operator = (const paren&);  // forbidden
+    paren(const paren&) = delete;
+    paren & operator = (const paren&) = delete;
 
 public:
     explicit paren(ulong k)

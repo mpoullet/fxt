@@ -76,8 +76,8 @@ main(int argc, char **argv)
     cout << "Running tests for permutations ... " << endl;
 
     ulong minldn = 0, maxldn = 14;
-    if ( argc>1 )  minldn = strtoul(argv[1], 0, 10);
-    if ( argc>2 )  maxldn = strtoul(argv[2], 0, 10);
+    if ( argc>1 )  minldn = strtoul(argv[1], nullptr, 10);
+    if ( argc>2 )  maxldn = strtoul(argv[2], nullptr, 10);
 
     ulong n = 1UL<<maxldn;
     double *tar = new double[n];
@@ -107,13 +107,13 @@ main(int argc, char **argv)
 
             EQUIV_REAL( acopy(ar, fr, n);
                         acopy(ar, gr, n);
-                        transpose2(gr, nr, nc, 0);
-                        transpose2(gr, nc, nr, 0); );
+                        transpose2(gr, nr, nc, nullptr);
+                        transpose2(gr, nc, nr, nullptr); );
 
             EQUIV_REAL( acopy(ar, fr, n);
                         acopy(ar, gr, n);
-                        transpose(gr, nr, nc, 0);
-                        transpose(gr, nc, nr, 0); );
+                        transpose(gr, nr, nc, nullptr);
+                        transpose(gr, nc, nr, nullptr); );
 
             EQUIV_REAL( acopy(ar, fr, n); transpose(fr, nr, nc);
                         acopy(ar, gr, n); transpose(gr, nr, nc);  );

@@ -1,7 +1,7 @@
 #if !defined  HAVE_RGS_KINCR_H__
 #define       HAVE_RGS_KINCR_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -19,9 +19,8 @@ public:
     ulong *s_;  // restricted growth string
     ulong n_;   // Length of strings
 
-private:  // have pointer data
-    rgs_kincr(const rgs_kincr&);  // forbidden
-    rgs_kincr & operator = (const rgs_kincr&);  // forbidden
+    rgs_kincr(const rgs_kincr&) = delete;
+    rgs_kincr & operator = (const rgs_kincr&) = delete;
 
 public:
     explicit rgs_kincr(ulong n)

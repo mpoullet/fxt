@@ -1,7 +1,7 @@
 #if !defined  HAVE_MSET_PERM_LEX_H__
 #define       HAVE_MSET_PERM_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -13,15 +13,14 @@
 class mset_perm_lex
 // Multiset permutations in lexicographic order, iterative algorithm.
 {
-public:
+protected:
     ulong k_;    // number of different sorts of objects
     ulong *r_;   // number of elements '0' in r[0], '1' in r[1], ..., 'k-1' in r[k-1]
     ulong n_;    // number of objects
     ulong *ms_;  // multiset data in ms[0], ..., ms[n-1], sentinels at [-1] and [-2]
 
-private:  // have pointer data
-    mset_perm_lex(const mset_perm_lex&);  // forbidden
-    mset_perm_lex & operator = (const mset_perm_lex&);  // forbidden
+    mset_perm_lex(const mset_perm_lex&) = delete;
+    mset_perm_lex & operator = (const mset_perm_lex&) = delete;
 
 public:
     explicit mset_perm_lex(const ulong *r, ulong k)
@@ -54,6 +53,7 @@ public:
     }
 
     const ulong * data()  const { return ms_; }
+    const ulong * multiplicities()  const { return r_; }
 
     ulong next()
     // Return position of leftmost change,

@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_CARLITZ_H__
 #define      HAVE_COMPOSITION_NZ_CARLITZ_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -23,8 +23,8 @@ public:
     ulong m_;   // current composition has m parts
 
 private:  // have pointer data
-    composition_nz_carlitz(const composition_nz_carlitz&);  // forbidden
-    composition_nz_carlitz & operator = (const composition_nz_carlitz&);  // forbidden
+    composition_nz_carlitz(const composition_nz_carlitz&) = delete;
+    composition_nz_carlitz & operator = (const composition_nz_carlitz&) = delete;
 
 public:
     explicit composition_nz_carlitz(ulong n)

@@ -3,7 +3,7 @@
 #include <cstdlib>  // strtoul()
 
 #include "comb/num2perm.h"
-#include "comb/mixedradix-lex.h"
+#include "comb/mixedradix.h"
 //#include "comb/perm-lex.h"
 #include "comb/fact2perm.h" // perm2ffact()
 #include "comb/fact2num.h" // ffact2num()
@@ -31,8 +31,8 @@ int
 main(int argc, char **argv)
 {
     ulong minn = 1, maxn = 7;
-    if ( argc>1 )  minn = strtoul(argv[1], 0, 10);
-    if ( argc>2 )  maxn = strtoul(argv[2], 0, 10);
+    if ( argc>1 )  minn = strtoul(argv[1], nullptr, 10);
+    if ( argc>2 )  maxn = strtoul(argv[2], nullptr, 10);
 
     cout << "Running tests for factorial, fact2perm, fact2num ... " << endl;
 
@@ -42,7 +42,7 @@ main(int argc, char **argv)
 
     for (ulong n=minn; n<=maxn; ++n)  // rising fact
     {
-        mixedradix_lex P(n, 1);  // rising fact
+        mixedradix P(n, 1);  // rising fact
         const ulong N = factorial(n+1);
 //        cout << "  N=" << setw(4) << N;
 //        print_mixedradix("  nines=", P.m1_, n, true);
@@ -83,7 +83,7 @@ main(int argc, char **argv)
 
     for (ulong n=minn; n<=maxn; ++n)  // falling fact
     {
-        mixedradix_lex P(n, 0);  // falling fact
+        mixedradix P(n, 0);  // falling fact
         const ulong N = factorial(n+1);
 //        cout << "  N=" << setw(4) << N;
 //        print_mixedradix("  nines=", P.m1_, n, true);

@@ -1,7 +1,7 @@
 #if !defined HAVE_CYCLIC_PERM_H__
 #define      HAVE_CYCLIC_PERM_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,13 +25,13 @@ public:
     ulong *x_;  // inverse permutation
 
 private:  // have pointer data
-    cyclic_perm(const cyclic_perm&);  // forbidden
-    cyclic_perm & operator = (const cyclic_perm&);  // forbidden
+    cyclic_perm(const cyclic_perm&) = delete;
+    cyclic_perm & operator = (const cyclic_perm&) = delete;
 
 public:
     explicit cyclic_perm(ulong n)
         : n_(n)
-    {
+    {  // must have n >= 2
         ix_ = new ulong[n_];
         x_ = new ulong[n_];
         M_ = new mixedradix_gray(n_-2, 0);  // falling factorial base

@@ -45,6 +45,7 @@ FXTHDRS=$(shell find src -maxdepth 2 -name \[a-zA-Z]\*.h)
 
 
 AUXOBJS= \
+src/nextarg.o \
 src/bits/revbin-upd.o \
 src/bits/revbin-tab.o \
 src/bits/lin2hilbert.o \

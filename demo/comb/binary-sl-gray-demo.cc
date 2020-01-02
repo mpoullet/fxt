@@ -102,6 +102,26 @@ main(int argc, char **argv)
 // -------------------------
 
 /*
+Timing: (Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz)
+
+GCC 8.3.0
+
+ time ./bin 30 0
+forward:
+ ct=1073741824
+./bin 30 0  0.85s user 0.00s system 99% cpu 0.850 total
+ ==> 1073741824 / 0.85 == 1,263,225,675 per second
+
+
+ time ./bin 30 1
+backward:
+ ct=1073741824
+./bin 30 1  1.16s user 0.00s system 99% cpu 1.157 total
+ ==> 1073741824 / 1.16 == 925,639,503 per second
+
+*/
+
+/*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
  time ./bin 30 0

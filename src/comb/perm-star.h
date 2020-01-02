@@ -1,7 +1,7 @@
 #if !defined HAVE_PERM_STAR_H__
 #define      HAVE_PERM_STAR_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -37,9 +37,8 @@ public:
 #endif
 #endif
 
-private:  // have pointer data
-    perm_star(const perm_star&);  // forbidden
-    perm_star & operator = (const perm_star&);  // forbidden
+    perm_star(const perm_star&) = delete;
+    perm_star & operator = (const perm_star&) = delete;
 
 public:
     explicit perm_star(ulong n)

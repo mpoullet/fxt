@@ -1,4 +1,5 @@
 #! /usr/bin/env bash
+## -*- shell-script -*-
 
 ## Check Emacs-targets of demos
 
@@ -8,8 +9,8 @@ shopt -s nullglob
 
 cd demo
 
-dd=$(find ./ -mindepth 1 -type d)
-dd=$(find ./ -mindepth 1 -type d)
+#dd=$(find ./ -mindepth 1 -type d)
+dd=$(find ./ -mindepth 1 -type d | grep -vF '/attic' )
 
 Q=1;
 #for d in ${=dd} ; do

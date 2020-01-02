@@ -1,7 +1,7 @@
 #if !defined  HAVE_WORD_STATS_H__
 #define       HAVE_WORD_STATS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2015 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -18,9 +18,8 @@ private:
     ulong *h;  // aux for histogram
     ulong hn;  // hn+1 values in histogram: h[0..hn]
 
-private:  // have pointer data
-    word_stats(const word_stats&);  // forbidden
-    word_stats & operator = (const word_stats&);  // forbidden
+    word_stats(const word_stats&) = delete;
+    word_stats & operator = (const word_stats&) = delete;
 
 public:
     explicit word_stats(const ulong *ta, ulong tn, ulong thn=0)

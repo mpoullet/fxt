@@ -1,7 +1,7 @@
 #if !defined  HAVE_PERM_GRAY_WELLS_H__
 #define       HAVE_PERM_GRAY_WELLS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -28,9 +28,8 @@ private:
     // 1 ==> Lipski(14),
     // 2 ==> Lipski(15)
 
-private:  // have pointer data
-    perm_gray_wells(const perm_gray_wells&);  // forbidden
-    perm_gray_wells & operator = (const perm_gray_wells&);  // forbidden
+    perm_gray_wells(const perm_gray_wells&) = delete;
+    perm_gray_wells & operator = (const perm_gray_wells&) = delete;
 
 public:
     explicit perm_gray_wells(ulong n, ulong r=0)

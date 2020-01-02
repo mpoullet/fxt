@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_BINARY_ASC_H__
 #define      HAVE_PARTITION_BINARY_ASC_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -26,9 +26,8 @@ public:
     ulong ml_;  // last m (== Hamming weight of n)
     ulong *a_;  // partition: a[1] + a[2] + ... + a[m] = n
 
-private:  // have pointer data
-    partition_binary_asc(const partition_binary_asc&);  // forbidden
-    partition_binary_asc & operator = (const partition_binary_asc&);  // forbidden
+    partition_binary_asc(const partition_binary_asc&) = delete;
+    partition_binary_asc & operator = (const partition_binary_asc&) = delete;
 
 public:
     explicit partition_binary_asc(ulong n)

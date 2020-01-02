@@ -1,7 +1,7 @@
 #if !defined  HAVE_COMBINATION_EMK_H__
 #define       HAVE_COMBINATION_EMK_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -19,9 +19,8 @@ public:
     ulong *a_;  // aux: actual start position of moves
     ulong n_, k_;  // Combination (n choose k)
 
-private:  // have pointer data
-    combination_emk(const combination_emk&);  // forbidden
-    combination_emk & operator = (const combination_emk&);  // forbidden
+    combination_emk(const combination_emk&) = delete;
+    combination_emk & operator = (const combination_emk&) = delete;
 
 public:
     explicit combination_emk(ulong n, ulong k)
@@ -69,19 +68,19 @@ public:
 //                if ( 0!=(j&1) )  // alternative order
                 {
                     ++u;
-                    if ( u>m )  u = 0;
+                    if ( u > m )  u = 0;
                 }
                 else
                 {
                     --u;
-                    if ( u>m )  u = m;
+                    if ( u > m )  u = m;
                 }
                 u += sj;
 
                 if ( u != a_[j] )  // next position != start position
                 {
                     x_[j] = u;
-                    s_[j+1] = u+1;
+                    s_[j+1] = u + 1;
                     return j;
                 }
             }

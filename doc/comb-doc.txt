@@ -223,11 +223,18 @@ class binary_sl_gray;
 // See Joerg Arndt, Subset-lex: did we miss an order?, (2014)
 //   http://arxiv.org/abs/1405.6503
 
+// ========== HEADER FILE src/comb/catalan-flat-path-lex.h: ==========
+
+class catalan_flat_path_lex;
+// Catalan paths in lexicographic order, CAT algorithm.
+// Steps are +1, 0, -1 (up, horizontal, down),
+// the first and last elements are 0, all elements are non-negative.
+
 // ========== HEADER FILE src/comb/catalan-path-lex.h: ==========
 
 class catalan_path_lex;
 // Catalan paths in lexicographic order, CAT algorithm.
-// Steps are +1, 0, -1 (up, horizontal, down),
+// Steps are +1, -1 (up, down),
 // the first and last elements are 0, all elements are non-negative,
 // and even/odd positions respectively have even/odd entries only.
 
@@ -338,17 +345,17 @@ class change_rgs;
 
 // ========== HEADER FILE src/comb/check-kpermgen.h: ==========
 
-class check_kpermgen : bitarray;
+class check_kpermgen;
 // Checking validity of list of k-permutations.
 
 // ========== HEADER FILE src/comb/check-mixedradix.h: ==========
 
-class check_mixedradix : public bitarray;
+class check_mixedradix;
 // Checking validity of list of mixed radix numbers.
 
 // ========== HEADER FILE src/comb/check-permgen.h: ==========
 
-class check_permgen : bitarray;
+class check_permgen;
 // Checking validity of list of permutations.
 
 // ========== HEADER FILE src/comb/comb-print.h: ==========
@@ -455,7 +462,7 @@ class combination_chase;
 // ========== HEADER FILE src/comb/combination-colex.h: ==========
 
 class combination_colex;
-// Combinations n choose k (co-lexicographic order)
+// Combinations n choose k (co-lexicographic order).
 
 // ========== HEADER FILE src/comb/combination-emk.h: ==========
 
@@ -572,14 +579,14 @@ class composition_dist_unimodal;
 class composition_ex_colex;
 // Compositions of n into exactly k parts (k-compositions of n),
 // co-lexicographic (colex) order.
-// Must have:  n>=k.
+// Must have:  n >= k.
 
 // ========== HEADER FILE src/comb/composition-ex-lex.h: ==========
 
 class composition_ex_lex;
 // Compositions of n into exactly k parts (k-compositions of n),
 // lexicographic order.
-// Must have:  n>=k.
+// Must have:  n >= k.
 
 // ========== HEADER FILE src/comb/composition-nz-binary.h: ==========
 
@@ -881,7 +888,7 @@ class composition_nz;
 
 // ========== HEADER FILE src/comb/composition-rank.h: ==========
 
-class composition_rank : public num_compositions;
+class composition_rank;
 // Ranking and unranking compositions in
 //   lexicographic, minimal-change, or enup (two-close) order.
 // The routines rank_*(x,n,k) have complexity k*k.
@@ -912,13 +919,13 @@ ulong cyclic_lex_min_idx(const Type *W, ulong n);
 // Return index i such that the word W, read (cyclically) starting at i,
 // is the lexicographically minimal cyclic shift of W.
 // In other words:
-// among all rotations of W, the one by i letters (to the left) is lex-min.
+// among all rotations of W, the one shifted by i letters (to the left) is lex-min.
 //.
 // Orignal code taken from https://stackoverflow.com/questions/3459509/
 // Cleaned up and optimized.
 
 bool is_cyclic_lex_min(const Type *W, ulong n);
-// Return whther W[] is the minimum among all its cyclic rotations.
+// Return whether W[] is the minimum among all its cyclic rotations.
 // Equivalently, whether 0 === cyclic_lex_min_idx(W, n),
 //   but faster on average.
 
@@ -947,7 +954,7 @@ int cyclic_compare_min(const Type * A, const Type * B, ulong n);
 // Let ai and bi be the indices returned by cyclic_lex_min_idx()
 //   for A[] and B[] respectively.
 // Compare A[ai, ai+1, ...] and B[bi, bi+1, ...] cyclically (indices taken mod n).
-// Return  +1 if A[] > B[],  -1 if A[] < B[],  otherwise (A[]==B[]) 0.
+// Return  +1 if A[] > B[],  -1 if A[] < B[],  otherwise (A[]==B[]) return 0.
 
 // ========== HEADER FILE src/comb/debruijn.h: ==========
 
@@ -997,16 +1004,6 @@ class dyck_gray2;
 class dyck_pref;
 // k-ary Dyck words
 // Algorithm "coolkat" as given (left in figure "Algorithms 1") in
-//   Stephane Durocher, Pak Ching Li, Debajyoti Mondal, Aaron Williams:
-//   "Ranking and Loopless Generation of k-ary Dyck Words in Cool-lex Order",
-//   The 22nd International Workshop on Combinatorial Algorithms,
-//   Victoria, Canada, IWOCA, (2011).
-
-// ========== HEADER FILE src/comb/dyck-pref2.h: ==========
-
-class dyck_pref2;
-// k-ary Dyck words
-// Algorithm "coolKat" as given (right in figure "Algorithms 1") in
 //   Stephane Durocher, Pak Ching Li, Debajyoti Mondal, Aaron Williams:
 //   "Ranking and Loopless Generation of k-ary Dyck Words in Cool-lex Order",
 //   The 22nd International Workshop on Combinatorial Algorithms,
@@ -1257,7 +1254,7 @@ void perm2rfact_rot(const ulong *x, ulong n, ulong *fc);
 // We have: fc[0]<2, fc[1]<3, ..., fc[n-2]<n (rising radices)
 
 void rfact2perm_rot(const ulong *fc, ulong n, ulong *x, bool iq/*=true*/);
-// Inverser of perm2rfact_rot().
+// Inverse of perm2rfact_rot().
 // Convert the (n-1) digit rising factorial representation in fc[0,...,n-2].
 //  into permutation in x[0,...,n-1]
 // Must have: fc[0]<2, fc[1]<3, ..., fc[n-2]<n (rising radices)
@@ -1701,10 +1698,15 @@ ulong max_lyndon_prefix_len(const Type *W, ulong n);
 inline bool is_lyndon_word(const Type *W, ulong n);
 // Return whether the word W is a Lyndon word.
 
+// ========== HEADER FILE src/comb/lyndon-words-restrpref.h: ==========
+
+class lyndon_words_restrpref : private lyndon_words;
+// Lyndon words up to length n with restricted prefixes.
+
 // ========== HEADER FILE src/comb/lyndon-words.h: ==========
 
 class lyndon_words;
-// All Lyndon words up to length n.
+// Lyndon words up to length n.
 // Duval's algorithm.
 
 // ========== HEADER FILE src/comb/map23-rgs.h: ==========
@@ -1715,10 +1717,20 @@ class map23_rgs;
 // Lexicographic order.
 // Cf. OEIS sequence A187761.
 
-// ========== HEADER FILE src/comb/mixedradix-colex.h: ==========
+// ========== HEADER FILE src/comb/mixedradix-aux.h: ==========
 
-class mixedradix_colex;
-// Mixed radix counting.
+// ----- SRCFILE=src/comb/mixedradix-init.cc: -----
+void mixedradix_init(ulong n, ulong mm, const ulong *m, ulong *m1); // aux
+// Auxiliary function used to initialize vector of nines in mixed radix classes.
+
+// ----- SRCFILE=src/comb/mixedradix2num.cc: -----
+ulong mixedradix2num(const ulong *x, const ulong *m1, ulong n);
+// Convert n-digit mixed radix number in x[] to (unsigned) integer.
+// Radices minus one (that is, "nines") must be given in m1[].
+
+void num2mixedradix(ulong N, ulong *x, const ulong *m1, ulong n);
+// Convert N to n-digit mixed radix number in x[].
+// Radices minus one (that is, "nines") must be given in m1[].
 
 // ========== HEADER FILE src/comb/mixedradix-endo-gray.h: ==========
 
@@ -1739,47 +1751,20 @@ class mixedradix_gray;
 // Gray code for mixed radix numbers.
 // CAT algorithm.
 
-// ========== HEADER FILE src/comb/mixedradix-gray2.h: ==========
-
-class mixedradix_gray2;
-// Gray code for mixed radix numbers.
-// Loopless algorithm. Implementation following Knuth.
-
 // ========== HEADER FILE src/comb/mixedradix-gslex-alt.h: ==========
 
 class mixedradix_gslex_alt;
-// Mixed radix numbers in alternative gslex (generalized subset-lex) order.
-
-// ========== HEADER FILE src/comb/mixedradix-gslex-alt2.h: ==========
-
-class mixedradix_gslex_alt2;
 // Mixed radix numbers in alternative gslex (generalized subset-lex) order.
 
 // ========== HEADER FILE src/comb/mixedradix-gslex.h: ==========
 
 class mixedradix_gslex;
 // Mixed radix numbers in gslex (generalized, subset-lexicographic) order.
-
-// ========== HEADER FILE src/comb/mixedradix-gslex2.h: ==========
-
-class mixedradix_gslex2;
-// Mixed radix numbers in gslex (generalized, subset-lexicographic) order.
 // Loopless generation.
-
-// ========== HEADER FILE src/comb/mixedradix-lex.h: ==========
-
-class mixedradix_lex;
-// Mixed radix counting.
 
 // ========== HEADER FILE src/comb/mixedradix-modular-gray.h: ==========
 
 class mixedradix_modular_gray;
-// Modular Gray code for mixed radix numbers.
-// Implementation following Knuth (loopless algorithm).
-
-// ========== HEADER FILE src/comb/mixedradix-modular-gray2.h: ==========
-
-class mixedradix_modular_gray2;
 // Modular Gray code for mixed radix numbers.
 // Constant amortized time (CAT) algorithm.
 
@@ -1804,11 +1789,24 @@ class mixedradix_naf;
 class mixedradix_restrpref;
 // Mixed radix counting with restricted prefixes.
 
-// ========== HEADER FILE src/comb/mixedradix-rfact.h: ==========
+// ========== HEADER FILE src/comb/mixedradix-rev.h: ==========
 
-class mixedradix_rfact;
-// Counting in rising factorial base,
-// special case of mixed radix counting.
+class mixedradix_rev;
+// Mixed radix counting.
+// Digits in reversed order as in class mixedradix.
+
+// ========== HEADER FILE src/comb/mixedradix-sl-gray-compare.h: ==========
+
+inline int mixedradix_sl_gray_compare(const Type *a, const Type *b, ulong n,;
+                                      const ulong *m1)
+// Compare a[] and b[] with respect to SL-Gray order.
+// Return +1 if a[] >> b[], -1 if a[] << b[], 0 if a[]==b[].
+// m1[] must be the array of nines.
+
+// ========== HEADER FILE src/comb/mixedradix-sl-gray-rank.h: ==========
+
+class mixedradix_sl_gray_rank;
+// Ranking and unranking function for SL-Gray order.
 
 // ========== HEADER FILE src/comb/mixedradix-sl-gray.h: ==========
 
@@ -1824,6 +1822,11 @@ class mixedradix_sod_lex;
 // Mixed radix numbers with prescribed sum of digits s, in lexicographic order.
 // Same as: s-combinations of a multiset.
 // Same as: compositions of s with prescribed maximum at each place.
+
+// ========== HEADER FILE src/comb/mixedradix-subset-lex-rank.h: ==========
+
+class mixedradix_subset_lex_rank;
+// Ranking and unranking function for subset-lex order.
 
 // ========== HEADER FILE src/comb/mixedradix-subset-lex.h: ==========
 
@@ -1843,22 +1846,8 @@ class mixedradix_subset_lexrev;
 
 // ========== HEADER FILE src/comb/mixedradix.h: ==========
 
-// ----- SRCFILE=src/comb/mixedradix-init.cc: -----
-void mixedradix_init(ulong n, ulong mm, const ulong *m, ulong *m1); // aux
-// Auxiliary function used to initialize vector of nines in mixed radix classes.
-
-// ----- SRCFILE=src/comb/mixedradix2num.cc: -----
-ulong mixedradix2num(const ulong *x, const ulong *m1, ulong n);
-// Convert n-digit mixed radix number in x[] to (unsigned) integer.
-// Radices minus one (that is, "nines") must be given in m1[].
-
-void num2mixedradix(ulong N, ulong *x, const ulong *m1, ulong n);
-// Convert N to n-digit mixed radix number in x[].
-// Radices minus one (that is, "nines") must be given in m1[].
-
-ulong product(const ulong *x, ulong n);
-
-ulong product_p1(const ulong *m1, ulong n);
+class mixedradix;
+// Mixed radix counting.
 
 // ========== HEADER FILE src/comb/monotonic-gray.h: ==========
 
@@ -2473,6 +2462,11 @@ class partition;
 // Representation as array of multiplicities of parts.
 // Cf. OEIS sequence A000041.
 
+// ========== HEADER FILE src/comb/peano-ndim.h: ==========
+
+class peano_ndim;
+// n-dimensional Peano curve
+
 // ========== HEADER FILE src/comb/perm-colex.h: ==========
 
 class perm_colex;
@@ -2491,13 +2485,6 @@ class perm_gray_ffact;
 // Gray code for permutations (Trotter/Johnson ordering).
 // CAT algorithm based on mixed radix Gray code
 //   for the factorial number system (falling base).
-
-// ========== HEADER FILE src/comb/perm-gray-ffact2.h: ==========
-
-class perm_gray_ffact2;
-// Gray code for permutations (Trotter/Johnson ordering).
-// Loopless algorithm based on mixed radix Gray code
-//   for the factorial number system.
 
 // ========== HEADER FILE src/comb/perm-gray-lipski.h: ==========
 
@@ -2574,21 +2561,10 @@ class perm_ives;
 //   Communications of the ACM, vol.19, no.2, pp.68-72,  February-1976.
 // The inverse permutations are Ives' order a.
 
-// ========== HEADER FILE src/comb/perm-lex-inv.h: ==========
-
-class perm_lex_inv;
-// Permutations in lexicographic order, with inverse permutations.
-// Generation via rising factorial numbers.
-
 // ========== HEADER FILE src/comb/perm-lex.h: ==========
 
 class perm_lex;
-// Permutations in lexicographic order
-
-// ========== HEADER FILE src/comb/perm-lex2.h: ==========
-
-class perm_lex2;
-// Permutations in lexicographic order.
+// Permutations in lexicographic order, with inverse permutations.
 // Generation via rising factorial numbers.
 
 // ========== HEADER FILE src/comb/perm-mv0.h: ==========
@@ -2622,12 +2598,6 @@ class perm_restrpref;
 
 class perm_rev;
 // Permutations by reversing prefixes, CAT algorithm
-
-// ========== HEADER FILE src/comb/perm-rev2.h: ==========
-
-class perm_rev2;
-// Permutations by reversing prefixes, CAT algorithm.
-// Optimized version.
 
 // ========== HEADER FILE src/comb/perm-rot.h: ==========
 
@@ -3009,15 +2979,6 @@ class skew_binary;
 // See http://en.wikipedia.org/wiki/Skew_binary_number_system
 // Cf. OEIS sequence A169683.
 
-// ========== HEADER FILE src/comb/sl-gray-compare.h: ==========
-
-inline int sl_gray_compare(const Type *a, ulong na,;
-                           const Type *b, ulong nb,
-                           const ulong *m1)
-// Compare a[] and b[] with respect to SL-Gray order.
-// Return +1 if a[] >> b[], -1 if a[] << b[], 0 if a[]==b[].
-// m1[] must be the array of nines.
-
 // ========== HEADER FILE src/comb/smooth-rfact-rgs.h: ==========
 
 class smooth_rfact_rgs;
@@ -3034,7 +2995,7 @@ class string_subst;
 
 // ========== HEADER FILE src/comb/subset-debruijn.h: ==========
 
-class subset_debruijn : public binary_debruijn;
+class subset_debruijn;
 // Subsets of the set {0,1,2,...,n-1} in an order
 // determined by a De Bruijn sequence.
 // Note: work per subset is proportional to n.
@@ -3058,8 +3019,7 @@ class subset_gray;
 
 // ========== HEADER FILE src/comb/subset-lex-compare.h: ==========
 
-inline int subset_lex_compare(const Type *a, ulong na,;
-                              const Type *b, ulong nb,
+inline int subset_lex_compare(const Type *a, const Type *b, ulong n,;
                               bool rlq=false)
 // Compare a[] and b[] with repect to subset-lex order.
 // Return +1 if a[] >> b[], -1 if a[] << b[], 0 if a[]==b[].

@@ -5,7 +5,7 @@
 # a one corresponds to a pair of indices A and B
 # such that (A+B) is a zero-divisor.
 # For each such pair all of (+-A +-B) are zero divisors.
-# If (A + B) is a zero-divisor the trivially also
+# If (A + B) is a zero-divisor then trivially also
 # (B + A) is a zero-divisor, hence the symmetry.
 # The upper left 32 x 32 square gives the structure for
 # the 32-ions, the upper left 16 x 16 square for the sedenions.

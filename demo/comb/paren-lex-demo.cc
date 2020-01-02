@@ -92,7 +92,7 @@ main(int argc, char **argv)
 
 Timing: (AMD Phenom II X4 945 3000MHz)
 
- ---- with gcc 4.5.0:
+ ---- with GCC 4.5.0:
  time ./bin 18 0
 arg 1: 18 == k  [Number of parenthesis pairs]  default=5
 arg 2: 0 == bwq  [Whether to generate in backward direction]  default=0
@@ -111,7 +111,7 @@ forward:
  ==> 477638700/1.52 == 314,235,986 per second
 
 
- ---- with gcc 4.8.0:
+ ---- with GCC 4.8.0:
  time ./bin 18 0
 arg 1: 18 == k  [Number of parenthesis pairs]  default=5
 arg 2: 0 == bwq  [Whether to generate in backward direction]  default=0

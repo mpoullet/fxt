@@ -3,7 +3,6 @@
 
 //#include "perm/permq.h"
 #include "comb/fact2perm.h"
-//#include "comb/mixedradix.h"
 //#include "comb/comb-print.h"
 
 #include "comb/check-permgen.h"

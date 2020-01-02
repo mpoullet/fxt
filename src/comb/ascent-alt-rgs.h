@@ -1,7 +1,7 @@
 #if !defined  HAVE_ASCENT_ALT_RGS_H__
 #define       HAVE_ASCENT_ALT_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014 Joerg Arndt
+// Copyright (C) 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -32,9 +32,8 @@ public:
 #endif
     ulong n_;   // Number of digits
 
-private:  // have pointer data
-    ascent_alt_rgs(const ascent_alt_rgs&);  // forbidden
-    ascent_alt_rgs & operator = (const ascent_alt_rgs&);  // forbidden
+    ascent_alt_rgs(const ascent_alt_rgs&) = delete;
+    ascent_alt_rgs & operator = (const ascent_alt_rgs&) = delete;
 
 public:
     explicit ascent_alt_rgs(ulong n)

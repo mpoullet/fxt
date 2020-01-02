@@ -1,13 +1,13 @@
 #if !defined  HAVE_MIXEDRADIX_ENDO_H__
 #define       HAVE_MIXEDRADIX_ENDO_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
 
 #include "comb/endo-enup.h"
-#include "comb/mixedradix.h"
+#include "comb/mixedradix-aux.h"
 #include "comb/is-mixedradix-num.h"
 #include "comb/comb-print.h"
 
@@ -18,7 +18,7 @@ class mixedradix_endo
 // Mixed radix counting in endo order.
 // (endo := "Even Numbers Down, Odd (numbers up)")
 {
-public:
+protected:
     ulong *a_;  // digits, sentinel a[n]
     ulong *m1_;  // radix (minus one) for each digit
     ulong *le_;  // last positive digit in endo order, sentinel le[n]
@@ -26,8 +26,8 @@ public:
     ulong j_;   // position of last change
 
 private:  // have pointer data
-    mixedradix_endo(const mixedradix_endo&);  // forbidden
-    mixedradix_endo & operator = (const mixedradix_endo&);  // forbidden
+    mixedradix_endo(const mixedradix_endo&) = delete;
+    mixedradix_endo & operator = (const mixedradix_endo&) = delete;
 
 public:
     explicit mixedradix_endo(ulong n, ulong mm, const ulong *m = nullptr)
@@ -54,6 +54,8 @@ public:
     }
 
     const ulong * data()  const  { return a_; }
+    const ulong * nines()  const  { return m1_; }
+    ulong num_digits()  const  { return n_; }
 
     void first()
     {

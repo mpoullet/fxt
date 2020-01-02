@@ -1,10 +1,9 @@
 #if !defined HAVE_COMPOSITION_NZ_FIRST_MAX_H__
 #define      HAVE_COMPOSITION_NZ_FIRST_MAX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2015 Joerg Arndt
+// Copyright (C) 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
-
 
 
 #include "comb/is-composition-nz.h"
@@ -20,33 +19,24 @@
 // Cf. comb/balanced-tree-lev-seq.h
 
 
-//#define COMPOSITION_NZ_FIRST_MAX_FIXARRAYS  // default off
-
 class composition_nz_first_max
 // Compositions of n into positive parts where no part is greater than the first.
 // Lexicographic order.
 // See OEIS sequences A079500 and A007059.
 {
 public:
-#ifndef COMPOSITION_NZ_FIRST_MAX_FIXARRAYS
     ulong *a_;  // composition: a[1] + a[2] + ... + a[m] = n
-#else
-    ulong a_[64];  // > 4 * 10^17 compositions
-#endif
     ulong n_;   // composition of n
     ulong m_;   // current composition has m parts
 
-private:  // have pointer data
-    composition_nz_first_max(const composition_nz_first_max&);  // forbidden
-    composition_nz_first_max & operator = (const composition_nz_first_max&);  // forbidden
+    composition_nz_first_max(const composition_nz_first_max&) = delete;
+    composition_nz_first_max & operator = (const composition_nz_first_max&) = delete;
 
 public:
     explicit composition_nz_first_max(ulong n)
     {
         n_ = n;
-#ifndef COMPOSITION_NZ_FIRST_MAX_FIXARRAYS
         a_ = new ulong[n_+1+(n_==0)];
-#endif
         a_[0] = 0;  // returned by last_part() when n==0
         a_[1] = 0;  // returned by first_part() when n==0
         first();
@@ -54,9 +44,7 @@ public:
 
     ~composition_nz_first_max()
     {
-#ifndef COMPOSITION_NZ_FIRST_MAX_FIXARRAYS
         delete [] a_;
-#endif
     }
 
     const ulong * data()  const  { return  a_ + 1; }
@@ -71,13 +59,6 @@ public:
         for (ulong k=1; k<=n_; ++k)  a_[k] = 1;
         m_ = n_;
     }
-
-//    void last()
-//    {
-//        for (ulong k=1; k<=n_; ++k)  a_[k] = 1;
-//        a_[1] = n_;
-//        m_ = 1;
-//    }
 
     ulong next()
     // Return number of parts of generated composition.
@@ -109,13 +90,6 @@ public:
 
         return  m_;
     }
-
-//    ulong prev()
-//    // Return number of parts of generated composition.
-//    // Return zero if the current is the first composition.
-//    {
-//    }
-
 
     bool OK()  const
     {

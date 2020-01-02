@@ -1,7 +1,7 @@
 #if !defined  HAVE_COMBINATION_ENUP_H__
 #define       HAVE_COMBINATION_ENUP_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -22,9 +22,8 @@ public:
     ulong *a_;  // aux: actual start position of enup moves
     ulong n_, k_;  // Combination (n choose k)
 
-private:  // have pointer data
-    combination_enup(const combination_enup&);  // forbidden
-    combination_enup & operator = (const combination_enup&);  // forbidden
+    combination_enup(const combination_enup&) = delete;
+    combination_enup & operator = (const combination_enup&) = delete;
 
 public:
     explicit combination_enup(ulong n, ulong k)

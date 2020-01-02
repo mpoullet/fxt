@@ -167,7 +167,7 @@ main(int argc, char **argv)
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
-gcc 4.5.0:
+GCC 4.5.0:
 
  time ./bin 115 0
 arg 1: 115 == n  [integer partitions of n]  default=11
@@ -206,7 +206,7 @@ backward:
 
 
 
-gcc 4.8.0:
+GCC 4.8.0:
 
  time ./bin 115 0
 arg 1: 115 == n  [integer partitions of n]  default=11

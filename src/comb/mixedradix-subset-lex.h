@@ -1,11 +1,13 @@
 #if !defined HAVE_MIXEDRADIX_SUBSET_LEX_H__
 #define      HAVE_MIXEDRADIX_SUBSET_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2015, 2018 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2015, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
-#include "comb/mixedradix.h"
+#include "comb/mixedradix-subset-lex-rank.h"
+
+#include "comb/mixedradix-aux.h"
 #include "comb/is-mixedradix-num.h"
 #include "comb/comb-print.h"
 
@@ -18,15 +20,17 @@ class mixedradix_subset_lex
 // See Joerg Arndt, Subset-lex: did we miss an order?, (2014)
 //   http://arxiv.org/abs/1405.6503
 {
-public:
+protected:
     ulong n_;    // Number of digits (n kinds of elements in multiset)
-    ulong tr_;   // aux: current track
+    ulong tr_;   // aux: current track, index of last non-zero digit, 0 also for all-zero word
     ulong *a_;   // digits of mixed radix number (multiplicity of kind k in subset).
     ulong *m1_;  // nines (radix minus one) for each digit (multiplicity of kind k in superset).
 
+    mixedradix_subset_lex_rank * RU { nullptr };  // rank and unrank functions
+
 private:  // have pointer data
-    mixedradix_subset_lex(const mixedradix_subset_lex&);  // forbidden
-    mixedradix_subset_lex & operator = (const mixedradix_subset_lex&);  // forbidden
+    mixedradix_subset_lex(const mixedradix_subset_lex&) = delete;
+    mixedradix_subset_lex & operator = (const mixedradix_subset_lex&) = delete;
 
 public:
     explicit mixedradix_subset_lex(ulong n, ulong mm, const ulong *m = nullptr)
@@ -41,6 +45,8 @@ public:
 
         mixedradix_init(n_, mm, m, m1_);
 
+        RU = new mixedradix_subset_lex_rank( data(), num_digits(), nines() );
+
         first();
     }
 
@@ -50,10 +56,14 @@ public:
         delete [] a_;
         --m1_;
         delete [] m1_;
+
+        delete RU;
     }
 
     const ulong * data()  const  { return a_; }
-
+    const ulong * nines()  const  { return m1_; }
+    ulong num_digits()  const  { return n_; }
+    ulong track()  const  { return tr_; }  // index of rightmost non-zero digit
 
     void first()
     {
@@ -150,6 +160,16 @@ public:
         return s;
     }
 
+    ulong rank()  const
+    {
+        return RU->rank();
+    }
+
+    void unrank(ulong r)
+    {
+        tr_ = RU->unrank( r, a_ );
+    }
+
     void print(const char *bla, bool dfz=false)  const
     // If dfz is true then Dots are printed For Zeros.
     { print_mixedradix(bla, a_, n_, dfz); }
@@ -160,6 +180,14 @@ public:
     bool OK()  const
     {
         if ( ! is_mixedradix_num(a_, n_, m1_) )  return false;
+
+        const ulong rk = RU->rank();
+        ulong B[n_];
+        RU->unrank( rk, B );
+        for (ulong j=0; j<n_; ++j)
+            if ( data()[j] != B[j] )
+                return false;
+
         return true;
     }
 };

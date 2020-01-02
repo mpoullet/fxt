@@ -7,6 +7,8 @@
 #include "fxtio.h"
 #include "nextarg.h"  // NXARGSTR()
 
+#include <cstring>  // strlen()
+
 //% Demo of the selection sort algorithm.
 
 static void print_str(const char *f, ulong i, ulong n)

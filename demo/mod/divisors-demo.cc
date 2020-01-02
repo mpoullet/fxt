@@ -23,7 +23,7 @@ main(int argc, char **argv)
     cout << " ]";
     cout << endl;
     cout << " exponents = [";
-    for (ulong j=0; j<D.n_; ++j)  cout << setw(3) << D.mr_->m1_[j] << " ";
+    for (ulong j=0; j<D.n_; ++j)  cout << setw(3) << D.mr_->nines()[j] << " ";
     cout << " ]";
     cout << endl;
     cout << endl;
@@ -43,10 +43,10 @@ main(int argc, char **argv)
         cout << " ]";
 
         cout << "   mr=[";
-        for (ulong j=0; j<D.n_; ++j)  cout << setw(2) << D.mr_->a_[j];
+        for (ulong j=0; j<D.n_; ++j)  cout << setw(2) << D.mr_->data()[j];
         cout << " ]";
 
-        cout << "   j = " << D.mr_->j_;
+        cout << "   j = " << D.mr_->pos();
 
         cout << endl;
     }

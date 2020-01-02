@@ -5,7 +5,6 @@
 //#include "sort/minmaxptr.h"
 
 #include "fxttypes.h"
-#include "aux1/copy.h"  // set_seq()
 #include "aux0/randf.h"  // rnd01()
 
 #include "jjassert.h"
@@ -15,6 +14,22 @@
 #include "nextarg.h"  // NXARG()
 
 //% Demo of pointer-sorting.
+
+template <typename Type>
+inline void set_seq(Type *dst, ulong n, Type start, Type step)
+// Fill array with sequence
+//   start, start + step, start + 2 * step, ...
+{
+//    std::iota( dst , dst + n, start );  // does not cover all use cases
+
+    for (ulong k=0; k<n; ++k)
+    {
+        dst[k] = start;
+        start += step;
+    }
+}
+// -------------------------
+
 
 void
 ptr_print(const char *bla, const double *f, ulong n, const double **x)

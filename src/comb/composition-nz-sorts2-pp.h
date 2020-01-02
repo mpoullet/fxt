@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_SORTS2_PP_H__
 #define      HAVE_COMPOSITION_NZ_SORTS2_PP_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -41,9 +41,8 @@ public:
     ulong n_;   // composition of n
     ulong m_;   // current composition has m parts
 
-private:  // have pointer data
-    composition_nz_sorts2_pp(const composition_nz_sorts2_pp&);  // forbidden
-    composition_nz_sorts2_pp & operator = (const composition_nz_sorts2_pp&);  // forbidden
+    composition_nz_sorts2_pp(const composition_nz_sorts2_pp&) = delete;
+    composition_nz_sorts2_pp & operator = (const composition_nz_sorts2_pp&) = delete;
 
 public:
     explicit composition_nz_sorts2_pp(ulong n, ulong ns, const ulong *vns=nullptr)

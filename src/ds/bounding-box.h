@@ -1,7 +1,7 @@
 #if !defined HAVE_BOUNDING_BOX_H__
 #define      HAVE_BOUNDING_BOX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2017 Joerg Arndt
+// Copyright (C) 2017, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -16,6 +16,7 @@ class bounding_box
 // 2-dimensional bounding box that can grow to contain
 // coordinates given in the update() method.
 {
+public:
     typedef point2d<Type> Pnt;
 
 protected:
@@ -62,11 +63,11 @@ public:
         return ::mid_point( Pi, Pa );
     }
 
-    Type max_extent()  const
-    {
-        const double dx = delta_x(),  dy = delta_y();
-        return ( dx > dy ? dx : dy );
-    }
+//    Type max_extent()  const
+//    {
+//        const double dx = delta_x(),  dy = delta_y();
+//        return ( dx > dy ? dx : dy );
+//    }
 
     bool inside_q( const Pnt & P )
     {

@@ -1,18 +1,14 @@
 
 #include "comb/perm-lex.h"
 
-#include "comb/fact2perm.h"
-#include "perm/perminvert.h"
-#include "perm/permcomplement.h"
-
-#include "comb/comb-print.h"
-#include "comb/mixedradix.h"
 
 #include "fxttypes.h"
 #include "fxtio.h"
 #include "nextarg.h"
-#include "jjassert.h"
 
+#include "perm/permq.h"  // is_inverse()
+
+#include "jjassert.h"
 
 //% Generate all permutations in lexicographic order.
 
@@ -23,81 +19,109 @@ int
 main(int argc, char **argv)
 {
     ulong n = 4;
-    NXARG(n, "Permutations of n elements (n>=1).");
-    jjassert( n>=1 );
-    ulong q = 3;
-    NXARG(q, "Amount of output: q<=3");
+    NXARG(n, "Permutations of n elements.");
 
     perm_lex P(n);
 
 #ifdef TIMING
-    while ( P.next() )  {;}
-#else
+#ifdef PERM_LEX_FIXARRAYS
+    cout << "PERM_LEX_FIXARRAYS is defined." << endl;
+#endif
+#ifdef PERM_LEX_OPT
+    cout << "PERM_LEX_OPT is defined." << endl;
+#endif
+
+    ulong ct = 0;
+    do { ++ct; }  while ( P.next() );
+
+#else  // TIMING
 
     bool dfz= true;  // whether to print dots for zeros
     const ulong *x = P.data();
-    ulong *t1 = new ulong[n];  // aux
-    ulong *t2 = new ulong[n];  // aux
+    const ulong *xi = P.invdata();
 
     cout << "         permutation         inv. perm.";
-//    cout << "     compl. inv. perm.    reversed perm.      fact." << endl;
-    cout << "     compl. inv. perm.    reversed perm." << endl;
+    cout << endl;
 
     ulong ct = 0;
     do
     {
-        if ( q>=1 ) cout << setw(4) << ct << ":";
-        ++ct;
-
+        cout << setw(4) << ct << ":";
         P.print("    ", dfz);
+        cout << setw(3) << P.pos();
+        P.print_inv("    ", dfz);
+//        print_vec("      ", P.d_, n, true);  // factorial numbers
 
-        if ( q>=2 )
-        {
-            make_inverse(x, t1, n);
-            print_perm("        ", t1, n, dfz);
-
-            if ( q>=3 )
-            {
-                make_complement(t1, t2, n);
-                print_perm("        ", t2, n, dfz);
-
-                make_inverse(t2, t1, n);
-                print_perm("        ", t1, n, dfz);
-
-                //        perm2ffact(x, n, t1);
-                //        print_mixedradix("        ", t1, n-1, dfz);
-            }
-        }
         cout << endl;
+
+        jjassert( is_inverse(x, xi, n) );
+
+        ++ct;
     }
     while ( P.next() );
 
-    delete [] t1;
-    delete [] t2;
-#endif
+#endif // TIMING
+
+    cout << "ct=" << ct << endl;
 
     return 0;
 }
 // -------------------------
 
-/*
-Timing:
-
- time ./bin 12
-arg 1: 12 == n  [Permutations of n elements.]  default=4
-./bin 12  3.66s user 0.00s system 99% cpu 3.662 total
- ==> 12!/3.66 == 130,874,754 per second
-
-*/
 
 /*
+Timing: (Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz)
+
+GCC 8.3.0
+
+time ./bin 13
+arg 1: 13 == n  [Permutations of n elements.]  default=4
+PERM_LEX_FIXARRAYS is defined.
+PERM_LEX_OPT is defined.
+ct=6227020800
+./bin 13  5.73s user 0.00s system 99% cpu 5.734 total
+ ==> 6227020800/5.73 == 1,086,740,104 per second
+
+
 Timing: (AMD Phenom II X4 945 3000MHz)
 
- time ./bin 12
-./bin 12  2.96s user 0.00s system 99% cpu 2.961 total
- ==> 12!/2.96 == 161,824,864 per second
+
+GCC 4.9.1:
+
+ time ./bin 13
+arg 1: 13 == n  [Permutations of n elements.]  default=4
+PERM_LEX_FIXARRAYS is defined.
+PERM_LEX_OPT is defined.
+ct=6227020800
+./bin 13  9.43s user 0.00s system 99% cpu 9.438 total
+ ==> 6227020800/9.43 == 660,341,548 per second
+
+ time ./bin 13
+arg 1: 13 == n  [Permutations of n elements.]  default=4
+PERM_LEX_FIXARRAYS is defined.
+ct=6227020800
+./bin 13  13.09s user 0.00s system 99% cpu 13.098 total
+ ==> 6227020800/13.09 == 475,708,235 per second
+
+ time ./bin 13
+ time ./bin 13
+arg 1: 13 == n  [Permutations of n elements.]  default=4
+ct=6227020800
+./bin 13  47.61s user 0.00s system 99% cpu 47.627 total
+ ==> 6227020800/47.61 == 130,792,287 per second
+
+ time ./bin 13
+arg 1: 13 == n  [Permutations of n elements.]  default=4
+PERM_LEX_OPT is defined.
+ct=6227020800
+./bin 13  43.29s user 0.00s system 99% cpu 43.307 total
+ ==> 6227020800/43.29 == 143,844,324 per second
+
 */
 
+/*
+BENCHARGS=13
+*/
 
 /// Emacs:
 /// Local Variables:

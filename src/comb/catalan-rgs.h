@@ -1,7 +1,7 @@
 #if !defined  HAVE_CATALAN_RGS_H__
 #define       HAVE_CATALAN_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2015 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -35,9 +35,8 @@ public:
 
     char *str_;  // paren string
 
-private:  // have pointer data
-    catalan_rgs(const catalan_rgs&);  // forbidden
-    catalan_rgs & operator = (const catalan_rgs&);  // forbidden
+    catalan_rgs(const catalan_rgs&) = delete;
+    catalan_rgs & operator = (const catalan_rgs&) = delete;
 
 public:
     explicit catalan_rgs(ulong n)

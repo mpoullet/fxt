@@ -75,7 +75,7 @@ main(int argc, char **argv)
         M.print("    ", true );
         cout << "  " << M.pos();
         cout << "  " << (M.dir()==+1 ? '+' : '-' );
-        print_sign_vec("    ", M.d_, n);
+        print_sign_vec("    ", M.directions(), n);
         cout << endl;
 
         jjassert( M.OK() );

@@ -1,13 +1,14 @@
 
 #include "comb/fact2perm.h"
 // demo-include "comb/fact2perm.cc"
-#include "comb/mixedradix-lex.h"
+#include "comb/mixedradix.h"
 #include "perm/reverse.h"
 #include "perm/permcomplement.h"
 #include "perm/perminvert.h"
 
 #include "comb/mixedradix-modular-gray.h"
 #include "comb/mixedradix-gslex.h"
+#include "comb/mixedradix-gslex-alt.h"
 #include "comb/mixedradix-subset-lex.h"
 #include "comb/mixedradix-gray.h"
 #include "comb/mixedradix-sl-gray.h"
@@ -15,7 +16,6 @@
 #include "comb/mixedradix-endo-gray.h"
 
 #include "comb/comb-print.h"
-#include "comb/mixedradix.h"
 
 #include "comb/check-permgen.h"
 #include "jjassert.h"
@@ -40,12 +40,13 @@ main(int argc, char **argv)
     bool iq = 0;
     NXARG(iq, "Whether to generate inverse permutation for right columns (else reversed complement).");
 
-    mixedradix_lex M(n1, rq);  // default
+    mixedradix M(n1, rq);  // default
 //    mixedradix_subset_lex M(n1, rq);
 //    mixedradix_sl_gray M(n1, rq);
 //    mixedradix_gray M(n1, rq);
 //    mixedradix_modular_gray M(n1, rq);
 //    mixedradix_gslex M(n1, rq);
+//    mixedradix_gslex_alt M(n1, rq);
 //    mixedradix_endo M(n1, rq);
 //    mixedradix_endo_gray M(n1, rq);
     M.print_nines(" Nines: ");  cout << endl;

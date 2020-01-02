@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_DESC_BB_H__
 #define      HAVE_PARTITION_DESC_BB_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014 Joerg Arndt
+// Copyright (C) 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -38,9 +38,8 @@ public:
     ulong a_[448];  // > 2^66 partitions
 #endif
 
-private:  // have pointer data
-    partition_desc_bb(const partition_desc_bb&);  // forbidden
-    partition_desc_bb & operator = (const partition_desc_bb&);  // forbidden
+    partition_desc_bb(const partition_desc_bb&) = delete;
+    partition_desc_bb & operator = (const partition_desc_bb&) = delete;
 
 public:
     explicit partition_desc_bb(ulong n, ulong ba, ulong bm)

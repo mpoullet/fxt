@@ -69,15 +69,6 @@ main(int argc, char **argv)
 //    A.last();
     do
     {
-#if 0 // limit max digit
-        ulong m = 0;
-        for (ulong k=0; k<n; ++k)
-            if ( A.data()[k] > m )  m = A.data()[k];
-//        if ( m>1 )  continue;  // 2^n (set partitions with at most 2 blocks)
-        if ( m>2 )  continue;  // A007051, A124302 (set partitions with at most 3 blocks)
-//        if ( m>3 )  continue;  // A000000 (not: set partitions with at most 4 blocks)
-#endif
-
         ++ct;
         cout << setw(4) << ct << ":";
 

@@ -78,11 +78,50 @@ main(int argc, char **argv)
 }
 // -------------------------
 
+/*
+Timing: (Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz)
+GCC 8.3.0
+
+time ./bin 14 0
+arg 1: 14 == n  [Length of strings]  default=5
+arg 2: 0 == bw  [Whether to generate in backward order]  default=0
+ASCENT_RGS_FIXARRAYS defined.
+forward:
+ ct=796713190
+./bin 14 0  1.62s user 0.00s system 99% cpu 1.620 total
+ ==> 796713190 / 1.62 == 491,798,265 per second
+
+time ./bin 14 1
+arg 1: 14 == n  [Length of strings]  default=5
+arg 2: 1 == bw  [Whether to generate in backward order]  default=0
+ASCENT_RGS_FIXARRAYS defined.
+backward:
+ ct=796713190
+./bin 14 1  1.26s user 0.00s system 99% cpu 1.255 total
+ ==> 796713190 / 1.26 == 632,312,055 per second
+
+
+time ./bin 14 0
+arg 1: 14 == n  [Length of strings]  default=5
+arg 2: 0 == bw  [Whether to generate in backward order]  default=0
+forward:
+ ct=796713190
+./bin 14 0  1.87s user 0.00s system 99% cpu 1.868 total
+
+time ./bin 14 1
+arg 1: 14 == n  [Length of strings]  default=5
+arg 2: 1 == bw  [Whether to generate in backward order]  default=0
+backward:
+ ct=796713190
+./bin 14 1  1.71s user 0.00s system 99% cpu 1.711 total
+
+*/
+
 
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
-gcc 4.5.0:
+GCC 4.5.0:
 
  time ./bin 14 0
 arg 1: 14 == n  [Length of strings]  default=5
@@ -121,7 +160,7 @@ backward:
 
 
 
-gcc 4.8.0:
+GCC 4.8.0:
 
  time ./bin 14 0
 arg 1: 14 == n  [Length of strings]  default=5

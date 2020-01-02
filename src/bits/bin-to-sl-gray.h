@@ -1,7 +1,7 @@
 #if !defined HAVE_BIN_TO_SL_GRAY_H__
 #define      HAVE_BIN_TO_SL_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2014, 2015 Joerg Arndt
+// Copyright (C) 2012, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -21,7 +21,6 @@ static inline ulong bin_to_sl_gray(ulong k, ulong ldn)
     ulong m = (b<<1) - 1;  // mask for reversing direction
     ulong z = b;  // Gray code
     k -= 1;  // move all-zero word to begin
-//    ulong z = 0;  ++k;  // reverse order
 
     while ( b != 0 )
     {
@@ -29,19 +28,8 @@ static inline ulong bin_to_sl_gray(ulong k, ulong ldn)
         z ^= h;  // with one, switch bit in Gray code
 
         if ( !h )  k ^= m;  // reverse direction with zero
-//        if ( h )  k ^= m;  // reverse direction with one
-//        if ( (!h) ^ (ldn & 1)  )  k ^= m;  //
-//        if ( (!!h) ^ (ldn & 1)  )  k ^= m;  //
 
         k += 1;  // SL-Gray
-
-//        k = -k - 2;  // complement of SL-Gray
-//        k = -k - 1;  // binary reflected Gray code
-        // when k is not  changed here ==> complement of binary reflected Gray code
-//        k += m/4;  // rotated SL-Gray
-//        k -= 1;  // another Gray code
-//        k = -k;  // complement of the above
-//        k += 0x55555555UL ;  // another Gray code
 
         b >>= 1;  // next lower bit
         m >>= 1;  // next smaller mask

@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_ODD_H__
 #define      HAVE_COMPOSITION_NZ_ODD_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -30,9 +30,8 @@ public:
     ulong n_;   // composition of n
     ulong m_;   // current composition has m parts
 
-private:  // have pointer data
-    composition_nz_odd(const composition_nz_odd&);  // forbidden
-    composition_nz_odd & operator = (const composition_nz_odd&);  // forbidden
+    composition_nz_odd(const composition_nz_odd&) = delete;
+    composition_nz_odd & operator = (const composition_nz_odd&) = delete;
 
 public:
     explicit composition_nz_odd(ulong n)

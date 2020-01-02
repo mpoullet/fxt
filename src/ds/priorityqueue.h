@@ -1,7 +1,7 @@
 #if !defined  HAVE_PRIORITYQUEUE_H__
 #define       HAVE_PRIORITYQUEUE_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014, 2016 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2016, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -38,9 +38,8 @@ public:
     ulong n_;    // current number of events
     ulong gq_;   // grow gq elements if necessary, 0 for "never grow"
 
-private:  // have pointer data
-    priority_queue(const priority_queue&);  // forbidden
-    priority_queue & operator = (const priority_queue&);  // forbidden
+    priority_queue(const priority_queue&) = delete;
+    priority_queue & operator = (const priority_queue&) = delete;
 
 public:
     explicit priority_queue(ulong n, ulong growq=0)

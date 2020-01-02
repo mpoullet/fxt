@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_NUMPARTS_H__
 #define      HAVE_COMPOSITION_NZ_NUMPARTS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2011, 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2011, 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -22,9 +22,8 @@ public:
     ulong *x_;     // data (k elements)
     ulong nk1_;    // ==n-k+1
 
-private:  // have pointer data
-    composition_nz_numparts(const composition_nz_numparts&);  // forbidden
-    composition_nz_numparts & operator = (const composition_nz_numparts&);  // forbidden
+    composition_nz_numparts(const composition_nz_numparts&) = delete;
+    composition_nz_numparts & operator = (const composition_nz_numparts&) = delete;
 
 public:
     explicit composition_nz_numparts(ulong n)

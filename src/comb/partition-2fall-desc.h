@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_2FALL_DESC_H__
 #define      HAVE_PARTITION_2FALL_DESC_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -30,10 +30,8 @@ public:
     ulong m_;   // current partition has m parts
     ulong *a_;  // partition: a[1] + a[2] + ... + a[m] = n
 
-private:  // have pointer data
-    partition_2fall_desc(const partition_2fall_desc&);  // forbidden
-    partition_2fall_desc & operator = (const partition_2fall_desc&);  // forbidden
-
+    partition_2fall_desc(const partition_2fall_desc&) = delete;
+    partition_2fall_desc & operator = (const partition_2fall_desc&) = delete;
 
 private:
     ulong mers_t(ulong s)

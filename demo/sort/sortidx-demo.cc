@@ -3,7 +3,7 @@
 #include "sort/bsearchidx.h"
 
 #include "fxttypes.h"
-#include "aux1/copy.h"  // set_seq()
+
 #include "aux0/randf.h"  // rnd01()
 
 #include "jjassert.h"
@@ -11,6 +11,7 @@
 #include "fxtio.h"
 
 #include "nextarg.h"  // NXARG()
+
 
 //% Demo of index-sorting.
 
@@ -48,7 +49,7 @@ main(int argc, char **argv)
     double *f = new double[n];
 
     ulong  *x = new ulong[n];
-    set_seq(x, n);
+    for (ulong j=0; j<n; ++j)  x[j] = j;
 
     rnd01(f, n);
     idx_print("random values:", f, n, x);

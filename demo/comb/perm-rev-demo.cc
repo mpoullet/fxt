@@ -2,7 +2,6 @@
 #include "comb/perm-rev.h"
 
 #include "comb/comb-print.h"
-#include "comb/mixedradix.h"
 #include "perm/perminvert.h"
 
 //#include "comb/fact2perm.h"
@@ -29,7 +28,8 @@ int
 main(int argc, char **argv)
 {
     ulong n = 4;
-    NXARG(n, "Number of elements to permute");
+    NXARG(n, "Number of elements to permute, n > 0");
+    jjassert( n>0 );
 
     perm_rev P(n);
     P.first();

@@ -24,14 +24,9 @@ test -n "$WHICH" || WHICH=all
 
 #set -vx
 
-#rm -f $DTMP;
-#if [ "$WHICH" = "oout" ]; then # sorted Oldest OUTput first
-#    ls -tr $DEMODIR/ds/*-out.txt >  $DTMP;
-#    sed -i s/-out.txt$/-demo.cc/ $DTMP;
-#    WHICH="all";
-#else
-    find $DEMODIR -name '*-demo.cc' >  $DTMP;
-#fi;
+#find $DEMODIR -name '*-demo.cc' >  $DTMP;
+find $DEMODIR -name '*-demo.cc' | grep -vF 'attic/' >  $DTMP;
+
 
 #### do all demos:
 if [ "$WHICH" = "all" ]; then

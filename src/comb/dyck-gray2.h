@@ -1,7 +1,7 @@
 #if !defined  HAVE_DYCK_GRAY2_H__
 #define       HAVE_DYCK_GRAY2_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -28,9 +28,8 @@ public:
     ulong *s_;     // directions: whether last/first (==0) or
     // rising (>0) or falling (<0);  (1-based)
 
-private:  // have pointer data
-    dyck_gray2(const dyck_gray2&);  // forbidden
-    dyck_gray2 & operator = (const dyck_gray2&);  // forbidden
+    dyck_gray2(const dyck_gray2&) = delete;
+    dyck_gray2 & operator = (const dyck_gray2&) = delete;
 
 public:
     explicit dyck_gray2(ulong tk, ulong tm)

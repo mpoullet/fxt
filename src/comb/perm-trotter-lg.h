@@ -1,7 +1,7 @@
 #if !defined HAVE_PERM_TROTTER_LG_H__
 #define      HAVE_PERM_TROTTER_LG_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -22,9 +22,8 @@ public:
     ulong *d_;    // auxiliary: directions
     ulong sw1_, sw2_;  // indices of elements swapped most recently
 
-private:  // have pointer data
-    perm_trotter_lg(const perm_trotter_lg&);  // forbidden
-    perm_trotter_lg & operator = (const perm_trotter_lg&);  // forbidden
+    perm_trotter_lg(const perm_trotter_lg&) = delete;
+    perm_trotter_lg & operator = (const perm_trotter_lg&) = delete;
 
 public:
     explicit perm_trotter_lg(ulong n)

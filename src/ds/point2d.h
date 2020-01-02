@@ -1,7 +1,7 @@
 #if !defined HAVE_POINT2D_H__
 #define      HAVE_POINT2D_H__
 // This file is part of the FXT library.
-// Copyright (C) 2017, 2018 Joerg Arndt
+// Copyright (C) 2017, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -22,22 +22,25 @@ protected:
     Type x_, y_;
 
 private:
-    point2d()  { ; }  // default constructor for ...
+    constexpr point2d() = default;  // default constructor for ...
 public:
     static point2d * new_array(ulong n)  { return new point2d[n]; }
 
 public:
-    explicit point2d(const Type & tx, const Type & ty)
+    explicit constexpr point2d(const Type & tx, const Type & ty)
         : x_(tx), y_(ty)
     { ; }
 
     // Concession to programmer's reality:
-    explicit point2d(const vec2d & V)
+    explicit constexpr point2d(const vec2d & V)
         : x_(V.x()), y_(V.y())
     { ; }
 
     Type x()  const  { return x_; }
     Type y()  const  { return y_; }
+
+    // unary minus;
+    point2d operator - ()  const  { return point2d( -x_, -y_ ); }
 
     // point +- vector ==> point
     point2d & operator += (const vec2d & V) { x_ += V.x(),  y_ += V.y();  return *this; }
@@ -57,7 +60,7 @@ public:
     vec2d as_vector()  const  {  return vec2d( x_, y_ ); }
 
     // The following with respect to origin (0, 0):
-    point2d zoom( double sc )  const { return point2d( sc * x_, sc * y_ ); }
+    point2d zoom( Type sc )  const { return point2d( sc * x_, sc * y_ ); }
 };
 // -------------------------
 

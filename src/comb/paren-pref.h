@@ -1,7 +1,7 @@
 #if !defined  HAVE_PAREN_PREF_H__
 #define       HAVE_PAREN_PREF_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -37,9 +37,8 @@ public:
     ulong *b_;     // array of t ones and s zeros
 #endif
 
-private:  // have pointer data
-    paren_pref(const paren_pref&);  // forbidden
-    paren_pref & operator = (const paren_pref&);  // forbidden
+    paren_pref(const paren_pref&) = delete;
+    paren_pref & operator = (const paren_pref&) = delete;
 
 public:
     explicit paren_pref(ulong t, ulong s)

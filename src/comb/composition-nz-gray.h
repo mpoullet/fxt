@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_GRAY_H__
 #define      HAVE_COMPOSITION_NZ_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014, 2015 Joerg Arndt
+// Copyright (C) 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -15,9 +15,6 @@
 #include "fxttypes.h"
 
 
-#define COMPOSITION_NZ_GRAY_FIXARRAYS
-// GCC 4.9.0: slight speedup
-
 class composition_nz_gray
 // Compositions of n into positive parts.
 // Gray code with moves of only one unit, all moves are one-close or
@@ -30,25 +27,18 @@ class composition_nz_gray
 //   http://arxiv.org/abs/1405.6503
 {
 public:
-#ifndef COMPOSITION_NZ_GRAY_FIXARRAYS
     ulong *a_;  // composition: a[1] + a[2] + ... + a[m] = n
-#else
-    ulong a_[64];
-#endif
     ulong n_;   // compositions of n
     ulong m_;   // current composition has m parts
 
-private:  // have pointer data
-    composition_nz_gray(const composition_nz_gray&);  // forbidden
-    composition_nz_gray & operator = (const composition_nz_gray&);  // forbidden
+    composition_nz_gray(const composition_nz_gray&) = delete;
+    composition_nz_gray & operator = (const composition_nz_gray&) = delete;
 
 public:
     explicit composition_nz_gray(ulong n)
     {
         n_ = n;
-#ifndef COMPOSITION_NZ_GRAY_FIXARRAYS
         a_ = new ulong[n_+1+(n_==0)];
-#endif
         a_[0] = 0;  // returned by last_part() when n==0
         a_[1] = 0;  // returned by first_part() when n==0
         first();
@@ -56,9 +46,7 @@ public:
 
     ~composition_nz_gray()
     {
-#ifndef COMPOSITION_NZ_GRAY_FIXARRAYS
         delete [] a_;
-#endif
     }
 
     const ulong * data()  const  { return  a_ + 1; }

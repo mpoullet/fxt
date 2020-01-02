@@ -1,7 +1,7 @@
 
 #include "comb/partition-asc-subset-lex-csh.h"
 
-#include "comb/partition-conj.h"
+//#include "comb/partition-conj.h"
 
 #include "comb/comb-print.h"
 #include "bits/print-bin.h"
@@ -46,31 +46,6 @@ main(int argc, char **argv)
     ulong m = P.num_parts();
     do
     {
-#if 0  // only into powers of 2, cf. A018819
-        const ulong *x = P.data();
-        bool q = true;
-        for (ulong j = 0; j<m; ++j)
-        { ulong v=x[j];  if ( !!(v & (v-1)) )  { q=false;  break; } }
-        if ( !q )  continue;
-#endif
-#if 0  // only into self-conjugate partitions
-        if ( !partition_asc_is_self_conj( P.data(), m ) )  continue;
-#endif
-#if 0  // multiplicity <= d:
-        // d=1 == > A000726 (no parts multiples of 2)
-        // d=2 == > A000726 (no parts multiples of 3)
-        // d=3 == > A001935 (no parts multiples of 4)
-        // d=4 == > A035959 (no parts multiples of 5)
-        // d=5 == > A219601 (no parts multiples of 6)
-        // d=6 == > A035985 (no parts multiples of 7)
-        const ulong *x = P.data();
-        bool q = true;
-        const ulong d = 22;
-        for (ulong j=d; j<m; ++j)
-            if ( x[j]==x[j-d] )  { q=false;  break; }
-        if ( !q )  continue;
-#endif
-
         cout << setw(4) << ct << ":";
 
         cout << "  [" << setw(2) << m << "]";
@@ -104,7 +79,7 @@ main(int argc, char **argv)
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
-# gcc 4.5.0:
+# GCC 4.5.0:
  time ./bin 110
 arg 1: 110 == n  [partitions of n]  default=10
   ct=607163746
@@ -119,7 +94,7 @@ PARTITION_ASC_SUBSET_LEX_CSH_FIXARRAYS defined.
  ==> 607163746/2.72 == 223,221,965 per second
 
 
-# gcc 4.8.0:
+# GCC 4.8.0:
  time ./bin 110
 arg 1: 110 == n  [partitions of n]  default=10
  ct=607163746

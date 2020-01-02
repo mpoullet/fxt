@@ -1,7 +1,7 @@
 #if !defined  HAVE_COMBINATION_REVDOOR_H__
 #define       HAVE_COMBINATION_REVDOOR_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -23,9 +23,8 @@ public:
     ulong *c_;  // delta set
     ulong n_, k_;  // (n choose k)  n>=1,  1<=k<=n
 
-private:  // have pointer data
-    combination_revdoor(const combination_revdoor&);  // forbidden
-    combination_revdoor & operator = (const combination_revdoor&);  // forbidden
+    combination_revdoor(const combination_revdoor&) = delete;
+    combination_revdoor & operator = (const combination_revdoor&) = delete;
 
 public:
     explicit combination_revdoor(ulong n, ulong k)

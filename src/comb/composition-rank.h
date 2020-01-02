@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_RANK_H__
 #define      HAVE_COMPOSITION_RANK_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -14,7 +14,7 @@
 
 
 
-class composition_rank : public num_compositions
+class composition_rank
 // Ranking and unranking compositions in
 //   lexicographic, minimal-change, or enup (two-close) order.
 // The routines rank_*(x,n,k) have complexity k*k.
@@ -24,11 +24,11 @@ class composition_rank : public num_compositions
 // Note: the two-close order corresponds to the enup order for combinations.
 {
 public:
-    // no data
+    num_compositions NC;
 
 public:
     explicit composition_rank(ulong n, ulong k)
-        : num_compositions(n, k)
+        : NC(n, k)
     { ; }
 
     ~composition_rank()
@@ -50,7 +50,7 @@ public:
         if ( 1==k )  return 0;
         ulong r = 0;
         ulong xk = x[k-1];
-        for (ulong j=1; j<=xk; ++j)  r += num_comp(n+1-j, k-1);
+        for (ulong j=1; j<=xk; ++j)  r += NC.num_comp(n+1-j, k-1);
         r += rank_lex(x, n-xk, k-1);  // recurse
         return r;
     }
@@ -63,10 +63,10 @@ public:
         if ( 1==k )  return 0;
         ulong r = 0;
         ulong xk = x[k-1];
-        for (ulong j=1; j<=xk; ++j)  r += num_comp(n+1-j, k-1);
+        for (ulong j=1; j<=xk; ++j)  r += NC.num_comp(n+1-j, k-1);
         // recurse:
         ulong ri = rank_gray(x, n-xk, k-1);
-        if ( xk&1 )  r += num_comp(n-xk, k-1)-1 - ri;
+        if ( xk&1 )  r += NC.num_comp(n-xk, k-1)-1 - ri;
         else         r += ri;
         return r;
     }
@@ -78,10 +78,10 @@ public:
         if ( 1==k )  return 0;
         ulong r = 0;
         ulong xk = x[k-1];
-        for (ulong j=1; j<=xk; ++j)  r += num_comp(n+1-j, k-1);
+        for (ulong j=1; j<=xk; ++j)  r += NC.num_comp(n+1-j, k-1);
         // recurse:
         ulong ri = rank_enup_rev(x, n-xk, k-1);
-        if ( !(xk&1) )  r += num_comp(n-xk, k-1)-1 - ri;
+        if ( !(xk&1) )  r += NC.num_comp(n-xk, k-1)-1 - ri;
         else            r += ri;
         return  r;
     }
@@ -90,7 +90,7 @@ public:
     // Return rank of k-composition of n for enup (two-close) order
     //  0 <= rank < binomial(n+k-1, n)
     {
-        return  num_comp(n, k) - 1 - rank_enup_rev(x, n, k);
+        return  NC.num_comp(n, k) - 1 - rank_enup_rev(x, n, k);
     }
 
 
@@ -103,10 +103,10 @@ public:
     //   via cumulative values and binary search.
     {
         if ( 1==k )  { r=0; return n; }
-//        jjassert( r<num_comp(n, k) );  // else out of range
+//        jjassert( r<NC.num_comp(n, k) );  // else out of range
         for (ulong xk=0; xk<=n; ++xk)
         {
-            ulong nc = num_comp(n-xk, k-1);
+            ulong nc = NC.num_comp(n-xk, k-1);
             if ( nc > r )   return xk;
             r -= nc;
         }
@@ -134,7 +134,7 @@ public:
         for (ulong j=k-1; j!=0; --j)
         {
             ulong xj = unrank_get_el(n, j+1, r);  // r modified
-            if ( xj & 1 )  r = num_comp(n-xj, j) -1 -r;
+            if ( xj & 1 )  r = NC.num_comp(n-xj, j) -1 -r;
             x[j] = xj;
             n -= xj;
         }
@@ -145,15 +145,20 @@ public:
     // Write the enup (two-close) order rank-r k-composition of n into x[]
     // Must have:  r < binomial(n+k-1,n)
     {
-        r = num_comp(n, k) -1 -r;
+        r = NC.num_comp(n, k) -1 -r;
         for (ulong j=k-1; j!=0; --j)
         {
             ulong xj = unrank_get_el(n, j+1, r);  // r modified
-            if ( !(xj & 1) )  r = num_comp(n-xj, j) -1 -r;
+            if ( !(xj & 1) )  r = NC.num_comp(n-xj, j) -1 -r;
             x[j] = xj;
             n -= xj;
         }
         x[0] = n;
+    }
+
+    ulong num_comp(ulong n, ulong k)  const
+    {
+        return NC.num_comp(n, k);
     }
 
     void print(const char *bla, const ulong *x, ulong k)  const;

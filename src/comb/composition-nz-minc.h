@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_MINC_H__
 #define      HAVE_COMPOSITION_NZ_MINC_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -48,9 +48,8 @@ public:
     ulong f_;   // a[k] <= f * a[k-1]
     ulong c_;   // size of first part =a[1]
 
-private:  // have pointer data
-    composition_nz_minc(const composition_nz_minc&);  // forbidden
-    composition_nz_minc & operator = (const composition_nz_minc&);  // forbidden
+    composition_nz_minc(const composition_nz_minc&) = delete;
+    composition_nz_minc & operator = (const composition_nz_minc&) = delete;
 
 public:
     explicit composition_nz_minc(ulong n, ulong c, ulong f)

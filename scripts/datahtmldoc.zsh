@@ -39,7 +39,8 @@ for f in data/*.txt; do
     b=$(basename $f);
     echo "<A HREF=\"$b\">$b</A>:";
     echo '<PRE>'
-    grep -B25 -F '#.' $f | grep -v -F '#.' ;
+#    grep -B25 -F '#.' $f | grep -v -F '#.' ;
+    grep -B25 -F '#.' $f | grep -v -F '#.' | sed 's/</\&lt;/g; s/>/\&gt;/g;';
     echo '</PRE>'
     echo '<P>'
 done

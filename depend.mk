@@ -1,3 +1,4 @@
+src/nextarg.o: src/nextarg.cc src/nextarg.h src/fxtio.h src/fxttypes.h
 src/bits/revbin-upd.o: src/bits/revbin-upd.cc src/bits/bitsperlong.h \
  src/fxttypes.h
 src/bits/revbin-tab.o: src/bits/revbin-tab.cc src/array-len.h \
@@ -8,7 +9,7 @@ src/bits/lin2hilbert.o: src/bits/lin2hilbert.cc src/fxttypes.h \
 src/bits/tinyfactors.o: src/bits/tinyfactors.cc src/array-len.h \
  src/fxttypes.h src/bits/bitsperlong.h
 src/bits/print-bin.o: src/bits/print-bin.cc src/bits/bitsperlong.h \
- src/comb/comb-print.h src/fxttypes.h src/fxtio.h src/fxtalloca.h
+ src/comb/comb-print.h src/fxttypes.h src/fxtio.h
 src/bits/print-bindiff.o: src/bits/print-bindiff.cc src/bits/revbin.h \
  src/bits/bitswap.h src/fxttypes.h src/bits/bitsperlong.h \
  src/bits/bitasm.h src/bits/bitasm-amd64.h src/bits/bitasm-sse.h \
@@ -262,9 +263,9 @@ src/comb/delta2gray.o: src/comb/delta2gray.cc src/bits/bitlow.h \
  src/fxttypes.h src/bits/bitsperlong.h src/bits/bitasm.h \
  src/bits/bitasm-amd64.h src/bits/bitasm-sse.h
 src/comb/monotonic-gray.o: src/comb/monotonic-gray.cc \
- src/comb/delta2gray.h src/fxttypes.h src/fxtalloca.h
+ src/comb/delta2gray.h src/fxttypes.h
 src/comb/acgray.o: src/comb/acgray.cc src/comb/delta2gray.h \
- src/fxttypes.h src/perm/reverse.h src/aux0/swap.h src/fxtalloca.h
+ src/fxttypes.h src/perm/reverse.h src/aux0/swap.h
 src/comb/test-gray.o: src/comb/test-gray.cc src/bits/bit2pow.h \
  src/fxttypes.h src/bits/bitsperlong.h src/bits/bithigh.h \
  src/bits/bithigh-edge.h src/bits/bitasm.h src/bits/bitasm-amd64.h \
@@ -329,8 +330,7 @@ src/comb/mset-perm-lex-rec.o: src/comb/mset-perm-lex-rec.cc \
 src/comb/print-young-tab-rgs-aa.o: src/comb/print-young-tab-rgs-aa.cc \
  src/fxtio.h src/fxttypes.h
 src/comb/tree-lev-seq-aux.o: src/comb/tree-lev-seq-aux.cc \
- src/comb/tree-lev-seq-aux.h src/fxttypes.h src/fxtio.h src/fxtalloca.h \
- src/jjassert.h
+ src/comb/tree-lev-seq-aux.h src/fxttypes.h src/fxtio.h src/jjassert.h
 src/comb/ordered-tree-branches.o: src/comb/ordered-tree-branches.cc \
  src/comb/ordered-tree-branches.h src/comb/is-composition-nz.h \
  src/fxttypes.h src/comb/comb-print.h src/fxtio.h
@@ -374,13 +374,12 @@ src/graph/mk-paren-gray-digraph.o: src/graph/mk-paren-gray-digraph.cc \
  src/bits/bitsperlong.h src/bits/bitcombcolex.h src/bits/bitlow.h \
  src/bits/bitasm.h src/bits/bitasm-amd64.h src/bits/bitasm-sse.h \
  src/bits/bitcount.h src/bits/bitrotate.h src/perm/reverse.h \
- src/aux0/swap.h src/aux1/copy.h src/complextype.h src/jjassert.h
+ src/aux0/swap.h src/aux1/copy.h src/jjassert.h
 src/graph/mk-fibrep-gray-digraph.o: src/graph/mk-fibrep-gray-digraph.cc \
  src/graph/digraph.h src/fxttypes.h src/bits/fibrep.h \
  src/bits/bitsperlong.h src/bits/bit2pow.h src/bits/bithigh.h \
  src/bits/bithigh-edge.h src/bits/bitasm.h src/bits/bitasm-amd64.h \
- src/bits/bitasm-sse.h src/bits/bitldeq.h src/aux1/copy.h \
- src/complextype.h
+ src/bits/bitasm-sse.h src/bits/bitldeq.h src/aux1/copy.h
 src/graph/mk-mtl-digraph.o: src/graph/mk-mtl-digraph.cc \
  src/graph/digraph.h src/fxttypes.h src/sort/sort.h \
  src/sort/minmaxmed23.h src/aux0/swap.h src/sort/bsearch.h \
@@ -442,11 +441,10 @@ src/perm/perminvert.o: src/perm/perminvert.cc src/ds/bitarray.h \
  src/bits/bit2pow.h src/bits/bithigh.h src/bits/bithigh-edge.h \
  src/bits/bitldeq.h src/restrict.h
 src/perm/permcompose.o: src/perm/permcompose.cc src/perm/perminvert.h \
- src/fxttypes.h src/perm/permcompose.h src/aux1/copy.h src/complextype.h \
- src/bits/bit2pow.h src/bits/bitsperlong.h src/bits/bithigh.h \
- src/bits/bithigh-edge.h src/bits/bitasm.h src/bits/bitasm-amd64.h \
- src/bits/bitasm-sse.h src/bits/bitldeq.h src/ds/bitarray.h \
- src/bits/bitcount.h src/restrict.h
+ src/fxttypes.h src/perm/permcompose.h src/aux1/copy.h src/bits/bit2pow.h \
+ src/bits/bitsperlong.h src/bits/bithigh.h src/bits/bithigh-edge.h \
+ src/bits/bitasm.h src/bits/bitasm-amd64.h src/bits/bitasm-sse.h \
+ src/bits/bitldeq.h src/ds/bitarray.h src/bits/bitcount.h src/restrict.h
 src/perm/perm2ccf.o: src/perm/perm2ccf.cc src/ds/bitarray.h \
  src/bits/bitcount.h src/fxttypes.h src/bits/bitsperlong.h \
  src/bits/bitasm.h src/bits/bitasm-amd64.h src/bits/bitasm-sse.h \
@@ -635,7 +633,7 @@ src/realfft/skiprealfft.o: src/realfft/skiprealfft.cc \
  src/realfft/realfft.h src/fxttypes.h src/bits/bit2pow.h \
  src/bits/bitsperlong.h src/bits/bithigh.h src/bits/bithigh-edge.h \
  src/bits/bitasm.h src/bits/bitasm-amd64.h src/bits/bitasm-sse.h \
- src/bits/bitldeq.h src/aux1/copy.h src/complextype.h
+ src/bits/bitldeq.h src/aux1/copy.h
 src/fht/fhtdit2.o: src/fht/fhtdit2.cc src/fxttypes.h src/complextype.h \
  src/aux0/sincos.h src/perm/revbinpermute.h src/perm/shortrevbinpermute.h \
  src/aux0/swap.h src/bits/revbin-upd.h src/bits/bitsperlong.h \
@@ -727,7 +725,7 @@ src/fht/slowht.o: src/fht/slowht.cc src/fht/fht.h src/fxttypes.h \
  src/complextype.h src/aux0/sincos.h src/aux1/copy.h src/fxtalloca.h
 src/fht/recfht2.o: src/fht/recfht2.cc src/fht/hartleyshift.h \
  src/aux0/sincos.h src/aux0/sumdiff.h src/fxttypes.h src/aux1/copy.h \
- src/complextype.h src/fxtalloca.h
+ src/fxtalloca.h
 src/chirpzt/fftarblen.o: src/chirpzt/fftarblen.cc \
  src/convolution/complexconvolution.h src/fxttypes.h src/complextype.h \
  src/chirpzt/chirpzt.h src/aux1/arith1.h src/bits/bit2pow.h \
@@ -939,11 +937,9 @@ src/walsh/slant.o: src/walsh/slant.cc src/fxttypes.h \
  src/aux0/sumdiff.h src/walsh/shortwalshwakdit.h src/walsh/walshwak8.h \
  src/walsh/walshwakloc2.h
 src/wavelet/wavelet.o: src/wavelet/wavelet.cc src/wavelet/wavelet.h \
- src/fxttypes.h src/wavelet/waveletfilter.h src/aux1/copy.h \
- src/complextype.h src/fxtalloca.h
+ src/fxttypes.h src/wavelet/waveletfilter.h src/aux1/copy.h
 src/wavelet/invwavelet.o: src/wavelet/invwavelet.cc src/wavelet/wavelet.h \
- src/fxttypes.h src/wavelet/waveletfilter.h src/aux1/copy.h \
- src/complextype.h src/fxtalloca.h
+ src/fxttypes.h src/wavelet/waveletfilter.h src/aux1/copy.h
 src/wavelet/daubechies.o: src/wavelet/daubechies.cc src/fxttypes.h \
  src/array-len.h
 src/wavelet/harmonic-wavelet.o: src/wavelet/harmonic-wavelet.cc \
@@ -1070,7 +1066,7 @@ src/ntt/slownttcnvl.o: src/ntt/slownttcnvl.cc src/mod/mod.h \
  src/fxttypes.h src/mod/mtypes.h src/mod/numtheory.h src/mod/modarith.h \
  src/aux0/ipow.h src/aux0/gcd.h src/aux0/swap.h src/mod/factor.h \
  src/bits/bitsperlong.h src/fxtio.h src/ntt/ntt.h src/restrict.h \
- src/fxtalloca.h src/aux1/copy.h src/complextype.h
+ src/fxtalloca.h src/aux1/copy.h
 src/ntt/slowntt.o: src/ntt/slowntt.cc src/mod/mod.h src/fxttypes.h \
  src/mod/mtypes.h src/mod/numtheory.h src/mod/modarith.h src/aux0/ipow.h \
  src/aux0/gcd.h src/aux0/swap.h src/mod/factor.h src/bits/bitsperlong.h \

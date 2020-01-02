@@ -1,7 +1,7 @@
 #if !defined  HAVE_MERSENNE_COPRIME_H__
 #define       HAVE_MERSENNE_COPRIME_H__
 // This file is part of the FXT library.
-// Copyright (C) 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,9 +25,8 @@ public:
     ulong np_;   // number of prime factors
     priority_queue<umod_t, umod_t> PQ_;
 
-private:  // have pointer data
-    mersenne_coprime(const mersenne_coprime&);  // forbidden
-    mersenne_coprime & operator = (const mersenne_coprime&);  // forbidden
+    mersenne_coprime(const mersenne_coprime&) = delete;
+    mersenne_coprime & operator = (const mersenne_coprime&) = delete;
 
 private:
     umod_t pq_top()  const  { return PQ_.t1_[1]; }

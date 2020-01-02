@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_UPSTEP_H__
 #define      HAVE_COMPOSITION_NZ_UPSTEP_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014 Joerg Arndt
+// Copyright (C) 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -28,9 +28,8 @@ public:
     ulong m_;   // current composition has m parts
     ulong u_;   // maximal allowed up-step
 
-private:  // have pointer data
-    composition_nz_upstep(const composition_nz_upstep&);  // forbidden
-    composition_nz_upstep & operator = (const composition_nz_upstep&);  // forbidden
+    composition_nz_upstep(const composition_nz_upstep&) = delete;
+    composition_nz_upstep & operator = (const composition_nz_upstep&) = delete;
 
 public:
     explicit composition_nz_upstep(ulong n, ulong u)

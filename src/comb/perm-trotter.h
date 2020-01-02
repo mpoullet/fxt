@@ -1,7 +1,7 @@
 #if !defined HAVE_PERM_TROTTER_H__
 #define      HAVE_PERM_TROTTER_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -11,9 +11,11 @@
 #include "fxttypes.h"
 
 
-#define PERM_TROTTER_OPT  // default on
-// gcc 4.5.0: massive speedup, about a factor of 2
-// gcc 4.8.0: speedup (but big overall regression against gcc 4.5.0)
+//#define PERM_TROTTER_OPT  // default on
+// GCC 4.5.0: massive speedup, about a factor of 2
+// GCC 4.8.0: speedup (but big overall regression against GCC 4.5.0)
+// GCC 8.3.0: massive speedup, about a factor of 2
+
 
 class perm_trotter
 // Gray code for permutations, Trotter/Johnson algorithm.
@@ -33,9 +35,8 @@ public:
 #endif  // PERM_TROTTER_OPT
 
 
-private:  // have pointer data
-    perm_trotter(const perm_trotter&);  // forbidden
-    perm_trotter & operator = (const perm_trotter&);  // forbidden
+    perm_trotter(const perm_trotter&) = delete;
+    perm_trotter & operator = (const perm_trotter&) = delete;
 
 public:
     explicit perm_trotter(ulong n)

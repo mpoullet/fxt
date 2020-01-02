@@ -1,7 +1,7 @@
 #if !defined  HAVE_RGS_MAXINCR_H__
 #define       HAVE_RGS_MAXINCR_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -26,9 +26,8 @@ public:
     ulong i_;   // s[k] <= max_{j<k}(s[j]+i)
     // i==1 ==> RGS for set partitions
 
-private:  // have pointer data
-    rgs_maxincr(const rgs_maxincr&);  // forbidden
-    rgs_maxincr & operator = (const rgs_maxincr&);  // forbidden
+    rgs_maxincr(const rgs_maxincr&) = delete;
+    rgs_maxincr & operator = (const rgs_maxincr&) = delete;
 
 public:
     explicit rgs_maxincr(ulong n, ulong i=1)

@@ -1,11 +1,11 @@
 #if !defined  HAVE_ARRANGEMENT_LEX_H__
 #define       HAVE_ARRANGEMENT_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2015 Joerg Arndt
+// Copyright (C) 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
-#include "comb/perm-lex-inv.h"
+#include "comb/perm-lex.h"
 #include "comb/comb-print.h"
 #include "fxttypes.h"
 
@@ -16,7 +16,7 @@ class arrangement_lex
 // Cf. OEIS sequence A000522.
 {
 private:
-    perm_lex_inv P;
+    perm_lex P;
     ulong e_;  // length of current arrangement
 
 public:

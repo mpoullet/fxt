@@ -1,7 +1,7 @@
 #if !defined  HAVE_MSET_PERM_GRAY_H__
 #define       HAVE_MSET_PERM_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -26,9 +26,8 @@ public:
     ulong sw1_, sw2_;  // positions swapped with last update
     ulong *r_;   // number of elements '1' in r[0], '2' in r[1], ..., 'k' in r[k-1]
 
-private:  // have pointer data
-    mset_perm_gray(const mset_perm_gray&);  // forbidden
-    mset_perm_gray & operator = (const mset_perm_gray&);  // forbidden
+    mset_perm_gray(const mset_perm_gray&) = delete;
+    mset_perm_gray & operator = (const mset_perm_gray&) = delete;
 
 public:
     explicit mset_perm_gray(const ulong *r, ulong k)

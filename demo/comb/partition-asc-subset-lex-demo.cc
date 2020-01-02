@@ -11,8 +11,6 @@
 #include "fxttypes.h"
 #include "nextarg.h"
 
-//#include "comb/partition-conj.h"
-//#include "comb/is-nonsquashing.h"
 
 //% Partitions of n into positive parts as ascending list of parts.
 //% Subset-lex order.
@@ -50,33 +48,6 @@ main(int argc, char **argv)
     ulong m = P.num_parts();
     do
     {
-#if 0  // only into powers of 2, cf. A018819
-        const ulong *x = P.data();
-        bool q = true;
-        for (ulong j = 0; j<m; ++j)
-        { ulong v=x[j];  if ( !!(v & (v-1)) )  { q=false;  break; } }
-        if ( !q )  continue;
-#endif
-#if 0  // only into self-conjugate partitions
-//        if ( !partition_asc_is_self_conj( P.data(), m ) )  continue; // lex order
-//        if ( !is_nonsquashing_asc( P.data(), m ) )  continue;
-        if ( !is_strongly_increasing( P.data(), m ) )  continue;
-#endif
-#if 0  // multiplicity <= d:
-        // d=1 == > A000726 (no parts multiples of 2)
-        // d=2 == > A000726 (no parts multiples of 3)
-        // d=3 == > A001935 (no parts multiples of 4)
-        // d=4 == > A035959 (no parts multiples of 5)
-        // d=5 == > A219601 (no parts multiples of 6)
-        // d=6 == > A035985 (no parts multiples of 7)
-        const ulong *x = P.data();
-        bool q = true;
-        const ulong d = 22;
-        for (ulong j=d; j<m; ++j)
-            if ( x[j]==x[j-d] )  { q=false;  break; }
-        if ( !q )  continue;
-#endif
-
         cout << setw(4) << ct << ":";
 
         cout << "  [" << setw(2) << m << "]";
@@ -106,6 +77,25 @@ main(int argc, char **argv)
     return 0;
 }
 // -------------------------
+
+/*
+Timing: (Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz)
+GCC 8.3.0
+
+time ./bin 115
+arg 1: 115 == n  [partitions of n]  default=11
+ ct=1064144451
+./bin 115  2.79s user 0.00s system 99% cpu 2.787 total
+ ==> 1064144451 / 2.79 == 381,413,781 per second
+
+time ./bin 115
+arg 1: 115 == n  [partitions of n]  default=11
+PARTITION_ASC_SUBSET_LEX_FIXARRAYS defined.
+ ct=1064144451
+./bin 115  2.57s user 0.00s system 99% cpu 2.574 total
+ ==> 1064144451 / 2.57 == 414,063,988 per second
+
+*/
 
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)

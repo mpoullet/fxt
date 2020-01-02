@@ -1,7 +1,7 @@
 #if !defined  HAVE_CATALAN_RGS_GRAY_H__
 #define       HAVE_CATALAN_RGS_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2014, 2017 Joerg Arndt
+// Copyright (C) 2012, 2014, 2017, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -23,9 +23,8 @@ public:
     ulong *d_;  // direction
     char *str_;  // paren string
 
-private:  // have pointer data
-    catalan_rgs_gray(const catalan_rgs_gray&);  // forbidden
-    catalan_rgs_gray & operator = (const catalan_rgs_gray&);  // forbidden
+    catalan_rgs_gray(const catalan_rgs_gray&) = delete;
+    catalan_rgs_gray & operator = (const catalan_rgs_gray&) = delete;
 
 public:
     explicit catalan_rgs_gray(ulong n)

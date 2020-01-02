@@ -39,11 +39,11 @@ main(int argc, char **argv)
 //  print_fxt_version();
 
   ulong minldn = 1, maxldn = 11;
-  if ( argc>1 )  minldn = strtoul(argv[1], 0, 10);
-  if ( argc>2 )  maxldn = strtoul(argv[2], 0, 10);
+  if ( argc>1 )  minldn = strtoul(argv[1], nullptr, 10);
+  if ( argc>2 )  maxldn = strtoul(argv[2], nullptr, 10);
 
   ulong rep = 5;
-  if ( argc>3 )  rep = strtoul(argv[3], 0, 10);
+  if ( argc>3 )  rep = strtoul(argv[3], nullptr, 10);
 
 
   ulong n = 1UL<<maxldn;

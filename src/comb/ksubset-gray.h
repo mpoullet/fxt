@@ -1,7 +1,7 @@
 #if !defined  HAVE_KSUBSET_GRAY_H__
 #define       HAVE_KSUBSET_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -23,9 +23,8 @@ public:
     ulong *S_;  // set in S[1,2,...,k] with elements \in {1,2,...,n}
     ulong j_;   // aux
 
-private:  // have pointer data
-    ksubset_gray(const ksubset_gray&);  // forbidden
-    ksubset_gray & operator = (const ksubset_gray&);  // forbidden
+    ksubset_gray(const ksubset_gray&) = delete;
+    ksubset_gray & operator = (const ksubset_gray&) = delete;
 
 public:
     explicit ksubset_gray(ulong n, ulong kmin, ulong kmax)

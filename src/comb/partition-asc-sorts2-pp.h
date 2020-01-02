@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_ASC_SORTS2_PP_H__
 #define      HAVE_PARTITION_ASC_SORTS2_PP_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -39,9 +39,8 @@ public:
     ulong n_;   // partition of n
     ulong m_;   // current partition has m parts
 
-private:  // have pointer data
-    partition_asc_sorts2_pp(const partition_asc_sorts2_pp&);  // forbidden
-    partition_asc_sorts2_pp & operator = (const partition_asc_sorts2_pp&);  // forbidden
+    partition_asc_sorts2_pp(const partition_asc_sorts2_pp&) = delete;
+    partition_asc_sorts2_pp & operator = (const partition_asc_sorts2_pp&) = delete;
 
 public:
     explicit partition_asc_sorts2_pp(ulong n, ulong ns, const ulong *vns= nullptr)

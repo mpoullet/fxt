@@ -1,7 +1,7 @@
 #if !defined  HAVE_GRAY_COMPARE_H__
 #define       HAVE_GRAY_COMPARE_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013 Joerg Arndt
+// Copyright (C) 2013, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -33,6 +33,7 @@ inline int gray_compare(const Type *a, ulong na, const Type *b, ulong nb)
     }
 
     if ( na == nb )  return 0;
+
     int q;
     if ( na > nb )  q = +1;
     else            q = -1;

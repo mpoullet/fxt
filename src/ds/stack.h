@@ -1,7 +1,7 @@
 #if !defined HAVE_STACK_H__
 #define      HAVE_STACK_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -36,8 +36,8 @@ public:
 
 
 private:
-    stack(const stack&);  // forbidden
-    stack& operator = (const stack&);  // forbidden
+    stack(const stack&) = delete;
+    stack& operator = (const stack&) = delete;
 
 
 public:

@@ -1,7 +1,7 @@
 
 
 #include "comb/lyndon-factorization.h"
-#include "comb/mixedradix-colex.h"
+#include "comb/mixedradix-rev.h"
 
 #include "comb/comb-print.h"
 
@@ -29,7 +29,7 @@ main(int argc, char **argv)
 
     ulong ct = 0;
 
-    mixedradix_colex M(n, r);
+    mixedradix_rev M(n, r);
 
     const ulong * W = M.data();
     ulong F[64];

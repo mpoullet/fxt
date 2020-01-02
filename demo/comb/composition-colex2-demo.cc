@@ -77,7 +77,6 @@ main(int argc, char **argv)
 /*
 Timing:
 
--------- using a pointer x_ (default):
 
  time ./bin 30 10 0
 arg 1: 30 == n  [Compositions of n (n>=1)]  default=3
@@ -102,32 +101,11 @@ arg 2: 100 == k  [Into k parts  (k-compositions of n) (k>=1) ]  default=5
  ==> 91962520/0.34 == 270,478,000 per second
 
 
--------- using an array x_[] (define  COMP_COLEX2_MAX_ARRAY_LEN):
- time ./bin 30 10 0
-COMP_COLEX2_MAX_ARRAY_LEN is defined.
-  ct=211915132
-./bin 30 10 0  0.58s user 0.00s system 99% cpu 0.583 total
- ==> 211915132/0.58 == 365,370,917  per second
-
- time ./bin 10 30 0
-COMP_COLEX2_MAX_ARRAY_LEN is defined.
-  ct=635745396
-./bin 10 30 0  1.74s user 0.00s system 99% cpu 1.749 total
- ==> 635745396/1.74 == 365,370,917 per second
-
-// very sparse case:
- time ./bin 5 100
-COMP_COLEX2_MAX_ARRAY_LEN is defined.
-  ct=91962520
-./bin 5 100  0.25s user 0.00s system 99% cpu 0.257 total
- ==> 91962520/0.25 == 367,850,080 per second
-
 */
 
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
--------- using a pointer x_ (default):
 
  time ./bin 30 10 0
   ct=211915132
@@ -144,10 +122,6 @@ Timing: (AMD Phenom II X4 945 3000MHz)
   ct=91962520
 ./bin 5 100  0.24s user 0.00s system 99% cpu 0.246 total
  ==> 91962520/0.24 == 383,177,166 per second
-
--------- using an array x_[] (define  COMP_COLEX2_MAX_ARRAY_LEN):
-
-Identical timigs(!)
 
 */
 

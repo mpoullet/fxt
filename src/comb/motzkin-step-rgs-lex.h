@@ -1,7 +1,7 @@
 #if !defined HAVE_MOTZKIN_STEP_RGS_LEX_H__
 #define      HAVE_MOTZKIN_STEP_RGS_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014 Joerg Arndt
+// Copyright (C) 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,9 +25,8 @@ public:
     ulong *a_;  // RGS
     ulong n_;   // length of the RGS.
 
-private:  // have pointer data
-    motzkin_step_rgs_lex(const motzkin_step_rgs_lex&);  // forbidden
-    motzkin_step_rgs_lex & operator = (const motzkin_step_rgs_lex&);  // forbidden
+    motzkin_step_rgs_lex(const motzkin_step_rgs_lex&) = delete;
+    motzkin_step_rgs_lex & operator = (const motzkin_step_rgs_lex&) = delete;
 
 public:
     explicit motzkin_step_rgs_lex(ulong n)

@@ -11,7 +11,6 @@
 //#include "comb-all.h"  // all permutation generators
 
 #include "comb/comb-print.h"
-#include "comb/mixedradix.h"
 
 #include "fxttypes.h"
 #include "fxtio.h"

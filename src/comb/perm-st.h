@@ -1,7 +1,7 @@
 #if !defined  HAVE_PERM_ST_H__
 #define       HAVE_PERM_ST_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -22,9 +22,8 @@ public:
     ulong *pi_;  // inverse permutation
     ulong n_;   // permutations of n elements
 
-private:  // have pointer data
-    perm_st(const perm_st&);  // forbidden
-    perm_st & operator = (const perm_st&);  // forbidden
+    perm_st(const perm_st&) = delete;
+    perm_st & operator = (const perm_st&) = delete;
 
 public:
     explicit perm_st(ulong n)

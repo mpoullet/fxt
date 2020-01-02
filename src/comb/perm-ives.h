@@ -1,7 +1,7 @@
 #if !defined  HAVE_PERM_IVES_H__
 #define       HAVE_PERM_IVES_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -39,9 +39,8 @@ public:
     ulong ctm0_;  // aux: start value of ctm == n*(n-1)-1
 #endif
 
-private:  // have pointer data
-    perm_ives(const perm_ives&);  // forbidden
-    perm_ives & operator = (const perm_ives&);  // forbidden
+    perm_ives(const perm_ives&) = delete;
+    perm_ives & operator = (const perm_ives&) = delete;
 
 public:
     explicit perm_ives(ulong n)

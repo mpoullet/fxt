@@ -1,7 +1,7 @@
 #if !defined  HAVE_ISOSCENT_RGS_H__
 #define       HAVE_ISOSCENT_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014 Joerg Arndt
+// Copyright (C) 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -33,9 +33,8 @@ public:
 #endif
     ulong n_;   // Number of digits
 
-private:  // have pointer data
-    isoscent_rgs(const isoscent_rgs&);  // forbidden
-    isoscent_rgs & operator = (const isoscent_rgs&);  // forbidden
+    isoscent_rgs(const isoscent_rgs&) = delete;
+    isoscent_rgs & operator = (const isoscent_rgs&) = delete;
 
 public:
     explicit isoscent_rgs(ulong n)

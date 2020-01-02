@@ -1,7 +1,7 @@
 #if !defined  HAVE_CAYLEY_PERM_H__
 #define       HAVE_CAYLEY_PERM_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2014 Joerg Arndt
+// Copyright (C) 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -31,9 +31,8 @@ public:
     ulong mi_;  // minimum value of max digit (== min value of m_)
     ulong *a_;  // multiset data in a[0], ..., a[n-1], sentinels at [-1] and [-2]
 
-private:  // have pointer data
-    cayley_perm(const cayley_perm&);  // forbidden
-    cayley_perm & operator = (const cayley_perm&);  // forbidden
+    cayley_perm(const cayley_perm&) = delete;
+    cayley_perm & operator = (const cayley_perm&) = delete;
 
 public:
     explicit cayley_perm(ulong n)

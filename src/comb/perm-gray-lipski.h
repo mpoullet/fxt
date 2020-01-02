@@ -1,7 +1,7 @@
 #if !defined  HAVE_PERM_GRAY_LIPSKI_H__
 #define       HAVE_PERM_GRAY_LIPSKI_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -29,9 +29,8 @@ private:
     // 2 ==> Lipski(10),
     // 3 ==> order not in Lipski's paper
 
-private:  // have pointer data
-    perm_gray_lipski(const perm_gray_lipski&);  // forbidden
-    perm_gray_lipski & operator = (const perm_gray_lipski&);  // forbidden
+    perm_gray_lipski(const perm_gray_lipski&) = delete;
+    perm_gray_lipski & operator = (const perm_gray_lipski&) = delete;
 
 public:
     explicit perm_gray_lipski(ulong n, ulong r=1)

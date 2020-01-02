@@ -1,7 +1,7 @@
 Begin4
 Title:          fxt
-Version:        2018-07-03
-Entered-date:   2018-07-03
+Version:        2019-12-31
+Entered-date:   2019-12-31
 Description:    FXT is a library implementing algorithms for:
                 Fast Fourier Transform (FFT), complex and real-valued,
                 Fast Hartley Transform (FHT).  Convolution (cyclic, linear,

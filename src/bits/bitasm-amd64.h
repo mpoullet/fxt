@@ -1,7 +1,7 @@
 #if !defined HAVE_BITASM_AMD64_H__
 #define      HAVE_BITASM_AMD64_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2013, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -32,6 +32,11 @@ static inline ulong asm_bit_count(ulong x)
 // destination operand, and the zero flag (ZF) is set. If no set bit
 // is found , the zero flag is cleared and the contents of the
 // destination are undefined.
+//
+// Correction from Stefan Kanthak (March 2019):
+// Both instructions clear(!) ZF if the source operand is non-zero.
+// If the source operand is zero then ZF is set(!) and
+// the destination operand is undefined.
 
 static inline ulong asm_bsf(ulong x)
 // Bit Scan Forward

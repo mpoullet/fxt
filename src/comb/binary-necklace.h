@@ -1,7 +1,7 @@
 #if !defined  HAVE_BINARY_NECKLACE_H__
 #define       HAVE_BINARY_NECKLACE_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -30,9 +30,8 @@ public:
     ulong n_;  // length of strings
     ulong j_;  // period of the word (if necklaces)
 
-private:  // have pointer data
-    binary_necklace(const binary_necklace&);  // forbidden
-    binary_necklace & operator = (const binary_necklace&);  // forbidden
+    binary_necklace(const binary_necklace&) = delete;
+    binary_necklace & operator = (const binary_necklace&) = delete;
 
 public:
     explicit binary_necklace(ulong n)

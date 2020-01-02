@@ -1,7 +1,7 @@
 #if !defined  HAVE_CATALAN_H__
 #define       HAVE_CATALAN_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -29,9 +29,8 @@ public:
     //   dr0=+1  ==> start with as[]=[0,0,0,...,0]   == "()()()...()"
     //   dr0=-1  ==> start with as[]=[0,1,2,...,n-1] == "((( ... )))"
 
-private:  // have pointer data
-    catalan(const catalan&);  // forbidden
-    catalan & operator = (const catalan&);  // forbidden
+    catalan(const catalan&) = delete;
+    catalan & operator = (const catalan&) = delete;
 
 public:
     explicit catalan(ulong n, bool xdr=true, int dr0=+1)

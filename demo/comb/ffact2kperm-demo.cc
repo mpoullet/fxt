@@ -1,7 +1,7 @@
 
 #include "comb/fact2perm.h"
 // demo-include "comb/fact2perm.cc"
-#include "comb/mixedradix-lex.h"
+#include "comb/mixedradix.h"
 
 //#include "perm/reverse.h"
 //#include "perm/permcomplement.h"
@@ -15,7 +15,6 @@
 #include "comb/mixedradix-endo-gray.h"
 
 #include "comb/comb-print.h"
-#include "comb/mixedradix.h"
 
 #include "comb/check-kpermgen.h"
 #include "jjassert.h"
@@ -40,7 +39,7 @@ main(int argc, char **argv)
     if ( k<1 )  k = 1;
     if ( k>n )  k = n;
 
-    mixedradix_lex M(n1, 0);  // default
+    mixedradix M(n1, 0);  // default
 //    mixedradix_gray M(n1, 0);
 
 //    mixedradix_modular_gray M(n1, 0);

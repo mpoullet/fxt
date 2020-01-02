@@ -66,7 +66,7 @@ main(int argc, char **argv)
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
-gcc 4.5.0:
+GCC 4.5.0:
 
  time ./bin 38
 arg 1: 38 == n  [compositions of n into powers of 2]  default=8
@@ -82,7 +82,7 @@ COMPOSITION_NZ_BINARY_FIXARRAYS defined.
  ==> 1438308328/4.41 == 326,147,013 per second
 
 
-gcc 4.8.0:
+GCC 4.8.0:
 
  time ./bin 38
 arg 1: 38 == n  [compositions of n into powers of 2]  default=8

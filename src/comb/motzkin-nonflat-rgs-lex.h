@@ -1,7 +1,7 @@
 #if !defined  HAVE_MOTZKIN_NONFLAT_RGS_LEX_H__
 #define       HAVE_MOTZKIN_NONFLAT_RGS_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2014 Joerg Arndt
+// Copyright (C) 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -35,9 +35,8 @@ public:
     ulong n_;   // Number of digits
     ulong n1_;  // n-1 if n!=0, otherwise 0
 
-private:  // have pointer data
-    motzkin_nonflat_rgs_lex(const motzkin_nonflat_rgs_lex&);  // forbidden
-    motzkin_nonflat_rgs_lex & operator = (const motzkin_nonflat_rgs_lex&);  // forbidden
+    motzkin_nonflat_rgs_lex(const motzkin_nonflat_rgs_lex&) = delete;
+    motzkin_nonflat_rgs_lex & operator = (const motzkin_nonflat_rgs_lex&) = delete;
 
 public:
     explicit motzkin_nonflat_rgs_lex(ulong n)

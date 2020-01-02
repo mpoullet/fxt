@@ -1,7 +1,7 @@
 #if !defined HAVE_KSUBSET_LEX_H__
 #define      HAVE_KSUBSET_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014, 2015 Joerg Arndt
+// Copyright (C) 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -24,9 +24,8 @@ public:
     ulong m_;  // max number of elements in subsets
     ulong *x_;  // x[0...j-1]:  subset of {0,1,2,...,n-1}
 
-private:  // have pointer data
-    ksubset_lex(const ksubset_lex&);  // forbidden
-    ksubset_lex & operator = (const ksubset_lex&);  // forbidden
+    ksubset_lex(const ksubset_lex&) = delete;
+    ksubset_lex & operator = (const ksubset_lex&) = delete;
 
 public:
     explicit ksubset_lex(ulong n, ulong k)

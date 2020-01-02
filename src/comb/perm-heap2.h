@@ -1,7 +1,7 @@
 #if !defined  HAVE_PERM_HEAP2_H__
 #define       HAVE_PERM_HEAP2_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -34,15 +34,16 @@ public:
     ulong ct_;  // count 5,4,3,2,1,(0); nonzero ==> easy cases
 
 private:  // have pointer data
-    perm_heap2(const perm_heap2&);  // forbidden
-    perm_heap2 & operator = (const perm_heap2&);  // forbidden
+    perm_heap2(const perm_heap2&) = delete;
+    perm_heap2 & operator = (const perm_heap2&) = delete;
 
 public:
-    explicit perm_heap2(ulong n)  // must have n>=3
+    explicit perm_heap2(ulong n)
+    // must have n >= 1
     {
         n_ = n;
 #ifndef PERM_HEAP2_FIXARRAYS
-        const ulong s = ( n_<3 ? 3 : n_ );
+        const ulong s = ( n_ < 3 ? 3 : n_ );
         d_ = new ulong[s];
         p_ = new ulong[s];
 #endif
@@ -79,7 +80,7 @@ public:
             --ct_;
             sw1_ = 1 + (ct_ & 1);  // == 1,2,1,2,1
             sw2_ = 0;
-            swap2(p_[sw1_], p_[sw2_]);
+            swap2( p_[sw1_], p_[sw2_] );
             return  sw1_;
         }
         else
@@ -95,7 +96,7 @@ public:
 
             ulong k = j+1;
             ulong x = ( k&1 ? d_[j] : 0 );
-            swap2(p_[k], p_[x]);
+            swap2( p_[k], p_[x] );
             sw1_ = k;  sw2_ = x;
 
             ++d_[j];
@@ -112,6 +113,5 @@ public:
 };
 // -------------------------
 
-//#undef PERM_HEAP2_FIXARRAYS  // leave in
 
 #endif  // !defined HAVE_PERM_HEAP2_H__

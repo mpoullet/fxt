@@ -1,7 +1,7 @@
 #if !defined HAVE_COMB_ALL_H__
 #define      HAVE_COMB_ALL_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -11,7 +11,6 @@
 //: subsets:
 #include "comb/subset-gray.h"
 #include "comb/subset-gray-delta.h"
-//#include "comb/subset-monotone.h"
 #include "comb/subset-lex.h"
 #include "comb/ksubset-lex.h"
 #include "comb/subset-deltalex.h"
@@ -161,6 +160,7 @@
 #include "comb/catalan-rgs-gslex.h"
 #include "comb/catalan-rgs-subset-lex.h"
 #include "comb/catalan-path-lex.h"
+#include "comb/catalan-flat-path-lex.h"
 #include "comb/catalan-step-rgs-lex.h"
 #include "comb/catalan-step-rgs-colex.h"
 #include "comb/catalan-step-rgs-subset-lexrev.h"
@@ -182,7 +182,6 @@
 #include "comb/dyck-gray.h"
 #include "comb/dyck-gray2.h"
 #include "comb/dyck-pref.h"
-#include "comb/dyck-pref2.h"
 #include "comb/dyck-rgs-subset-lex.h"
 // auxiliary routines:
 #include "comb/is-dyck-rgs.h"
@@ -247,6 +246,7 @@
 #include "comb/debruijn.h"
 #include "comb/binary-debruijn.h"
 #include "comb/lyndon-words.h"
+#include "comb/lyndon-words-restrpref.h"
 
 //: Algorithms on strings:
 #include "comb/cyclic-words.h"
@@ -254,37 +254,39 @@
 
 
 //: mixed radix numbers:
-#include "comb/mixedradix-lex.h"
-#include "comb/mixedradix-colex.h"
+#include "comb/mixedradix.h"
+#include "comb/mixedradix-rev.h"
+#include "comb/mixedradix-gray.h"
+#include "comb/mixedradix-modular-gray.h"
 #include "comb/mixedradix-subset-lex.h"
 #include "comb/mixedradix-subset-lexrev.h"
 #include "comb/mixedradix-sl-gray.h"
 #include "comb/mixedradix-gslex.h"
-#include "comb/mixedradix-gslex2.h"
 #include "comb/mixedradix-gslex-alt.h"
-#include "comb/mixedradix-gslex-alt2.h"
-#include "comb/mixedradix-gray.h"
-#include "comb/mixedradix-gray2.h"
-#include "comb/mixedradix-modular-gray.h"
-#include "comb/mixedradix-modular-gray2.h"
 #include "comb/mixedradix-endo.h"
 #include "comb/mixedradix-endo-gray.h"
-#include "comb/mixedradix-rfact.h"
 #include "comb/mixedradix-sod-lex.h"
 #include "comb/mixedradix-naf.h"
 #include "comb/mixedradix-naf-gray.h"
 #include "comb/mixedradix-naf-subset-lex.h"
 #include "comb/mixedradix-restrpref.h"
 #include "comb/skew-binary.h"
+//
+#include "comb/mixedradix-subset-lex-rank.h"
+#include "comb/mixedradix-sl-gray-rank.h"
+//
+#include "comb/mixedradix-sl-gray-compare.h"
+#include "comb/lex-compare.h"
+#include "comb/gray-compare.h"
+#include "comb/subset-lex-compare.h"
 // auxiliary routines:
-#include "comb/mixedradix.h"
+#include "comb/mixedradix-aux.h"
 #include "comb/is-mixedradix-num.h"
 #include "comb/check-mixedradix.h"
 
+
 //: permutations:
 #include "comb/perm-lex.h"
-#include "comb/perm-lex-inv.h"
-#include "comb/perm-lex2.h"
 #include "comb/perm-colex.h"
 #include "comb/perm-rec.h"
 #include "comb/perm-mv0.h"
@@ -292,7 +294,6 @@
 #include "comb/perm-trotter.h"
 #include "comb/perm-trotter-lg.h"
 #include "comb/perm-gray-ffact.h"
-#include "comb/perm-gray-ffact2.h"
 #include "comb/perm-gray-rfact.h"
 #include "comb/perm-gray-rot1.h"
 #include "comb/perm-gray-lipski.h"
@@ -306,7 +307,6 @@
 #include "comb/perm-star-swaps.h"
 #include "comb/perm-restrpref.h"
 #include "comb/perm-rev.h"
-#include "comb/perm-rev2.h"
 #include "comb/perm-st.h"
 #include "comb/perm-st-pref.h"
 #include "comb/perm-st-gray.h"
@@ -362,6 +362,7 @@
 #include "comb/wfl-hilbert.h"
 #include "comb/hilbert-ndim.h"
 #include "comb/hilbert-ndim-rec.h"
+#include "comb/peano-ndim.h"
 
 
 //: standard Young tableaux:
@@ -409,13 +410,10 @@
 
 
 // auxiliary routines:
-#include "comb/lex-compare.h"
-#include "comb/subset-lex-compare.h"
-#include "comb/gray-compare.h"
-#include "comb/sl-gray-compare.h"
 #include "comb/word-stats.h"
 #include "comb/comb-print.h"
 #include "comb/endo-enup.h"
+
 
 #include "comb/arith-3-progression.h"
 

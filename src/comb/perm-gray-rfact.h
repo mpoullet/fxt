@@ -1,12 +1,11 @@
 #if !defined HAVE_PERM_GRAY_RFACT_H__
 #define      HAVE_PERM_GRAY_RFACT_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
 #include "aux0/swap.h"
-//#include "comb/mixedradix-gray2.h"
 #include "comb/mixedradix-gray.h"
 #include "comb/comb-print.h"
 #include "fxttypes.h"
@@ -29,8 +28,8 @@ public:
     ulong sw1_, sw2_;  // indices of elements swapped most recently
 
 private:  // have pointer data
-    perm_gray_rfact(const perm_gray_rfact&);  // forbidden
-    perm_gray_rfact & operator = (const perm_gray_rfact&);  // forbidden
+    perm_gray_rfact(const perm_gray_rfact&) = delete;
+    perm_gray_rfact & operator = (const perm_gray_rfact&) = delete;
 
 public:
     explicit perm_gray_rfact(ulong n)

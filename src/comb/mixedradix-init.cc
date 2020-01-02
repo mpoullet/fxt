@@ -1,5 +1,5 @@
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012 Joerg Arndt
+// Copyright (C) 2010, 2012, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -10,9 +10,12 @@ void
 mixedradix_init(ulong n, ulong mm, const ulong *m, ulong *m1)
 // Auxiliary function used to initialize vector of nines in mixed radix classes.
 {
-    if ( m )  // all radices given
+    if ( m != nullptr )  // all radices given
     {
-        for (ulong k=0; k<n; ++k)  m1[k] = (m[k] ? m[k] - 1 : 0);  // avoid hang with radix zero
+        for (ulong k=0; k<n; ++k)
+        {
+            m1[k] = (m[k] >= 2 ? m[k] - 1 : 1);  // avoid hang with radix < 2
+        }
     }
     else
     {

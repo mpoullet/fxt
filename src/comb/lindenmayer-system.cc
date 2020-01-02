@@ -1,5 +1,5 @@
 // This file is part of the FXT library.
-// Copyright (C) 2017 Joerg Arndt
+// Copyright (C) 2017, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -24,44 +24,17 @@ lindenmayer_system::set_all_maps(const std::vector<std::string> & maps)
 
     for (ulong j=0; j<nr; j+=2)
     {
-        bool q =
-            string_subst::add_map(
-                                  (uchar*)maps[j].c_str(),  // jjcast
-                                  (uchar*)maps[j+1].c_str()  // jjcast
-                                  );
+        // letter lt and word wd for map:
+        uchar * lt = (uchar*)maps[j].c_str();  // jjcast
+        uchar * wd = (uchar*)maps[j+1].c_str();  // jjcast
 
+        bool q = string_subst::add_map( lt, wd );
         if ( ! q )  return false;
     }
 
     return true;
 }
 // -------------------------
-
-const std::string &
-lindenmayer_system::str_letter_at(ulong j)  const
-// Valid j are 0, 2, ..., num_maps_ - 1
-{
-    return letter_str_.at( j );
-}
-// -------------------------
-
-const std::string &
-lindenmayer_system::str_map_at(ulong j)  const
-// Valid j are 0, 2, ..., num_maps_ - 1
-{
-    return map_str_.at( j );
-}
-// -------------------------
-
-
-//    std::string str_map(ulong j)  const
-//    // image of character j
-//    {
-//        if ( j >= NCHAR )  return "";  // j out of range
-//        if ( map_start_[j] == NULL )  return "";  // no map for j
-//        const uchar *c = map_start_[j];
-//        return std::string( (const char*)c );
-//    }
 
 
 std::vector<std::string>
@@ -71,10 +44,10 @@ lindenmayer_system::str_all_maps(ulong z/*=0*/)  const
     std::vector<std::string> R;
     for (ulong j=0; j<num_maps_; ++j)
     {
-        const std::string & M = map_str_.at(j);
+        const std::string & M = word_vec_.at(j);
         if ( M.size() >= z )
         {
-            R.push_back( letter_str_.at(j) );  // jjcast
+            R.push_back( letter_vec_.at(j) );
             R.push_back( M );
         }
     }
@@ -89,7 +62,7 @@ lindenmayer_system::print_all_maps(ulong z/*=0*/)  const
 {
     for (ulong j=0; j<num_maps_; ++j)
     {
-        const std::string & M = map_str_.at(j);
+        const std::string & M = word_vec_.at(j);
         if ( M.size() >= z )
             std::cout << str_letter_at(j) << " |--> " << M << std::endl;
     }

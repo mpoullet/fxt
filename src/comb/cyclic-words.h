@@ -1,12 +1,13 @@
 #if !defined  HAVE_CYCLIC_WORDS_H__
 #define       HAVE_CYCLIC_WORDS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2017, 2018 Joerg Arndt
+// Copyright (C) 2017, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
 
 #include "fxttypes.h"  // ulong
+//#include "jjassert.h"
 
 
 template <typename Type>
@@ -14,7 +15,7 @@ ulong cyclic_lex_min_idx(const Type *W, ulong n)
 // Return index i such that the word W, read (cyclically) starting at i,
 // is the lexicographically minimal cyclic shift of W.
 // In other words:
-// among all rotations of W, the one by i letters (to the left) is lex-min.
+// among all rotations of W, the one shifted by i letters (to the left) is lex-min.
 //.
 // Orignal code taken from https://stackoverflow.com/questions/3459509/
 // Cleaned up and optimized.
@@ -68,7 +69,7 @@ ulong cyclic_lex_min_idx(const Type *W, ulong n)
 
 template <typename Type>
 bool is_cyclic_lex_min(const Type *W, ulong n)
-// Return whther W[] is the minimum among all its cyclic rotations.
+// Return whether W[] is the minimum among all its cyclic rotations.
 // Equivalently, whether 0 === cyclic_lex_min_idx(W, n),
 //   but faster on average.
 {
@@ -200,11 +201,48 @@ int cyclic_compare_min(const Type * A, const Type * B, ulong n)
 // Let ai and bi be the indices returned by cyclic_lex_min_idx()
 //   for A[] and B[] respectively.
 // Compare A[ai, ai+1, ...] and B[bi, bi+1, ...] cyclically (indices taken mod n).
-// Return  +1 if A[] > B[],  -1 if A[] < B[],  otherwise (A[]==B[]) 0.
+// Return  +1 if A[] > B[],  -1 if A[] < B[],  otherwise (A[]==B[]) return 0.
 {
-    ulong ai = cyclic_lex_min_idx(A, n);
-    ulong bi = cyclic_lex_min_idx(B, n);
+#if 1
+    // Faster variant, derived from cyclic_equal_p()
+    // Avoids calls to cyclic_lex_min_idx()
+    // Must have n >= 1
+
+    // if ( n==0 )  return 0;  // take care of case n == 0
+    ulong na = 0,  nb = 0;
+    ulong nak = 0, nbk = 0;
+    while ( na < n && nb < n )
+    {
+        ulong k = 0;
+        nak = na,  nbk = nb; // na + k and nb + k  (mod n)
+        while ( k < n )
+        {
+            if ( A[nak] == B[nbk] )
+            {
+                ++k;
+                ++nak;  if ( nak >= n )  { nak -= n; }
+                ++nbk;  if ( nbk >= n )  { nbk -= n; }
+            }
+            else  break;
+        }
+
+        if ( k == n )  return 0;  // same
+
+        if ( A[nak] > B[nbk] )   na += k + 1;
+        else                     nb += k + 1;
+    }
+
+//    jjassert( nak < n  );
+//    jjassert( nak < n  );
+//    jjassert( A[nak] != B[nbk] );
+    return ( A[nak] > B[nbk] ? +1 : -1 );
+
+#else
+
+    const ulong ai = cyclic_lex_min_idx(A, n);
+    const ulong bi = cyclic_lex_min_idx(B, n);
     return  cyclic_compare(A, ai, B, bi, n);
+#endif
 }
 // -------------------------
 

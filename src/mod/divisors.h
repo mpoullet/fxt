@@ -1,13 +1,13 @@
 #if !defined  HAVE_DIVISORS_H__
 #define       HAVE_DIVISORS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
 
 #include "fxtalloca.h"
-#include "comb/mixedradix-lex.h"
+#include "comb/mixedradix.h"
 #include "mod/factor.h"
 #include "fxttypes.h"
 
@@ -19,13 +19,13 @@ class divisors
 {
 public:
     umod_t *p_;   // primes
-    mixedradix_lex *mr_;  // exponents + 1  as radices
+    mixedradix *mr_;  // exponents + 1  as radices
     umod_t *t_;   // aux (products)
     ulong n_;    // number of prime factors
 
 private:  // have pointer data
-    divisors(const divisors&);  // forbidden
-    divisors & operator = (const divisors&);  // forbidden
+    divisors(const divisors&) = delete;
+    divisors & operator = (const divisors&) = delete;
 
 private:
     void ctor_core(const factorization &F)
@@ -41,7 +41,7 @@ private:
         ALLOCA(ulong, r, n_);  // tiny table
         for (ulong j=0; j<n_; ++j)  r[j] = F.exponent(j) + 1;
 
-        mr_ = new mixedradix_lex(n_, 0, r);
+        mr_ = new mixedradix(n_, 0, r);
 
         first();
     }
@@ -80,7 +80,7 @@ public:
         }
 
         ulong j = mr_ -> pos();  // position of digit change
-        bool q = ( (mr_ -> a_[j]) == 1 );  // update from right?
+        bool q = ( (mr_ -> data()[j]) == 1 );  // update from right?
         umod_t t = t_[j+q];
         t *= p_[j];
         while ( (long)j>=0 )  { t_[j] = t; --j; }  // jjcast

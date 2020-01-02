@@ -1,7 +1,7 @@
 #if !defined HAVE_CATALAN_STEP_RGS_COLEX_H__
 #define      HAVE_CATALAN_STEP_RGS_COLEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -27,9 +27,8 @@ public:
     ulong tr_;  // current track (position of first non-zero element)
     // tr == n-1 for the all-zero word
 
-private:  // have pointer data
-    catalan_step_rgs_colex(const catalan_step_rgs_colex&);  // forbidden
-    catalan_step_rgs_colex & operator = (const catalan_step_rgs_colex&);  // forbidden
+    catalan_step_rgs_colex(const catalan_step_rgs_colex&) = delete;
+    catalan_step_rgs_colex & operator = (const catalan_step_rgs_colex&) = delete;
 
 public:
     explicit catalan_step_rgs_colex(ulong n)

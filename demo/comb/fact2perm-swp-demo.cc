@@ -3,7 +3,7 @@
 // demo-include "comb/fact2perm-swp.cc"
 #include "perm/perminvert.h"  // make_inverse()
 // demo-include "perm/perminvert.cc"
-#include "comb/mixedradix-lex.h"
+#include "comb/mixedradix.h"
 
 #include "perm/permq.h"  // is_inverse()
 
@@ -16,7 +16,6 @@
 #include "comb/mixedradix-sl-gray.h"
 
 #include "comb/comb-print.h"
-#include "comb/mixedradix.h"
 
 #include "comb/check-permgen.h"
 #include "jjassert.h"
@@ -39,7 +38,7 @@ main(int argc, char **argv)
     const bool dfz = true;  // whether to print dots for zeros
     const ulong n1 = n - 1;
 
-    mixedradix_lex M(n1, rq);  // default
+    mixedradix M(n1, rq);  // default
 //    mixedradix_gray M(n1, rq);
 //    mixedradix_subset_lex M(n1, rq);
 //    mixedradix_sl_gray M(n1, rq);

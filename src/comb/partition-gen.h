@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_GEN_H__
 #define      HAVE_PARTITION_GEN_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,9 +25,8 @@ public:
     ulong ri_;   // temporary for r_[i_]
     ulong x_;    // value to partition
 
-private:  // have pointer data
-    partition_gen(const partition_gen&);  // forbidden
-    partition_gen & operator = (const partition_gen&);  // forbidden
+    partition_gen(const partition_gen&) = delete;
+    partition_gen & operator = (const partition_gen&) = delete;
 
 public:
     explicit partition_gen(ulong x, ulong n=0, const ulong *pv=nullptr)

@@ -1,7 +1,7 @@
 #if !defined  HAVE_NECKLACE_H__
 #define       HAVE_NECKLACE_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -27,9 +27,8 @@ public:
     ulong m1_;  // m-ary strings, m1=m-1
     ulong j_;   // period of the word (if necklaces)
 
-private:  // have pointer data
-    necklace(const necklace&);  // forbidden
-    necklace & operator = (const necklace&);  // forbidden
+    necklace(const necklace&) = delete;
+    necklace & operator = (const necklace&) = delete;
 
 public:
     explicit necklace(ulong m, ulong n)

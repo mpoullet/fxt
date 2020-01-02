@@ -22,7 +22,8 @@
 // cf. http://oeis.org/wiki/Index_to_OEIS:_Section_Lu#Lyndon
 // cf. http://oeis.org/wiki/Index_to_OEIS:_Section_Ne#necklaces
 
-// Cf. seq/A215327-demo.cc
+// Cf. comb/lyndon-words-demo.cc
+// Cf. comb/lyndon-words-restrpref-demo.cc
 
 
 #define PRX()  { if (x[k])  cout << x[k]; else cout << '.'; }

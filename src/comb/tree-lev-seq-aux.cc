@@ -1,12 +1,11 @@
 // This file is part of the FXT library.
-// Copyright (C) 2014, 2015 Joerg Arndt
+// Copyright (C) 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
 #include "comb/tree-lev-seq-aux.h"
 
 #include "fxtio.h"
-#include "fxtalloca.h"
 #include "fxttypes.h"
 
 

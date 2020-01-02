@@ -1,7 +1,7 @@
 #if !defined  HAVE_SLOWCORR_H__
 #define       HAVE_SLOWCORR_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012 Joerg Arndt
+// Copyright (C) 2010, 2012, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -98,7 +98,7 @@ void slow_auto_correlation0(const Type *f, Type * restrict g, ulong n)
 
 
 template <typename Type>
-void slow_correlation(const Type *f, Type * restrict g, ulong n)
+void slow_correlation(const Type *f, Type * g, ulong n)
 // Cyclic correlation of f[], g[], two real-valued sequences.
 // n := array length
 {
@@ -109,7 +109,7 @@ void slow_correlation(const Type *f, Type * restrict g, ulong n)
 // -------------------------
 
 template <typename Type>
-void slow_correlation0(const Type *f, Type * restrict g, ulong n)
+void slow_correlation0(const Type *f, Type * g, ulong n)
 // Linear correlation of f[], g[], two real-valued sequences.
 // Result is written to g[].
 // n := array length

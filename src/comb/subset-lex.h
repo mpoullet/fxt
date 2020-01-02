@@ -1,7 +1,7 @@
 #if !defined HAVE_SUBSET_LEX_H__
 #define      HAVE_SUBSET_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014, 2015 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -29,9 +29,8 @@ public:
     ulong x_[SUBSET_LEX_MAX_ARRAY_LEN];
 #endif
 
-private:  // have pointer data
-    subset_lex(const subset_lex&);  // forbidden
-    subset_lex & operator = (const subset_lex&);  // forbidden
+    subset_lex(const subset_lex&) = delete;
+    subset_lex & operator = (const subset_lex&) = delete;
 
 public:
     explicit subset_lex(ulong n)

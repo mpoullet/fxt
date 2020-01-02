@@ -1,7 +1,6 @@
 
 #include "comb/perm-heap2.h"
 
-#include "comb/mixedradix.h"
 #include "comb/comb-print.h"
 #include "aux0/swap.h"
 
@@ -12,7 +11,7 @@
 
 
 //% Gray code for permutations, CAT algorithm, optimized version.
-//% Algorithm following B.R.Heap (1963)
+//% Algorithm following B. R. Heap (1963)
 
 //#define TIMING  // uncomment to disable printing
 
@@ -25,8 +24,8 @@ int
 main(int argc, char **argv)
 {
     ulong n = 4;
-    NXARG(n, "Number of elements to permute n>0");
-    jjassert( n>0 );
+    NXARG(n, "Number of elements to permute, n > 0");
+    jjassert( n > 0 );
 
     perm_heap2 P(n);
     P.first();

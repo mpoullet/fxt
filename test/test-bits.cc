@@ -1012,7 +1012,7 @@ do_some_tests(ulong v)
 //        cout << " y=" << y << endl;
         jjassert( (x+y) == (((x&y)<<1) + (x^y)) );
         jjassert( (x+y) == (((x|y)<<1) - (x^y)) );
-        ulong af = average(x,y);
+        ulong af = floor_average(x,y);
         ulong ac = ceil_average(x,y);
 //        print_bin(" x=",x,0);  cout << endl;
 //        print_bin(" y=",y,0);  cout << endl;

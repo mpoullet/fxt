@@ -1,7 +1,7 @@
 #if !defined  HAVE_MSET_PERM_LEX_REC_H__
 #define       HAVE_MSET_PERM_LEX_REC_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -22,9 +22,8 @@ public:
     ulong ct_;  // count objects
     ulong rct_;  // count recursions (==work)
 
-private:  // have pointer data
-    mset_perm_lex_rec(const mset_perm_lex_rec&);  // forbidden
-    mset_perm_lex_rec & operator = (const mset_perm_lex_rec&);  // forbidden
+    mset_perm_lex_rec(const mset_perm_lex_rec&) = delete;
+    mset_perm_lex_rec & operator = (const mset_perm_lex_rec&) = delete;
 
 public:
     explicit mset_perm_lex_rec(ulong *r, ulong k)

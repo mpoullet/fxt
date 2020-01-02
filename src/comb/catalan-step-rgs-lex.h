@@ -1,7 +1,7 @@
 #if !defined HAVE_CATALAN_STEP_RGS_LEX_H__
 #define      HAVE_CATALAN_STEP_RGS_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -26,9 +26,8 @@ public:
     ulong *a_;  // RGS
     ulong n_;   // length of the RGS.
 
-private:  // have pointer data
-    catalan_step_rgs_lex(const catalan_step_rgs_lex&);  // forbidden
-    catalan_step_rgs_lex & operator = (const catalan_step_rgs_lex&);  // forbidden
+    catalan_step_rgs_lex(const catalan_step_rgs_lex&) = delete;
+    catalan_step_rgs_lex & operator = (const catalan_step_rgs_lex&) = delete;
 
 public:
     explicit catalan_step_rgs_lex(ulong n)

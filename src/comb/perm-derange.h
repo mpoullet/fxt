@@ -1,7 +1,7 @@
 #if !defined HAVE_PERM_DERANGE_H__
 #define      HAVE_PERM_DERANGE_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -22,8 +22,8 @@ public:
     perm_trotter* T_;
 
 private:  // have pointer data
-    perm_derange(const perm_derange&);  // forbidden
-    perm_derange & operator = (const perm_derange&);  // forbidden
+    perm_derange(const perm_derange&) = delete;
+    perm_derange & operator = (const perm_derange&) = delete;
 
 public:
     explicit perm_derange(ulong n)

@@ -486,30 +486,31 @@ bool cond_leq_23(const ulong *a, ulong k)
 }
 // -------------------------
 
-bool cond_test(const ulong *a, ulong k)
+bool cond_test(const ulong *a, ulong k)  // last arg = 99
 {
-    if ( k<2 )  return true;
-    // following OEIS a-numbers: rfact, base-2, base-3
-    if ( (a[k-2]>a[k-1]) && (a[k]!=0) )  return false;  // A000000, A005251, A052101
-//    if ( (a[k-2]<a[k-1]) && (a[k]!=0) )  return false;  // A000000, A000071, A000000
-//    if ( (a[k-2]==a[k-1]) && (a[k]!=0) )  return false;  // A000000, A171861, A000000
-//    if ( (a[k-2]!=a[k-1]) && (a[k]!=0) )  return false;  // A000000, A038718, A000000
+    // A328357 with rfact:  (only for n >= 2)
+    // implicit 0==a[-1] <= a[0]
+
+    if ( k >= 2 )
+    {
+        const bool f2 = (a[k-2] <= a[k-1]);
+        const bool f1 = (a[k-1] <= a[k-0]);
+        const bool q = ( f2 && f1 );
+        if ( q )  return false;
+    }
+    else // k <= 1
+    {
+        if ( k==0 )
+        {
+            if ( a[0] == 0 )  return false;
+        }
+        else // k==1
+        {
+            if ( a[0] <= a[1] )  return false;
+        }
+    }
+
     return true;
-
-//    ulong d = a[k];
-//    if ( k==0 )  return (d==1);
-//    return d <= (k+1)*a[k-1];  // A007489
-
-//    ulong d = a[k];
-//    ulong z = 0;
-//    for (ulong j=0; j<k; ++j)
-////        z += ( a[j]==k );  // A058798
-//        z += ( a[j]==j );  // A000522 (arrangements)
-//    if ( d < z )  return false;
-//    return true;
-
-//    if ( k!=0 )  return ( a[k]!=a[k-1] );  // A098558
-//    return ( a[k]<=k/2 );  // A010551
 }
 // -------------------------
 
@@ -531,7 +532,7 @@ main(int argc, char **argv)
     for (ulong k=3;  k<(ulong)argc; ++k)  r[k-3] = strtoul(argv[k], nullptr, 10);
     mixedradix_restrpref M(n, rr, ( argc > 3 ? r : nullptr ), cond_true );
 #else
-    mixedradix_restrpref M(n, rr, nullptr, cond_dist2 );
+    mixedradix_restrpref M(n, rr, nullptr );
 #endif
 
     ulong c = 4;

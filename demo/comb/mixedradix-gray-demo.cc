@@ -63,6 +63,30 @@ main(int argc, char **argv)
 // -------------------------
 
 /*
+Timing: (Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz)
+
+GCC 8.30
+
+time ./bin 30 2  ## binary is worst case
+ ct=1073741824
+./bin 30 2  2.40s user 0.00s system 99% cpu 2.397 total
+ ==> 1073741824/2.40 == 447,392,426 per second
+
+ time ./bin 16 4
+ ct=4294967296
+./bin 16 4  5.84s user 0.00s system 99% cpu 5.844 total
+ ==> 4294967296/5.84 == 735,439,605 per second
+
+ time ./bin 10 8
+ ct=1073741824
+./bin 10 8  1.35s user 0.00s system 99% cpu 1.349 total
+ ==> 1073741824/1.35 == 795,364,314 per second
+
+*/
+
+
+/*
+
 Timing:
 
  time ./bin 30 2  ## binary is worst case

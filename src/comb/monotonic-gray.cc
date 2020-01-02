@@ -1,11 +1,10 @@
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013, 2015 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2013, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
 #include "comb/delta2gray.h"
 
-#include "fxtalloca.h"
 #include "fxttypes.h"
 
 
@@ -16,29 +15,22 @@ monotonic_gray_delta(unsigned char *d, ulong ldn)
 // Algorithm as given in Knuth, TAOCP vol.4
 // (exercise 73, fascicle 2A, 7.2.1.1: "Generating all n-tuples").
 {
-    if ( 1>=ldn )
+    if ( 1 >= ldn )
     {
         d[0] = 0;
         d[ldn] = 0;
         return;
     }
 
-//    ALLOCA(uchar, p, ldn);
-//    ALLOCA(uchar, pp, ldn);
     uchar * p = new uchar[ldn];
     uchar * pp = new uchar[ldn];
 
     const ulong nn = 1UL<<ldn;
-//    ALLOCA(uchar, s, nn);
-//    ALLOCA(uchar, t, nn);
-//    ALLOCA(uchar, u, nn);
     uchar * s = new uchar[nn];
     uchar * t = new uchar[nn];
     uchar * u = new uchar[nn];
 
     uchar *sp = d;
-//    ALLOCA(uchar, tp, nn);
-//    ALLOCA(uchar, up, nn);
     uchar * tp = new uchar[nn];
     uchar * up = new uchar[nn];
 
@@ -144,7 +136,6 @@ monotonic_gray(ulong *g, ulong ldn)
 // into g[0..N-1] (N=2**ldn).
 {
     ulong n = 1UL<<ldn;
-//    ALLOCA(uchar, d, n);
     uchar *d = new uchar[n];
     monotonic_gray_delta(d, ldn);
     delta2gray(d, ldn, g);

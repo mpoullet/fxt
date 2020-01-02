@@ -1,7 +1,7 @@
 #if !defined HAVE_SUBSET_GRAY_H__
 #define      HAVE_SUBSET_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,9 +25,8 @@ public:
     ulong n_;   // subsets of the n-set;  must have n>=1
     ulong k_;   // number of elements in subset
 
-private:  // have pointer data
-    subset_gray(const subset_gray&);  // forbidden
-    subset_gray & operator = (const subset_gray&);  // forbidden
+    subset_gray(const subset_gray&) = delete;
+    subset_gray & operator = (const subset_gray&) = delete;
 
 public:
     explicit subset_gray(ulong n)

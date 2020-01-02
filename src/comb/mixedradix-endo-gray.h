@@ -1,12 +1,12 @@
 #if !defined HAVE_MIXEDRADIX_ENDO_GRAY_H__
 #define      HAVE_MIXEDRADIX_ENDO_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
 #include "comb/endo-enup.h"
-#include "comb/mixedradix.h"
+#include "comb/mixedradix-aux.h"
 #include "comb/is-mixedradix-num.h"
 #include "comb/comb-print.h"
 
@@ -21,15 +21,15 @@ class mixedradix_endo_gray
 public:
     ulong *a_;  // mixed radix digits
     ulong *m1_;  // radices (minus one)
-    ulong *i_;  // direction
+    ulong *d_;  // direction
     ulong *le_;  // last positive digit in endo order
     ulong n_;   // n_ digits
     ulong j_;   // position of last change
     int dm_;    // direction of last move
 
 private:  // have pointer data
-    mixedradix_endo_gray(const mixedradix_endo_gray&);  // forbidden
-    mixedradix_endo_gray & operator = (const mixedradix_endo_gray&);  // forbidden
+    mixedradix_endo_gray(const mixedradix_endo_gray&) = delete;
+    mixedradix_endo_gray & operator = (const mixedradix_endo_gray&) = delete;
 
 public:
     explicit mixedradix_endo_gray(ulong n, ulong mm, const ulong *m = nullptr)
@@ -37,8 +37,8 @@ public:
         n_ = n;
         a_ = new ulong[n_+1];
         a_[n] = -1UL;  // sentinel
-        i_ = new ulong[n_+1];
-        i_[n_] = 0;    // sentinel
+        d_ = new ulong[n_+1];
+        d_[n_] = 0;    // sentinel
         m1_ = new ulong[n_+1];
 //        m1_[n] = -1UL;
 
@@ -52,7 +52,7 @@ public:
 
     ~mixedradix_endo_gray()
     {
-        delete [] i_;
+        delete [] d_;
         delete [] a_;
         delete [] m1_;
         delete [] le_;
@@ -63,7 +63,7 @@ public:
     void first()
     {
         for (ulong k=0; k<n_; ++k)  a_[k] = 0;
-        for (ulong k=0; k<n_; ++k)  i_[k] = +1;
+        for (ulong k=0; k<n_; ++k)  d_[k] = +1;
         j_ = n_;
         dm_ = 0;
     }
@@ -71,7 +71,7 @@ public:
     void last()
     {
         for (ulong k=0; k<n_; ++k)  a_[k] = 0;
-        for (ulong k=0; k<n_; ++k)  i_[k] = -1UL;
+        for (ulong k=0; k<n_; ++k)  d_[k] = -1UL;
 
         // find position of last even radix:
         ulong z = 0;
@@ -79,7 +79,7 @@ public:
         while ( z<n_ )  // last even .. end:
         {
             a_[z] = le_[z];
-            i_[z] = +1;
+            d_[z] = +1;
             ++z;
         }
 
@@ -90,29 +90,29 @@ public:
     bool next()
     {
         ulong j = 0;
-        ulong ij;
+        ulong dj;
 //        while ( j<n_ )
-        while ( (ij=i_[j]) )  // can read sentinel i[n]==0
+        while ( (dj=d_[j]) )  // can read sentinel i[n]==0
         {
-//            ulong dj = a_[j] + ij;
-            ulong dj;
+//            ulong aj = a_[j] + dj;
+            ulong aj;
             bool ovq;  // overflow?
-            if ( ij == 1 )
+            if ( dj == 1 )
             {
-                dj = next_endo(a_[j], m1_[j]);
-                ovq = (dj==0);
+                aj = next_endo(a_[j], m1_[j]);
+                ovq = (aj==0);
             }
             else
             {
                 ovq = (a_[j]==0);
-                dj = prev_endo(a_[j], m1_[j]);
+                aj = prev_endo(a_[j], m1_[j]);
             }
 
-            if ( ovq )  i_[j] = -ij;
+            if ( ovq )  d_[j] = -dj;
             else
             {
-                a_[j] = dj;
-                dm_ = (int)ij;
+                a_[j] = aj;
+                dm_ = (int)dj;
                 j_ = j;
                 return true;
             }
@@ -125,32 +125,32 @@ public:
     bool prev()
     {
         ulong j = 0;
-        ulong ij;
+        ulong dj;
 //        while ( j<n_ )
-        while ( (ij=i_[j]) )  // can read sentinel i[n]==0
+        while ( (dj=d_[j]) )  // can read sentinel i[n]==0
         {
-//            ulong dj = a_[j] - ij;
-            ulong dj;
+//            ulong aj = a_[j] - dj;
+            ulong aj;
             bool ovq;  // overflow?
-            if ( ij != 1 )
+            if ( dj != 1 )
             {
-                dj = next_endo(a_[j], m1_[j]);
-                ovq = (dj==0);
+                aj = next_endo(a_[j], m1_[j]);
+                ovq = (aj==0);
             }
             else
             {
                 ovq = (a_[j]==0);
-                dj = prev_endo(a_[j], m1_[j]);
+                aj = prev_endo(a_[j], m1_[j]);
             }
 
             if ( ovq )
             {
-                i_[j] = -ij;
+                d_[j] = -dj;
             }
             else
             {
-                a_[j] = dj;
-                dm_ = (int)ij;
+                a_[j] = aj;
+                dm_ = (int)dj;
                 j_ = j;
                 return true;
             }

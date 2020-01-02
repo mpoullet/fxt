@@ -7,7 +7,6 @@
 #include "perm/printcycles.h"
 
 #include "comb/comb-print.h"
-#include "comb/mixedradix.h"
 #include "perm/perminvert.h"
 
 #include "aux0/factorial.h"  // for timing
@@ -29,7 +28,8 @@ int
 main(int argc, char **argv)
 {
     ulong n = 5;
-    NXARG(n, "Cyclic permutations of n elements.");
+    NXARG(n, "Cyclic permutations of n elements, n >= 2.");
+    jjassert( n >= 2 );
 
     cyclic_perm P(n);
 
@@ -49,7 +49,7 @@ main(int argc, char **argv)
     const ulong *x = P.data();
     const ulong *ix = P.invdata();
     const ulong *a = P.M_->data();
-    const ulong z = P.M_->n_;
+    const ulong z = ( n>=2 ? n-2 : 0 );
     do
     {
         cout << setw(4) << ct << ":";

@@ -26,31 +26,15 @@ ulong long_strlen(const char *str);
 
 // ========== HEADER FILE src/aux1/copy.h: ==========
 
-inline void memzero(Type *dst, ulong n);
-// Set array (memory) to zero (bytes).
-
 inline void fill(Type *dst, ulong n, Type v);
 // Fill array with value v
 
 inline void null(Type *dst, ulong n);
 // Set array to zero.
-// If the element zero consists of zero bytes only,
-// then prefer memzero().
-
-inline void memcopy(const Type *src, Type *dst, ulong n);
-// Copy array (memory) src[] to dst[]
 
 inline void acopy(const Type *src, Type *dst, ulong n);
 // Copy array src[] to dst[]
 // Named acopy() to avoid conflict with std::copy()
-
-inline void copy_cast(const Type1 *src, Type2 *dst, ulong n);
-// Copy array src[] to dst[]
-
-inline void copy0(const Type1 *src, ulong ns,;
-                  Type2 *dst, ulong nd)
-// Copy as much as makes sense, fill rest with zeros
-// from src[] (length ns) to dst[] (length nd).
 
 inline void copy_cyclic(const Type *src, Type *dst, ulong n, ulong s);
 // Copy array src[] to dst[]
@@ -72,12 +56,9 @@ inline void skip_copy_back(const Type *src, Type *dst, ulong n, ulong d);
 //   to dst[] at positions
 //   [0],[d],[2d],[3d],...,[(n-1)*d]
 
-inline void swap(Type *f, Type *g, ulong n);
-// Swap arrays
-
-inline void set_seq(Type *dst, ulong n, Type start=0, Type step=1);
+inline void set_seq(Type *dst, ulong n, Type start=0);
 // Fill array with sequence
-//   start, start+step, start+2*step, ...
+//   start, start+1, start+1, ...
 
 // ========== HEADER FILE src/aux1/num2str.h: ==========
 

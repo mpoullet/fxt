@@ -1,7 +1,7 @@
 #if !defined  HAVE_SORTBYKEY_H__
 #define       HAVE_SORTBYKEY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2018 Joerg Arndt
+// Copyright (C) 2010, 2012, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -9,7 +9,6 @@
 //#include "sort/sort.h"
 #include "sort/sortidx.h"
 #include "perm/permapply.h"
-//#include "fxtalloca.h"
 #include "fxttypes.h"
 
 template <typename Type1, typename Type2>
@@ -39,7 +38,6 @@ void sort_by_key(Type1 *f, ulong n, Type2 *key, ulong *tmp=nullptr, bool skq=tru
 //    11.   3
 //    111   7
 {
-//    ALLOCA(ulong, x, n);
     ulong *x = tmp;
     if ( nullptr==tmp )  x = new ulong[n];
 

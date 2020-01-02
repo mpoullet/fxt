@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_BINARY_H__
 #define      HAVE_COMPOSITION_NZ_BINARY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014 Joerg Arndt
+// Copyright (C) 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -13,7 +13,7 @@
 #include "fxttypes.h"
 
 
-//#define COMPOSITION_NZ_BINARY_FIXARRAYS  // default off
+#define COMPOSITION_NZ_BINARY_FIXARRAYS  // default off
 
 
 class composition_nz_binary
@@ -29,9 +29,8 @@ public:
     ulong n_;   // composition of n
     ulong m_;   // current composition has m parts
 
-private:  // have pointer data
-    composition_nz_binary(const composition_nz_binary&);  // forbidden
-    composition_nz_binary & operator = (const composition_nz_binary&);  // forbidden
+    composition_nz_binary(const composition_nz_binary&) = delete;
+    composition_nz_binary & operator = (const composition_nz_binary&) = delete;
 
 public:
     explicit composition_nz_binary(ulong n)

@@ -5,12 +5,6 @@
 #include "comb/print-composition-aa.h"
 #include "bits/print-bin.h"
 
-//#include "comb/composition-nz-conj.h"
-//#include "comb/composition-nz-rank.h"
-//#include "comb/is-unimodal.h"
-//#include "comb/is-smooth.h"
-//#include "sort/sort.h"
-
 #include "fxtio.h"
 
 #include "jjassert.h"
@@ -79,64 +73,8 @@ main(int argc, char **argv)
     NXARG(aa, "Whether to render as ASCII art");
 
     ulong m = P.num_parts();
-//    ulong C[64];
     do
     {
-#if 0
-//        if ( P.last_part() != 1 )  continue;
-//        if ( P.data()[0] != 1 )  continue;
-        if ( ! is_smooth(P.data(), m, 1) )  continue;  // i-smooth A034297
-//        if ( ! is_left_smooth(P.data(), m) )  continue;  // left-smooth: A005169
-        if ( ! is_weakly_unimodal(P.data(), m) )  continue;  // A001523
-        // with i-smoothness: A238871
-        // with smoothness: A001522
-//        if ( 0==(1UL & P.last_part()) )  continue;  // A001045
-//        if ( ! is_sorted_desc(P.data(), m) )  continue;  // same as partition_desc
-//        if ( ! is_sorted(P.data(), m) )  continue;  // same as partition_asc_subset_lex
-#endif
-#if 0
-        bool q = 1;
-        const ulong *x = P.data();
-//        for (ulong j=1; j<m; ++j)  if ( x[j] >= x[j-1] )  { q=0; break; }  // partitions
-//        for (ulong j=0; j<m; ++j)  if ( 0==(x[j] & 1) )  { q=0; break; }  // odd parts
-//        for (ulong j=0; j<m; ++j)  if ( x[j] < 3 )  { q=0; break; }  // min/max part
-        for (ulong j=0; j<m; ++j) // parts are Mersenne numbers: A104977 (absolute values)
-        {
-            ulong v = x[j];
-            if ( 0!=(v&(v+1)) )  { q=0; break; }
-        }
-        if ( ! q )  continue;
-#endif
-#if 0
-        bool q = 1;
-        const ulong *x = P.data();
-        for (ulong j=1; j<m; ++j)  // A003242: Carlitz compositions
-            if ( x[j] == x[j-1] )  { q=0; break; }
-        if ( ! q )  continue;
-#endif
-#if 0
-        {bool q = 1;
-        const ulong *x = P.data();
-        for (ulong j=0; j<m; ++j)  // all parts powers of 2: A023359
-        {
-            ulong v = x[j];
-            if ( !!(v&(v-1)) )  { q=0;  break; }
-        }
-//        for (ulong j=1; j<m; ++j)  // partition
-//            if ( x[j] < x[j-1] )  { q=0;  break; }
-        if ( ! q )  continue;
-        }
-#endif
-#if 0
-        { bool q = 1;
-        const ulong *x = P.data();
-        for (ulong j=0; j<m; ++j)
-//            if ( x[j] < j+1 )  { q=0;  break; }  // superdiagonal, A219282
-            if ( x[j] > j+1 )  { q=0;  break; }  // subdiagonal, A008930
-        if ( ! q )  continue;
-        }
-#endif
-
 //        cout << P.last_part() << ",";  continue;  // A082850 (with backward order)
 //        cout << m-1 << ",";  continue;  // A100661 (with backward order)
 
@@ -151,11 +89,8 @@ main(int argc, char **argv)
 
         P.print("  ");
 
-//        ulong nc = composition_nz_conj(P.data(), m, C);
-//        print_vec("        ", C, nc);
-
-
         cout << endl;
+
         if ( aa )  // ASCII art
         {
             P.print_aa();
@@ -181,6 +116,32 @@ main(int argc, char **argv)
     return 0;
 }
 // -------------------------
+
+/*
+Timing: (Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz)
+GCC 8.3.0
+
+time ./bin 33 0
+arg 1: 33 == n  [compositions of n]  default=7
+arg 2: 0 == bq  [With benchmark: whether to generate in backward order]  default=0
+COMPOSITION_NZ_SUBSET_LEX_FIXARRAYS defined.
+next() version A.
+forward:
+ ct=4294967296
+./bin 33 0  4.56s user 0.00s system 99% cpu 4.559 total
+ ==> 4294967296 / 4.56 == 941,878,792 per second
+
+time ./bin 33 1
+arg 1: 33 == n  [compositions of n]  default=7
+arg 2: 1 == bq  [With benchmark: whether to generate in backward order]  default=0
+COMPOSITION_NZ_SUBSET_LEX_FIXARRAYS defined.
+prev() version A.
+backward:
+ ct=4294967296
+./bin 33 1  3.90s user 0.00s system 99% cpu 3.899 total
+ ==> 4294967296 / 3.90 == 1,101,273,665 per second
+
+*/
 
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)

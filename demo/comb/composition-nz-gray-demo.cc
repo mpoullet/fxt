@@ -43,9 +43,6 @@ main(int argc, char **argv)
 #ifdef TIMING
     bool bq = 0;
     NXARG(bq, "With benchmark: whether to generate in backward order");
-#ifdef COMPOSITION_NZ_GRAY_FIXARRAYS
-    cout << "COMPOSITION_NZ_GRAY_FIXARRAYS defined." << endl;
-#endif
     if ( !bq )
     {
         cout << "forward:" << endl;

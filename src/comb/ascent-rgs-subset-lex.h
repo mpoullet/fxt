@@ -1,7 +1,7 @@
 #if !defined  HAVE_ASCENT_RGS_SUBSET_LEX_H__
 #define       HAVE_ASCENT_RGS_SUBSET_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014, 2017 Joerg Arndt
+// Copyright (C) 2013, 2014, 2017, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -39,9 +39,8 @@ public:
     ulong n1_;  // last track
     ulong tr_;  // current track (position of rightmost nonzero digit)
 
-private:  // have pointer data
-    ascent_rgs_subset_lex(const ascent_rgs_subset_lex&);  // forbidden
-    ascent_rgs_subset_lex & operator = (const ascent_rgs_subset_lex&);  // forbidden
+    ascent_rgs_subset_lex(const ascent_rgs_subset_lex&) = delete;
+    ascent_rgs_subset_lex & operator = (const ascent_rgs_subset_lex&) = delete;
 
 public:
     explicit ascent_rgs_subset_lex(ulong n)

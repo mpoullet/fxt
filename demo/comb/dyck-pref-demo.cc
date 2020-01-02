@@ -3,8 +3,6 @@
 
 #include "comb/comb-print.h"
 
-//#include "comb/composition-nz-rank.h"
-
 #include "jjassert.h"
 #include "fxtio.h"
 #include "fxttypes.h"
@@ -45,17 +43,6 @@ main(int argc, char **argv)
         for (ulong j=0, z=0;  j<k*n;  ++j)  if ( x[j] )  rgs[z++] = j;  // set
         for (ulong j=0; j<n; ++j)  rgs[j] = j*k - rgs[j];  // RGS
         print_vec("    ", rgs, n, true);
-
-
-//        ulong C[64];
-//        ulong r = 0;
-////        for (ulong j=0;  j<k*n;  ++j)  if ( x[j] )  r |= (1UL << (k*n-1-j));
-//        for (ulong j=0;  j<k*n;  ++j)  if ( x[j] )  r |= (1UL << (j));
-//        ulong nc = composition_nz_unrank(r, C, k*n);
-//        print_vec("    ", C, nc);
-//        r = ~r;
-//        nc = composition_nz_unrank(r, C, k*n);
-//        print_vec("    ", C, nc);
 
         cout << endl;
 #endif

@@ -1,11 +1,11 @@
 #if !defined HAVE_MIXEDRADIX_SUBSET_LEXREV_H__
 #define      HAVE_MIXEDRADIX_SUBSET_LEXREV_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2015, 2018 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2015, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
-#include "comb/mixedradix.h"
+#include "comb/mixedradix-aux.h"
 #include "comb/is-mixedradix-num.h"
 #include "comb/comb-print.h"
 
@@ -19,7 +19,7 @@ class mixedradix_subset_lexrev
 // See Joerg Arndt, Subset-lex: did we miss an order?, (2014)
 //   http://arxiv.org/abs/1405.6503
 {
-public:
+protected:
     ulong n_;   // Number of digits (n kinds of elements in multiset)
     ulong tr_;  // aux: current track
 #ifndef MIXEDRADIX_SUBSET_LEXREV_FIXARRAYS
@@ -31,8 +31,8 @@ public:
 #endif
 
 private:  // have pointer data
-    mixedradix_subset_lexrev(const mixedradix_subset_lexrev&);  // forbidden
-    mixedradix_subset_lexrev & operator = (const mixedradix_subset_lexrev&);  // forbidden
+    mixedradix_subset_lexrev(const mixedradix_subset_lexrev&) = delete;
+    mixedradix_subset_lexrev & operator = (const mixedradix_subset_lexrev&) = delete;
 
 public:
     explicit mixedradix_subset_lexrev(ulong n, ulong mm, const ulong *m = nullptr)
@@ -65,6 +65,8 @@ public:
     }
 
     const ulong * data()  const  { return a_; }
+    const ulong * nines()  const  { return m1_; }
+    ulong num_digits()  const  { return n_; }
 
 
     void first()

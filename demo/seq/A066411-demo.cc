@@ -4,7 +4,6 @@
 #include "aux0/binomial.h"
 
 //#include "comb/fact2perm.h"
-//#include "comb/mixedradix.h"
 
 #include "jjassert.h"
 #include "fxttypes.h"

@@ -129,11 +129,11 @@ void slow_auto_correlation0(const Type *f, Type * restrict g, ulong n);
 //   f[n/2] .. f[n-1] == 0 and g[n/2] .. g[n-1] == 0
 // n  must be >=2
 
-void slow_correlation(const Type *f, Type * restrict g, ulong n);
+void slow_correlation(const Type *f, Type * g, ulong n);
 // Cyclic correlation of f[], g[], two real-valued sequences.
 // n := array length
 
-void slow_correlation0(const Type *f, Type * restrict g, ulong n);
+void slow_correlation0(const Type *f, Type * g, ulong n);
 // Linear correlation of f[], g[], two real-valued sequences.
 // Result is written to g[].
 // n := array length

@@ -1,7 +1,7 @@
 #if !defined  HAVE_GCD_H__
 #define       HAVE_GCD_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012 Joerg Arndt
+// Copyright (C) 2010, 2012, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -13,6 +13,19 @@ template <typename Type>
 Type gcd(Type a, Type b)
 // Return greatest common divisor of a and b.
 {
+#if 1  // version suggested by Stefan Kanthak (March 2019):
+    while ( b!=0 )
+    {
+        Type r;
+        r = a % b;
+        a = b;
+        b = r;
+    }
+
+    return a;
+
+#else  // version printed in first edition of the Fxtbook:
+
     if ( a < b )  swap2(a, b);
     if ( b==0 )  return a;
     Type r;
@@ -24,6 +37,7 @@ Type gcd(Type a, Type b)
     }
     while ( r!=0 );
     return a;
+#endif
 }
 // -------------------------
 
@@ -65,6 +79,7 @@ Type binary_ugcd(Type a, Type b)
 // Return greatest common divisor of a and b.
 // Version for unsigned types.
 {
+#if 1  // version printed in first edition of the Fxtbook:
     if ( a < b )  swap2(a, b);
     if ( b==0 )  return a;
 
@@ -81,8 +96,8 @@ Type binary_ugcd(Type a, Type b)
         b >>= 1;
     }
 
-    while ( !(a&1) )  a >>= 1;
-    while ( !(b&1) )  b >>= 1;
+    while ( !(a&1) )  { a >>= 1; }
+    while ( !(b&1) )  { b >>= 1; }
 
     while ( 1 )
     {
@@ -94,6 +109,32 @@ Type binary_ugcd(Type a, Type b)
         while ( !(t&1) )  t >>= 1;
         a = t;
     }
+
+#else  // version suggested by Stefan Kanthak (March 2019):
+
+    if ( a == 0 )  return b;
+    if ( b == 0 )  return a;
+
+    Type k = 0;
+    while ( !((a|b)&1) ) // both even
+    {
+        k++;
+        a >>= 1;
+        b >>= 1;
+    }
+
+    while ( !(a&1) )  { a >>= 1; }
+
+    do
+    {
+        while ( !(b&1) )  { b >>= 1; }
+        if (a > b)  swap2(a, b);
+        b -= a;
+    }
+    while ( b != 0 );
+
+    return a << k;
+#endif
 }
 // -------------------------
 

@@ -1,7 +1,7 @@
 #if !defined  HAVE_CENTERED_ARRAY3D_H__
 #define       HAVE_CENTERED_ARRAY3D_H__
 // This file is part of the FXT library.
-// Copyright (C) 2017, 2018 Joerg Arndt
+// Copyright (C) 2017, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -12,7 +12,7 @@
 #include "fxttypes.h"
 
 
-//#define CENTERED_ARRAY2D_ASSERTS  // use assertions in class array2d
+//#define CENTERED_ARRAY2D_ASSERTS  // define to catch access beyond size
 #ifdef CENTERED_ARRAY2D_ASSERTS
 #include "jjassert.h"
 #endif
@@ -24,14 +24,13 @@ class centered_array3d
 // using point3d<long> or vector3d<long> for coordinates.
 // Valid cells are in the range [ +-k , +-k , +-k ].
 {
+public:
     typedef point3d<long> Pnt;
     typedef vector3d<long> Vec;
 
 private:
     long k;
     array3d<Type> A;
-
-public:
 
 public:
     explicit centered_array3d(ulong ck)
@@ -97,6 +96,7 @@ public:
     ulong num_elem()  const  { return A.num_elem(); }
 
     void null()  { A.null(); }
+    void fill(const Type & V)  { A.fill(V); }
 
     ulong get_k()  const  { return (ulong)k; }
 };

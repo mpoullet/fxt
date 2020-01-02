@@ -6,8 +6,6 @@
 
 #include "comb/comb-print.h"
 
-#include "comb/arith-3-progression.h"
-
 #include "fxtio.h"
 #include "jjassert.h"
 
@@ -67,90 +65,6 @@ main(int argc, char **argv)
     ulong m = P.num_parts();
     do
     {
-#if 0  // only self-conjugate partitions
-        if ( !partition_asc_is_self_conj( P.data(), m ) )  continue;
-#endif
-#if 0  // bounding box
-        if ( m > 7 )  continue;
-        if ( P.last_part() > 7 )  continue;
-#endif
-#if 0  // A002865, A229816, A229863
-        { bool q = 1;
-            if ( P.first_part() == 1 )  goto OK;
-            for (ulong j=0; j<m; ++j)
-                if ( P.data()[j]==m )  { q=0; break; }
-            if ( q==0 )  continue;
-        } OK:
-#endif
-
-#if 0
-        { ulong c = 0;
-            for (ulong j=0; j<m; ++j)  c += ( (P.data()[j] & 1) == 0 );
-//            if ( (c & 1) == 0 )  continue;  // odd num of even parts: A000701
-            if ( (c & 1) == 1 )  continue;  // even num of even parts: A046682
-        }
-#endif
-#if 0
-        { bool q = 1;
-            const ulong d = 3; // max diff <= d: d-smooth
-            // A000005 (d=0), A034296 (d=1), A224956 (d=2), A238863
-            // (d=3), A238864 (d=4), A238865 (d=5), A238866 (d=6),
-            // A238867 (d=7), A238868 (d=8), A238868 (d=9)
-            for (ulong j=1; j<m; ++j)
-                if ( P.data()[j] - P.data()[j-1] > d )
-                { q=0; break; }
-            if ( ! q )  continue;
-        }
-#endif
-
-#if 0
-        { const ulong d = 2; // max diff == d
-            // A000005 (d=0), A237665 (d=1), A000000 (d=2)
-            ulong md = 0;
-            for (ulong j=1; j<m; ++j)
-            {
-                ulong t =  P.data()[j] - P.data()[j-1];
-                if ( t > md )  md = t;
-            }
-            if ( md != d )  continue;
-        }
-#endif
-
-#if 0  // Avoiding 3-term arithmetic progressions:
-//        if ( 0 != test_arith_3_progression(P.data(), m) )  continue;  // A238571
-//        if ( 0 != test_arith_3_progression_eqd(P.data(), m) )  continue;  // A238433
-        if ( 0 != test_arith_3_progression_consec(P.data(), m) )  continue;  // A238424
-#endif
-#if 0
-        { // gap-free: A000009
-            ulong w = 0;
-            for (ulong j=0; j<m; ++j)  w |= (1UL << P.data()[j]);
-            w >>= 1;  w += 1;
-            if ( w != ( w & -w ) )  continue;
-        }
-#endif
-#if 0
-        // largest part p at most once, p-1 at most twice, p-2 at most thrice, ...
-        // A244393, cf. A244395
-        { const ulong *x = P.data();
-            ulong st[64];
-            for (ulong k=0; k<64; ++k)  st[k] = 0;
-            for (ulong k=0; k<m; ++k)  st[x[k]] += 1;
-            ulong p = x[m - 1]; // p is the largest part
-            bool q = true;
-            for (ulong i=1; p!=0; --p,++i)  if ( st[p] > i )  { q=false; break; }
-            if ( ! q )  continue;
-        }
-#endif
-#if 0  // A274174
-        {
-            ulong f = 1, k = 1, p = P.data()[0];
-            for (ulong j=1; j<m; ++j)
-                if ( P.data()[j] != p )  { ++k; f *= k; p = P.data()[j]; }
-            ct += f;
-        }
-        --ct;
-#endif
         ++ct;
 
 #if 1  // allow/suppress printing
@@ -163,7 +77,6 @@ main(int argc, char **argv)
 
 //        cout << " [" << setw(2) << n-m << "] ";  // A218829 (recycled)
 //        cout << " [" << setw(2) << P.data()[m-1] << "] ";  // A218735 (recycled)
-
 
         P.print("  ");
 
@@ -193,9 +106,32 @@ main(int argc, char **argv)
 
 
 /*
+Timing: (Intel(R) Core(TM) i7-8700K CPU @ 3.70GHz)
+GCC 8.3.0
+
+time ./bin 115 0
+arg 1: 115 == n  [integer partitions of n]  default=11
+arg 2: 0 == bq  [With benchmark: whether to generate in backward order]  default=0
+forward:
+ ct=1064144451
+./bin 115 0  2.45s user 0.00s system 99% cpu 2.449 total
+ ==> 1064144451 / 2.45 == 434,344,673 per second
+
+time ./bin 115 1
+arg 1: 115 == n  [integer partitions of n]  default=11
+arg 2: 1 == bq  [With benchmark: whether to generate in backward order]  default=0
+backward:
+ ct=1064144451
+./bin 115 1  2.48s user 0.00s system 99% cpu 2.478 total
+ ==> 1064144451 / 2.48 == 429,090,504 per second
+
+*/
+
+
+/*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
-gcc 4.5.0:
+GCC 4.5.0:
  time ./bin 110
 arg 1: 110 == n  [integer partitions of n]  default=10
   ct=607163746
@@ -203,17 +139,7 @@ arg 1: 110 == n  [integer partitions of n]  default=10
  ==> 607163746/3.39 == 179,104,349 per second
 
 
-With PARTITION_ASC_FIXARRAYS:
- time ./bin 110
-arg 1: 110 == n  [integer partitions of n]  default=10
-PARTITION_ASC_FIXARRAYS is defined
-  ct=607163746
-./bin 110  2.88s user 0.00s system 99% cpu 2.877 total
- ==> 607163746/2.88 == 210,820,745 per second
-
-
-
-gcc 4.8.0:
+GCC 4.8.0:
 
  time ./bin 110 0
 arg 1: 110 == n  [integer partitions of n]  default=10
@@ -231,24 +157,6 @@ backward:
 ./bin 110 1  2.90s user 0.00s system 99% cpu 2.903 total
  ==> 607163746/2.90 == 209,366,808 per second
 
-
- time ./bin 110 0
-arg 1: 110 == n  [integer partitions of n]  default=10
-PARTITION_ASC_FIXARRAYS is defined
-arg 2: 0 == bq  [With benchmark: whether to generate in backward order]  default=0
-forward:
- ct=607163746
-./bin 110 0  3.01s user 0.00s system 99% cpu 3.011 total
- ==> 607163746/3.01 == 201,715,530 per second
-
- time ./bin 110 1
-arg 1: 110 == n  [integer partitions of n]  default=10
-PARTITION_ASC_FIXARRAYS is defined
-arg 2: 1 == bq  [With benchmark: whether to generate in backward order]  default=0
-backward:
- ct=607163746
-./bin 110 1  3.16s user 0.00s system 99% cpu 3.167 total
- ==> 607163746/3.16 == 192,140,425 per second
 */
 
 /*

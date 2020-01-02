@@ -1,7 +1,7 @@
 #if !defined  HAVE_RULER_FUNC_H__
 #define       HAVE_RULER_FUNC_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -26,9 +26,8 @@ public:
 #endif
     ulong n_;
 
-private:  // have pointer data
-    ruler_func(const ruler_func&);  // forbidden
-    ruler_func & operator = (const ruler_func&);  // forbidden
+    ruler_func(const ruler_func&) = delete;
+    ruler_func & operator = (const ruler_func&) = delete;
 
 public:
     explicit ruler_func(ulong n)

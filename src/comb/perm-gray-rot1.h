@@ -1,7 +1,7 @@
 #if !defined  HAVE_PERM_GRAY_ROT1_H__
 #define       HAVE_PERM_GRAY_ROT1_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -35,8 +35,8 @@ public:
     ulong sw1_, sw2_;  // indices of elements swapped most recently
 
 private:  // have pointer data
-    perm_gray_rot1(const perm_gray_rot1&);  // forbidden
-    perm_gray_rot1 & operator = (const perm_gray_rot1&);  // forbidden
+    perm_gray_rot1(const perm_gray_rot1&) = delete;
+    perm_gray_rot1 & operator = (const perm_gray_rot1&) = delete;
 
 public:
     explicit perm_gray_rot1(ulong n)
@@ -51,7 +51,7 @@ public:
         // apply permutation of radix vector with mixed radix number:
         if ( (n_ >= 3) && (n & 1) )  // odd n>=3
         {
-            ulong *m1 = M_->m1_;
+            ulong *m1 = (ulong *)M_->nines();  // jjcast
             swap2(m1[n_-2], m1[n_-3]);  // swap last two factorial nines
 //            for (ulong k=1; k<n_-1; k+=2)  swap2(m1[k-1], m1[k]);  // swap all pairs
         }
@@ -79,7 +79,7 @@ public:
         if ( false == M_->next() )  { first();  return false; }
 
         const ulong j = M_->pos();  // position of changed digit
-        const ulong i1 = M_->m1_[j];  // valid for any permutation of factorial radices
+        const ulong i1 = M_->nines()[j];  // valid for any permutation of factorial radices
 
         const ulong x1 = x_[i1];
         ulong  i2 = i1,  x2;

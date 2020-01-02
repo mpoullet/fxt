@@ -26,7 +26,8 @@ select V in ${=LAST}; do
 #    cd ${PROJ} || exit 2;
 #    make qq v || exit 3;
 #    echo $V;
-    dirdiff /run/shm/$PROJ $FXTWD &
+#    dirdiff /run/shm/$PROJ $FXTWD &
+    meld /run/shm/$PROJ $FXTWD &
 #    XTITLE=$V  xterm -g +0+0 -e /bin/zsh &
     echo;
     break;

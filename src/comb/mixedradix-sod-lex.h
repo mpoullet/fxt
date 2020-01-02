@@ -1,19 +1,15 @@
 #if !defined HAVE_MIXEDRADIX_SOD_LEX_H__
 #define      HAVE_MIXEDRADIX_SOD_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
-#include "comb/mixedradix.h"
+#include "comb/mixedradix-aux.h"
 #include "comb/is-mixedradix-num.h"
 #include "comb/comb-print.h"
 
 #include "fxttypes.h"
-
-
-// If defined, an array is used instead of a pointer:
-//#define MIXEDRADIX_SOD_LEX_MAX_ARRAY_LEN 62  // default off
 
 
 class mixedradix_sod_lex
@@ -21,32 +17,26 @@ class mixedradix_sod_lex
 // Same as: s-combinations of a multiset.
 // Same as: compositions of s with prescribed maximum at each place.
 {
-public:
+protected:
     ulong n_;   // Number of digits
     ulong s_;   // Sum of digits
     ulong j_;   // rightmost position of last change
     ulong sm_;  // sum of digits (arg s with first())
-#ifndef MIXEDRADIX_SOD_LEX_MAX_ARRAY_LEN
     ulong *a_;  // digits
     ulong *m1_;  // nines (radix minus one) for each digit
-#else
-    ulong a_[MIXEDRADIX_SOD_LEX_MAX_ARRAY_LEN+2];
-    ulong m1_[MIXEDRADIX_SOD_LEX_MAX_ARRAY_LEN+2];
-#endif
 
 private:  // have pointer data
-    mixedradix_sod_lex(const mixedradix_sod_lex&);  // forbidden
-    mixedradix_sod_lex & operator = (const mixedradix_sod_lex&);  // forbidden
+    mixedradix_sod_lex(const mixedradix_sod_lex&) = delete;
+    mixedradix_sod_lex & operator = (const mixedradix_sod_lex&) = delete;
 
 public:
     explicit mixedradix_sod_lex(ulong n, ulong mm, const ulong *m = nullptr)
     {
         n_ = n;
 
-#ifndef MIXEDRADIX_SOD_LEX_MAX_ARRAY_LEN
         a_ = new ulong[n_+2];
         m1_ = new ulong[n_+2];
-#endif
+
         a_[n_] = 1;   // sentinel !=0
         m1_[n_] = 2;  // sentinel >a[n]
         a_[n_+1] = 0;   // sentinel ==0
@@ -63,13 +53,13 @@ public:
 
     ~mixedradix_sod_lex()
     {
-#ifndef MIXEDRADIX_SOD_LEX_MAX_ARRAY_LEN
         delete [] m1_;
         delete [] a_;
-#endif
     }
 
     const ulong * data()  const  { return a_; }
+    const ulong * nines()  const  { return m1_; }
+    ulong num_digits()  const  { return n_; }
 
     bool first(ulong k)
     {

@@ -1,12 +1,12 @@
 #if !defined HAVE_MIXEDRADIX_MODULAR_GRAY_H__
 #define      HAVE_MIXEDRADIX_MODULAR_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
 
-#include "comb/mixedradix.h"
+#include "comb/mixedradix-aux.h"
 #include "comb/is-mixedradix-num.h"
 #include "comb/comb-print.h"
 
@@ -15,28 +15,28 @@
 
 class mixedradix_modular_gray
 // Modular Gray code for mixed radix numbers.
-// Implementation following Knuth (loopless algorithm).
+// Constant amortized time (CAT) algorithm.
 {
-public:
+protected:
     ulong *a_;  // digits
     ulong *m1_;  // radix minus one ('nines')
-    ulong *f_;  // focus pointer
-    ulong *s_;  // direction
+    ulong *x_;  // count changes of digit
     ulong n_;   // number of digits
     ulong j_;   // position of last change
 
 private:  // have pointer data
-    mixedradix_modular_gray(const mixedradix_modular_gray&);  // forbidden
-    mixedradix_modular_gray & operator = (const mixedradix_modular_gray&);  // forbidden
+    mixedradix_modular_gray(const mixedradix_modular_gray&) = delete;
+    mixedradix_modular_gray & operator = (const mixedradix_modular_gray&) = delete;
 
 public:
     explicit mixedradix_modular_gray(ulong n, ulong mm, const ulong *m = nullptr)
     {
         n_ = n;
         a_ = new ulong[n_];
-        m1_ = new ulong[n_];  // m1_[j] == m[j] - 1 in Knuth
-        f_ = new ulong[n_+1];  // n_ + 1 elements
-        s_ = new ulong[n_];
+        m1_ = new ulong[n_+1];  // incl. sentinel at m1[n]
+        m1_[n_] = 0;  // sentinel
+        x_ = new ulong[n_+1];   // incl. sentinel at x[n] (!= m1[n])
+        // sentinel x[n] written in first() and last().
 
         mixedradix_init(n_, mm, m, m1_);
 
@@ -47,51 +47,90 @@ public:
     {
         delete [] a_;
         delete [] m1_;
-        delete [] f_;
-        delete [] s_;
+        delete [] x_;
     }
 
     const ulong * data()  const  { return a_; }
+    const ulong * nines()  const  { return m1_; }
+    ulong num_digits()  const  { return n_; }
 
 
     void first()
     {
         for (ulong k=0; k<n_; ++k)  a_[k] = 0;
-        for (ulong k=0; k<n_; ++k)  s_[k] = m1_[k];
-        for (ulong k=0; k<=n_; ++k)  f_[k] = k;
+        for (ulong k=0; k<n_; ++k)  x_[k] = 0;
+        x_[n_] = 1UL;  // sentinel
         j_ = n_;
     }
 
     bool next()
     {
-        const ulong j = f_[0];
-        f_[0] = 0;
+        ulong j = 0;
+        while ( x_[j] == m1_[j] )  // can read sentinels
+        {
+            x_[j] = 0;
+            ++j;
+        }
+        ++x_[j];
 
-        if ( j>=n_ )  return false;  // current is last
+        if ( j==n_ )  return false;  // current is last
 
         j_ = j;  // save position of change
 
-        const ulong m1j = m1_[j];
-        ulong aj = a_[j];
-
-        if ( aj==m1j )  aj = 0;
-        else            ++aj;
+        // increment:
+#if 1  // default, faster
+        ulong aj = a_[j] + 1;
+        if ( aj>m1_[j] )  aj = 0;
         a_[j] = aj;
-
-        ulong sj = s_[j];
-        if ( sj==aj )
-        {
-            if ( sj == 0 )  sj = m1j;
-            else            --sj;
-            s_[j] = sj;
-
-            f_[j] = f_[j+1];
-            f_[j+1] = j + 1;
-        }
+#else
+        ulong aj = a_[j];
+        if ( aj==m1_[j] )  a_[j] = 0;
+        else               a_[j] = aj + 1;
+#endif
 
         return true;
     }
-    // could add prev() and last() (but have them in mixedradix_modular_gray2)
+
+    void last()
+    {
+        for (ulong k=0; k<n_; ++k)  x_[k] = 0;
+        x_[n_] = 1UL;  // sentinel
+
+        ulong j = n_;  // track j
+        ulong tt = 1;  // total of transitions to right of track j
+        ulong p = 1;   // product of all radices at and to the right of track j
+        while ( j-- )
+        {
+            ulong r = m1_[j] + 1;  // radix at track
+            p *= r;  // update product
+            ulong t = p - tt;  // this many transitions
+            tt += t;  // update total of transitions
+            ulong a = t % r;  // digit here (value after t transitions)
+            a_[j] = a;
+        }
+    }
+
+    bool prev()
+    {
+        ulong j = 0;
+        while ( x_[j] == m1_[j] )  // can read sentinels
+        {
+            x_[j] = 0;
+            ++j;
+        }
+        ++x_[j];
+
+        if ( j==n_ )  return false;  // current is last
+
+        j_ = j;  // save position of change
+
+        // decrement:
+        ulong aj = a_[j];
+        if ( aj==0 )  a_[j] = m1_[j];
+        else          a_[j] = aj - 1;
+
+        return true;
+    }
 
     ulong pos()  const  { return j_; }  // position of last change
 

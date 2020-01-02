@@ -1,7 +1,7 @@
 #if !defined  HAVE_DYCK_RGS_H__
 #define       HAVE_DYCK_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -37,9 +37,8 @@ public:
     // i=4 ==> A002294 = binomial(5n,n)/(4n+1)
     // i=x ==> binomial(x*n,n)/((x-1)*n+1)
 
-private:  // have pointer data
-    dyck_rgs(const dyck_rgs&);  // forbidden
-    dyck_rgs & operator = (const dyck_rgs&);  // forbidden
+    dyck_rgs(const dyck_rgs&) = delete;
+    dyck_rgs & operator = (const dyck_rgs&) = delete;
 
 public:
     explicit dyck_rgs(ulong n, ulong i=1)

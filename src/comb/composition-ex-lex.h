@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_EX_LEX_H__
 #define      HAVE_COMPOSITION_EX_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014 Joerg Arndt
+// Copyright (C) 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -11,48 +11,36 @@
 #include "fxttypes.h"
 
 
-//#define COMPOSITION_EX_LEX_FIXARRAYS  // default off
-// slight speedup with GCC 4.8.0
-
 
 class composition_ex_lex
 // Compositions of n into exactly k parts (k-compositions of n),
 // lexicographic order.
-// Must have:  n>=k.
+// Must have:  n >= k.
 {
 public:
     ulong n_, k_;  // composition of n into exactly k parts
     ulong nk1_;    // == n - k + 1
-#ifndef COMPOSITION_EX_LEX_FIXARRAYS
     ulong *x_;     // data (k elements)
-#else
-    ulong x_[64];
-#endif
 
-private:  // have pointer data
-    composition_ex_lex(const composition_ex_lex&);  // forbidden
-    composition_ex_lex & operator = (const composition_ex_lex&);  // forbidden
+    composition_ex_lex(const composition_ex_lex&) = delete;
+    composition_ex_lex & operator = (const composition_ex_lex&) = delete;
 
 public:
     explicit composition_ex_lex(ulong n, ulong k)
-    // Must have n>=k
+    // Must have n >= k
     {
         n_ = n;
         k_ = k;
         nk1_ = n - k + 1;  // must be >= 1
         if ( (long)nk1_ < 1 )  nk1_ = 1;  // avoid hang with invalid pair n,k
-#ifndef COMPOSITION_EX_LEX_FIXARRAYS
         x_ = new ulong[k_ + 1];
-#endif
         x_[0] = 0;  // must be != 1 (sentinel)
         first();
     }
 
     ~composition_ex_lex()
     {
-#ifndef COMPOSITION_EX_LEX_FIXARRAYS
         delete [] x_;
-#endif
     }
 
     const ulong * data()  const  { return x_ + 1; }
@@ -112,5 +100,6 @@ public:
     { print_vec(bla, data(), num_parts(), dfz); }
 };
 // -------------------------
+
 
 #endif  // !defined HAVE_COMPOSITION_EX_LEX_H__

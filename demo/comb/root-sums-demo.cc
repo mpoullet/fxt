@@ -8,7 +8,7 @@
 #include "fxtio.h"
 
 //% Zero-sums of roots of unity.
-
+//% Cf. OEIS sequence A164896.
 
 //#define TIMING  // uncomment to disable printing
 
@@ -36,11 +36,11 @@ main(int argc, char **argv)
     ulong act = 0;  // aperiodic sums
     ulong sj = 0;   // number of sums, regarding cyclic shifts as different
     ulong j = 1;
-    const ulong *dn = N.data();
+    const ulong *D = N.data();
     do
     {
         Complex rs = 0;
-        for (ulong k=0; k<n; ++k)  rs += ( dn[k] ? R[k] : 0 );
+        for (ulong k=0; k<n; ++k)  rs += ( D[k] ? R[k] : 0 );
 
         const double as = abs(rs);
         if ( as < 1e-7 )  // note magic constant
@@ -52,11 +52,17 @@ main(int argc, char **argv)
 #ifndef TIMING
             cout << setw(4) << ct << ":  ";
 //            cout << n << ": ";
-            for (ulong k=0; k<n; ++k)  cout << ( dn[k] ? '1' : '.' );
+            for (ulong k=0; k<n; ++k)  cout << ( D[k] ? '1' : '.' );
             cout << "  " << setw(2) << j;  // period
             cout << ( aq ? " L " : "   " );  // whether Lyndon word
-            for (ulong k=0; k<n; ++k)  if ( dn[n-1-k] )  cout << " " << k;
-//            for (ulong k=0; k<n; ++k)  if ( dn[n-1-k] )  cout << " +x^" << k;
+            for (ulong k=0; k<n; ++k)
+            {
+                if ( D[n-1-k] )
+                {
+                    cout << " " << k;
+//                    cout << " +x^" << k;
+                }
+            }
             cout << endl;
 #endif
         }
@@ -66,7 +72,7 @@ main(int argc, char **argv)
             if ( as < ma )
             {
                 ma = as;
-                for (ulong k=0; k<n; ++k)  cout << ( dn[k] ? '1' : '.' );
+                for (ulong k=0; k<n; ++k)  cout << ( D[k] ? '1' : '.' );
                 cout << "  M ma=" << ma << endl;
             }
         }
@@ -76,11 +82,11 @@ main(int argc, char **argv)
 
     cout << endl;
 
-    cout << " ct=" << ct;
-    cout << " act=" << act;
-    cout << " sj=" << sj;
+    cout << "  ct=" << ct;
+    cout << "  act=" << act;
+    cout << "  sj=" << sj;
 #ifdef MA
-    cout << " ma=" << ma;
+    cout << "  ma=" << ma;
 #endif
     cout << endl;
 

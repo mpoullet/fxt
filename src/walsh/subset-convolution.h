@@ -1,7 +1,7 @@
 #if !defined  HAVE_SUBSET_CONVOLUTION_H__
 #define       HAVE_SUBSET_CONVOLUTION_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012 Joerg Arndt
+// Copyright (C) 2010, 2012, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -18,6 +18,15 @@
 #include "fxttypes.h"
 
 #include <cmath>  // M_PI
+
+
+template <typename Type1, typename Type2>
+inline void copy_cast(const Type1 *src, Type2 *dst, ulong n)
+// Copy array src[] to dst[]
+{
+    for (ulong k=0; k<n; ++k)  dst[k] = (Type2)src[k];  // jjcast
+}
+// -------------------------
 
 
 

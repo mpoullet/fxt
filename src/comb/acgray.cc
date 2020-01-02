@@ -1,5 +1,5 @@
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012 Joerg Arndt
+// Copyright (C) 2010, 2012, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -7,7 +7,6 @@
 #include "comb/delta2gray.h"
 #include "perm/reverse.h"
 
-#include "fxtalloca.h"
 #include "fxttypes.h"
 
 void
@@ -103,8 +102,9 @@ ac_gray(ulong *g, ulong ldn)
 // (see ac_gray_delta())
 {
     ulong n = 1UL<<ldn;
-    ALLOCA(uchar, d, n);
+    uchar * d = new uchar[n];
     ac_gray_delta(d, ldn);
     delta2gray(d, ldn, g);
+    delete [] d;
 }
 // -------------------------

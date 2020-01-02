@@ -1,7 +1,7 @@
 #if !defined  HAVE_SCHROEDER_RGS_LEX_H__
 #define       HAVE_SCHROEDER_RGS_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014 Joerg Arndt
+// Copyright (C) 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -43,10 +43,8 @@ public:
     // m0==1 ==> large Schroeder RGS, A006318
 
 
-
-private:  // have pointer data
-    schroeder_rgs_lex(const schroeder_rgs_lex&);  // forbidden
-    schroeder_rgs_lex & operator = (const schroeder_rgs_lex&);  // forbidden
+    schroeder_rgs_lex(const schroeder_rgs_lex&) = delete;
+    schroeder_rgs_lex & operator = (const schroeder_rgs_lex&) = delete;
 
 public:
     explicit schroeder_rgs_lex(ulong n, ulong m0=1)

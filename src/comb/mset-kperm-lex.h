@@ -1,7 +1,7 @@
 #if !defined  HAVE_MSET_KPERM_LEX_H__
 #define       HAVE_MSET_KPERM_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2018 Joerg Arndt
+// Copyright (C) 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -14,12 +14,11 @@
 class mset_kperm_lex : public mset_perm_lex
 // k-permutations of a multiset in lexicographic order.
 {
-public:
+protected:
     ulong plen_;  // length of prefix
 
-private:  // have pointer data
-    mset_kperm_lex(const mset_kperm_lex&);  // forbidden
-    mset_kperm_lex & operator = (const mset_kperm_lex&);  // forbidden
+    mset_kperm_lex(const mset_kperm_lex&) = delete;
+    mset_kperm_lex & operator = (const mset_kperm_lex&) = delete;
 
 public:
     explicit mset_kperm_lex(const ulong *r, ulong k, ulong plen)

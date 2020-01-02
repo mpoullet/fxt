@@ -1,7 +1,7 @@
 #if !defined  HAVE_SUBSET_DELTALEX_H__
 #define       HAVE_SUBSET_DELTALEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -21,9 +21,8 @@ public:
 #endif
     ulong n_;   // subsets of the  n-set {0,1,2,...,n-1}
 
-private:  // have pointer data
-    subset_deltalex(const subset_deltalex&);  // forbidden
-    subset_deltalex & operator = (const subset_deltalex&);  // forbidden
+    subset_deltalex(const subset_deltalex&) = delete;
+    subset_deltalex & operator = (const subset_deltalex&) = delete;
 
 public:
     explicit subset_deltalex(ulong n)

@@ -1,7 +1,7 @@
 #if !defined HAVE_COMBINATION_COLEX_H__
 #define      HAVE_COMBINATION_COLEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -11,15 +11,14 @@
 
 
 class combination_colex
-// Combinations n choose k (co-lexicographic order)
+// Combinations n choose k (co-lexicographic order).
 {
 public:
     ulong *x_;    // combination: k elements 0<=x[j]<k in increasing order
     ulong n_, k_;  // Combination (n choose k)
 
-private:  // have pointer data
-    combination_colex(const combination_colex&);  // forbidden
-    combination_colex & operator = (const combination_colex&);  // forbidden
+    combination_colex(const combination_colex&) = delete;
+    combination_colex & operator = (const combination_colex&) = delete;
 
 public:
     explicit combination_colex(ulong n, ulong k)

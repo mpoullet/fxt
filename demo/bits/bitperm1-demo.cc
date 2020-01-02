@@ -2,7 +2,7 @@
 // demo-is-self-contained
 
 #include "bits/bittest.h"  // swap()
-#include "aux1/copy.h"  // swap()
+#include "aux1/copy.h"  // acopy()
 
 #include "fxtio.h"
 #include "nextarg.h"
@@ -10,6 +10,15 @@
 
 
 //% Certain permutations controlled by a binary word.
+
+template <typename Type>
+inline void swap(Type *f, Type *g, ulong n)
+// Swap arrays
+{
+    for (ulong k=0; k<n; ++k)
+        std::swap( f[k], g[k] );
+}
+// -------------------------
 
 
 void perm1(uchar *a, ulong ldn, const uchar *x)

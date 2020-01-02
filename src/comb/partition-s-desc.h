@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_S_DESC_H__
 #define      HAVE_PARTITION_S_DESC_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014 Joerg Arndt
+// Copyright (C) 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -29,9 +29,8 @@ public:
     // == 1 + position of last part != 1
     ulong *a_;  // partition: a[1] + a[2] + ... + a[m] = n
 
-private:  // have pointer data
-    partition_s_desc(const partition_s_desc&);  // forbidden
-    partition_s_desc & operator = (const partition_s_desc&);  // forbidden
+    partition_s_desc(const partition_s_desc&) = delete;
+    partition_s_desc & operator = (const partition_s_desc&) = delete;
 
 public:
     explicit partition_s_desc(ulong n)

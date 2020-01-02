@@ -1,7 +1,7 @@
 #if !defined  HAVE_CATALAN_RGS_GSLEX_H__
 #define       HAVE_CATALAN_RGS_GSLEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2014 Joerg Arndt
+// Copyright (C) 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -28,9 +28,8 @@ public:
     ulong n_;   // number of digits (paren pairs)
     char *str_;  // paren string
 
-private:  // have pointer data
-    catalan_rgs_gslex(const catalan_rgs_gslex&);  // forbidden
-    catalan_rgs_gslex & operator = (const catalan_rgs_gslex&);  // forbidden
+    catalan_rgs_gslex(const catalan_rgs_gslex&) = delete;
+    catalan_rgs_gslex & operator = (const catalan_rgs_gslex&) = delete;
 
 public:
     explicit catalan_rgs_gslex(ulong n)

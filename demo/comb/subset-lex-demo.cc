@@ -58,23 +58,13 @@ main(int argc, char **argv)
 //    ulong C[64];
     ulong num = S.first();
 //    ulong num = S.last();
-    const ulong *x = S.data();
     do
     {
         ++ct;
         cout << setw(4) << ct << ":";
-//        cout << "  #=" << setw(2) << num;
-        print_set_as_deltaset("    ", x, num, n);
+        print_set_as_deltaset("    ", S.data(), num, n);
 
-//        ulong r = 0;
-//        for (ulong k=0; k<num; ++k)  r |= (1UL << (n-1-x[k]));
-//        r ^= ~0UL;
-//        print_bin("  ", r, n);
-//        ulong nc = composition_nz_unrank(r, C, n+1);
-//        print_vec("  ", C, nc);
-
-//        cout << "  " << S.num_parts();
-        print_set("    ", x, num);
+        print_set("    ", S.data(), num);
         cout << endl;
     }
     while ( (num = S.next()) );

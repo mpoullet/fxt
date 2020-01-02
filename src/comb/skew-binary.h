@@ -1,7 +1,7 @@
 #if !defined HAVE_SKEW_BINARY_H__
 #define      HAVE_SKEW_BINARY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2016, 2018 Joerg Arndt
+// Copyright (C) 2016, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -28,8 +28,8 @@ public:
 #endif
 
 private:  // have pointer data
-    skew_binary(const skew_binary&);  // forbidden
-    skew_binary & operator = (const skew_binary&);  // forbidden
+    skew_binary(const skew_binary&) = delete;
+    skew_binary & operator = (const skew_binary&) = delete;
 
 public:
     explicit skew_binary(ulong n)
@@ -82,7 +82,6 @@ public:
             a_[tr_] = 0;
             tr_ -= 1;
             ulong j = tr_;
-//            cout << " :: j = " << j << " ";
             ulong y = a_[tr_] + 1;
             a_[tr_] = y;
             if ( y == 1 )  tr_ = n_;  // change track

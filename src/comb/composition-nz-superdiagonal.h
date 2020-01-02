@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_SUPERDIAGONAL_H__
 #define      HAVE_COMPOSITION_NZ_SUPERDIAGONAL_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -30,9 +30,8 @@ public:
     ulong m_;   // current partition has m parts
     ulong *a_;  // composition: a[1] + a[2] + ... + a[m] = n
 
-private:  // have pointer data
-    composition_nz_superdiagonal(const composition_nz_superdiagonal&);  // forbidden
-    composition_nz_superdiagonal & operator = (const composition_nz_superdiagonal&);  // forbidden
+    composition_nz_superdiagonal(const composition_nz_superdiagonal&) = delete;
+    composition_nz_superdiagonal & operator = (const composition_nz_superdiagonal&) = delete;
 
 private:
     ulong write_tail(ulong s, ulong j)

@@ -1,7 +1,7 @@
 #if !defined HAVE_VECTOR2D_H__
 #define      HAVE_VECTOR2D_H__
 // This file is part of the FXT library.
-// Copyright (C) 2017 Joerg Arndt
+// Copyright (C) 2017, 2018 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -19,12 +19,12 @@ protected:
     Type x_, y_;
 
 private:
-    vector2d()  { ; }  // default constructor for ...
+    constexpr vector2d() = default;   // default constructor for ...
 public:
     static vector2d * new_array(ulong n)  { return new vector2d[n]; }
 
 public:
-    explicit vector2d(const Type & tx, const Type & ty)
+    explicit constexpr vector2d(const Type & tx, const Type & ty)
         : x_(tx), y_(ty)
     { ; }
 

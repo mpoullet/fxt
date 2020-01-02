@@ -1,6 +1,6 @@
 
 #include "perm/perm-genus.h"  // perm_genus()
-#include "comb/perm-lex-inv.h"
+#include "comb/perm-lex.h"
 
 //#include "comb/perm-trotter.h"
 //#include "comb/perm-gray-rfact.h"
@@ -47,7 +47,7 @@ main(int argc, char **argv)
     ulong cpi[32];  // aux for rotated inverse permutation
     bitarray B(n);  // aux for computation of genus
 
-    perm_lex_inv P(n);
+    perm_lex P(n);
 //    perm_trotter P(n);
 //    perm_gray_rfact P(n);
 

@@ -1,7 +1,7 @@
 #if !defined  HAVE_SCORE_SEQUENCE_H__
 #define       HAVE_SCORE_SEQUENCE_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014, 2015, 2017 Joerg Arndt
+// Copyright (C) 2014, 2015, 2017, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -10,6 +10,7 @@
 // whether to use arrays instead of pointers:
 #define SCORE_SEQUENCE_FIXARRAYS
 // slight speedup with GCC 4.8.0
+// slight speedup with GCC 8.3.0
 
 
 class score_sequence
@@ -31,9 +32,8 @@ public:
 #endif
     ulong n_;   // Number of digits (paren pairs)
 
-private:  // have pointer data
-    score_sequence(const score_sequence&);  // forbidden
-    score_sequence & operator = (const score_sequence&);  // forbidden
+    score_sequence(const score_sequence&) = delete;
+    score_sequence & operator = (const score_sequence&) = delete;
 
 public:
     explicit score_sequence(ulong n)

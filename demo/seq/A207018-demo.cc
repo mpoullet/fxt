@@ -1,5 +1,5 @@
 
-#include "comb/perm-lex2.h"  // with factorial numbers
+#include "comb/perm-lex.h"  // with factorial numbers
 #include "perm/permq.h"  // major_index()
 
 #include "comb/comb-print.h"
@@ -23,7 +23,7 @@ main(int argc, char **argv)
     NXARG(n, "Permutations of n elements (n>=2)");
     jjassert( n>=2 );
 
-    perm_lex2 P(n);
+    perm_lex P(n);
 
     ulong ct = 0;
     do

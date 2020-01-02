@@ -1,7 +1,7 @@
 #if !defined  HAVE_CATALAN_PATH_LEX_H__
 #define       HAVE_CATALAN_PATH_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -12,15 +12,15 @@
 #include "fxttypes.h"
 
 
-//#define CATALAN_PATH_LEX_NO_FLAT_STEPS  // default on
+#define CATALAN_PATH_LEX_NO_FLAT_STEPS  // default on
 // If *not* defined, flat steps are allowed and
 // C(n+1) (instead of C(n)) objects are generated,
 // where C(n) is the n-th Catalan number.
-
+// Then this becomes identical to catalan-flat-path-lex.h
 
 class catalan_path_lex
 // Catalan paths in lexicographic order, CAT algorithm.
-// Steps are +1, 0, -1 (up, horizontal, down),
+// Steps are +1, -1 (up, down),
 // the first and last elements are 0, all elements are non-negative,
 // and even/odd positions respectively have even/odd entries only.
 {
@@ -29,8 +29,8 @@ public:
     ulong n_;
 
 private:  // have pointer data
-    catalan_path_lex(const catalan_path_lex&);  // forbidden
-    catalan_path_lex & operator = (const catalan_path_lex&);  // forbidden
+    catalan_path_lex(const catalan_path_lex&) = delete;
+    catalan_path_lex & operator = (const catalan_path_lex&) = delete;
 
 public:
     explicit catalan_path_lex(ulong n)

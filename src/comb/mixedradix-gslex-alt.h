@@ -1,17 +1,16 @@
 #if !defined HAVE_MIXEDRADIX_GSLEX_ALT_H__
 #define      HAVE_MIXEDRADIX_GSLEX_ALT_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
-#include "comb/mixedradix.h"
+#include "comb/mixedradix-aux.h"
 #include "comb/is-mixedradix-num.h"
 #include "comb/comb-print.h"
 
 #include "fxttypes.h"
 
-// Cf. comb/mixedradix-gslex-alt2.h for a faster implementation.
 // Cf. comb/mixedradix-gslex.h for a similar order.
 // Cf. comb/mixedradix-subset-lex.h for subset-lex order.
 
@@ -19,126 +18,125 @@
 class mixedradix_gslex_alt
 // Mixed radix numbers in alternative gslex (generalized subset-lex) order.
 {
-public:
-    ulong n_;   // n-digit numbers
-    ulong *a_;  // digits,  a[-1]==~0 is a sentinel
-    ulong *m1_;  // m1[k] == radix-1 at position k
-    ulong e_;   // aux
+protected:
+    ulong n_;   // Number of digits (n kinds of elements in multiset)
+    ulong tr_;  // aux: current track
+    ulong *a_;  // digits of mixed radix number (multiplicity of kind k in subset).
+    ulong *m1_;  // nines (radix minus one) for each digit (multiplicity of kind k in superset).
 
 private:  // have pointer data
-    mixedradix_gslex_alt(const mixedradix_gslex_alt&);  // forbidden
-    mixedradix_gslex_alt & operator = (const mixedradix_gslex_alt&);  // forbidden
+    mixedradix_gslex_alt(const mixedradix_gslex_alt&) = delete;
+    mixedradix_gslex_alt & operator = (const mixedradix_gslex_alt&) = delete;
 
 public:
     explicit mixedradix_gslex_alt(ulong n, ulong mm, const ulong *m = nullptr)
     {
         n_ = n;
-        a_ = new ulong[n_ + 1];
-        a_[0] = ~0UL;  // sentinel
+        a_ = new ulong[n_+2];  // two sentinels, one left, and one right
+        a_[0] = 1;  a_[n_+1] = 1;
         ++a_;  // nota bene
-
         m1_ = new ulong[n_];
-
         mixedradix_init(n_, mm, m, m1_);
-
         first();
     }
 
     ~mixedradix_gslex_alt()
     {
-        --a_;  // nota bene
+        --a_;
         delete [] a_;
         delete [] m1_;
     }
 
     const ulong * data()  const  { return a_; }
+    const ulong * nines()  const  { return m1_; }
+    ulong num_digits()  const  { return n_; }
 
 
     void first()
     {
         for (ulong k=0; k<n_; ++k)  a_[k] = 0;
-        e_ = 0;
+        tr_ = -1UL;  // nota bene
     }
 
     void last()
     {
         for (ulong k=0; k<n_; ++k)  a_[k] = 0;
-        e_ = n_ - 1;
-        a_[e_] = m1_[e_];
+        a_[n_-1] = m1_[n_-1];
+        tr_ = n_ - 1;
     }
 
     bool next()
-    // Return false if current was last
+    // Generate next.
+    // Return false if current was last.
     {
-        ulong ae = a_[e_] + 1;
-        if ( ae <= m1_[e_] )
+        ulong j = tr_;
+        if ( j+1 < n_ )  // easy case 1: attach new track
         {
-            a_[e_] = ae;
-            if ( e_ < n_-1 )  ++e_;
+            a_[j+1] = 1;
+            ++tr_;
+            return true;
         }
-        else
+
+        if ( a_[j] < m1_[j] )  // easy case 2: increment
         {
-            a_[e_] = 0;
-            ulong j = e_ - 1;
-            while ( 0==a_[j] )  --j;  // can read sentinel
-            if ( (long)j < 0 )  // was last
-            {
-                // need to restore:
-                // same as last(), saving the loop:
-                e_ = n_ - 1;
-                a_[e_] = m1_[e_];
+            ++a_[j];
+            return true;
+        }
 
-                return false;
-            }
+        a_[j] = 0;
 
-            ulong aj = a_[j] + 1;
-            if ( aj <= m1_[j] )  a_[j] = aj;
-            else
-            {
-                a_[j] = 0;
-                ++j;
-                a_[j] = 1;
-            }
+        // find first nonzero digit to the left:
+        --j;
+        while ( a_[j] == 0 )  { --j; }  // may read sentinel a_[-1]
 
-            e_ = j;
-            if ( e_ < n_-1 )  ++e_;
+        if ( (long)j < 0 )  return false;  // current is last
+
+        const ulong aj = a_[j] + 1;
+        if ( aj <= m1_[j] )  // increment and stay on track
+        {
+            a_[j] = aj;
+            tr_ = j;
+        }
+        else  // set to zero and next track to one
+        {
+            a_[j] = 0;
+            a_[j+1] = 1;
+            tr_ = j + 1;
         }
         return true;
     }
 
     bool prev()
+    // Generate previous.
     // Return false if current was first.
+    // Loopless algorithm.
     {
-        ulong j = e_;
-        while ( 0==a_[j] )  --j;  // can read sentinel
-        if ( (long)j < 0 )  // was first
+        ulong j = tr_;
+        if ( j == -1UL )  return false;  // current is first
+
+        const ulong aj = a_[j] - 1;
+        a_[j] = aj;  // decrement
+
+        if ( aj == 0 )
         {
-            // need to restore:
-            // same as first(), saving the loop:
-            e_ = 0;
-
-            return false;
-        }
-
-        ulong aj = a_[j];
-        --aj;
-
-        if ( 0==aj )
-        {
-            if ( 0!=a_[j-1] )
+            if ( a_[j-1] == 0 )
             {
-                a_[j] = aj;
-                return true;
+                // put nine left and at end, and jump to end
+                a_[j-1] = m1_[j-1];
+                tr_ = n_ - 1;
+                a_[tr_] = m1_[tr_];
             }
-
-            a_[j-1] = m1_[j-1];
+            else  --tr_;  // simply detach
         }
-
-        a_[n_-1] = m1_[n_-1];
-        e_ = n_ - 1;
-
-        if ( aj )  a_[j] = aj;
-        if ( j != n_-1 )  a_[j] = aj;
+        else
+        {
+            if ( tr_ != n_-1 )
+            {
+                // put nine at end, and jump to end
+                tr_ = n_ - 1;
+                a_[tr_] = m1_[tr_];
+            }
+        }
 
         return true;
     }
@@ -149,10 +147,6 @@ public:
 
     void print_nines(const char *bla)  const
     { print_mixedradix(bla, m1_, n_, false); }
-
-    ulong to_num()  const
-    // Return (integer) value of mixed radix number.
-    { return mixedradix2num(a_, m1_, n_); }
 
     bool OK()  const
     {

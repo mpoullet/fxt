@@ -1,7 +1,7 @@
 #if !defined HAVE_POINT3D_H__
 #define      HAVE_POINT3D_H__
 // This file is part of the FXT library.
-// Copyright (C) 2017, 2018 Joerg Arndt
+// Copyright (C) 2017, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -22,16 +22,16 @@ protected:
     Type x_, y_, z_;
 
 private:
-    point3d()  { ; }  // default constructor for ...
+    constexpr point3d() = default;  // default constructor for ...
 public:
     static point3d * new_array(ulong n)  { return new point3d[n]; }
 
 public:
-    explicit point3d(const Type & tx, const Type & ty, const Type & tz)
+    explicit constexpr point3d(const Type & tx, const Type & ty, const Type & tz)
         : x_(tx), y_(ty), z_(tz)
     { ; }
     // Concession to programmer's reality:
-    explicit point3d(const vec3d & V)
+    explicit constexpr point3d(const vec3d & V)
         : x_(V.x()), y_(V.y()), z_(V.z())
     { ; }
 
@@ -42,6 +42,9 @@ public:
     // point +- vector ==> point
     point3d & operator += (const vec3d & V) { x_ += V.x(),  y_ += V.y(),  z_ += V.z();  return *this; }
     point3d & operator -= (const vec3d & V) { x_ -= V.x(),  y_ -= V.y();  z_ -= V.z();  return *this; }
+
+    // unary minus;
+    point3d operator - ()  const  { return point3d( -x_, -y_, -z_ ); }
 
     point3d operator + (const vec3d & V)  const { return point3d( x_ + V.x(),  y_ + V.y(),  z_ + V.z() ); }
     point3d operator - (const vec3d & V)  const { return point3d( x_ - V.x(),  y_ - V.y(),  z_ - V.z() ); }
@@ -57,7 +60,7 @@ public:
     vec3d as_vector()  const  {  return vec3d( x_, y_, z_ ); }
 
     // The following with respect to origin (0, 0):
-    point3d zoom( double sc )  const { return point3d( sc * x_, sc * y_, sc * z_ ); }
+    point3d zoom( Type sc )  const { return point3d( sc * x_, sc * y_, sc * z_ ); }
 };
 // -------------------------
 

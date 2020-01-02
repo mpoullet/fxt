@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_SUBSET_LEX_H__
 #define      HAVE_COMPOSITION_NZ_SUBSET_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2015 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -42,8 +42,8 @@ public:
     ulong m_;   // current composition has m parts
 
 private:  // have pointer data
-    composition_nz_subset_lex(const composition_nz_subset_lex&);  // forbidden
-    composition_nz_subset_lex & operator = (const composition_nz_subset_lex&);  // forbidden
+    composition_nz_subset_lex(const composition_nz_subset_lex&) = delete;
+    composition_nz_subset_lex & operator = (const composition_nz_subset_lex&) = delete;
 
 public:
     explicit composition_nz_subset_lex(ulong n)
@@ -101,7 +101,7 @@ public:
     {
 #ifdef COMPOSITION_NZ_SUBSET_LEX_NEXT_A  // version A:
         const ulong z = a_[m_];
-        if ( z<=1 )  // move one unit two places left
+        if ( z <= 1 )  // move one unit two places left
         { //   [*, X, Y, 1] --> [*, X+1, Y]
             if ( m_ <= 2 )  return 0;  // current is last
             m_ -= 1;
@@ -146,7 +146,7 @@ public:
 
 #ifdef COMPOSITION_NZ_SUBSET_LEX_PREV_A  // version A:
         const ulong y = a_[m_-1];
-        if ( y==1 )  // add Z to left place
+        if ( y == 1 )  // add Z to left place
         { //   [*, 1, Z] --> [*, Z+1]
             const ulong z = a_[m_];
             a_[m_-1] = z + 1;
@@ -165,7 +165,7 @@ public:
 #else  // version B:
         const ulong m1 = m_ - 1;
         const ulong y1 = a_[m1] - 1;
-        if ( y1==0 )  // add Z to left place
+        if ( y1 == 0 )  // add Z to left place
         { //   [*, 1, Z] --> [*, Z+1]
             const ulong z = a_[m_];
             a_[m1] = z + 1;

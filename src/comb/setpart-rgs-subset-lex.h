@@ -1,7 +1,7 @@
 #if !defined  HAVE_SETPART_RGS_SUBSET_LEX_H__
 #define       HAVE_SETPART_RGS_SUBSET_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2015 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -32,9 +32,8 @@ public:
     ulong tr_;  // current track
     ulong n_;   // Number of digits in RGS
 
-private:  // have pointer data
-    setpart_rgs_subset_lex(const setpart_rgs_subset_lex&);  // forbidden
-    setpart_rgs_subset_lex & operator = (const setpart_rgs_subset_lex&);  // forbidden
+    setpart_rgs_subset_lex(const setpart_rgs_subset_lex&) = delete;
+    setpart_rgs_subset_lex & operator = (const setpart_rgs_subset_lex&) = delete;
 
 public:
     explicit setpart_rgs_subset_lex(ulong n)

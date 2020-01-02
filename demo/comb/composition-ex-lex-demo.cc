@@ -93,21 +93,6 @@ Timing:
 GCC 4.8.0:
 
  time ./bin 50 10 0
-COMPOSITION_EX_LEX_FIXARRAYS defined
-forward:
- ct=2054455634
-./bin 50 10 0  5.14s user 0.00s system 99% cpu 5.145 total
- ==> 2054455634/5.14 == 399,699,539 per second
-
- time ./bin 50 10 1
-COMPOSITION_EX_LEX_FIXARRAYS defined
-backward:
- ct=2054455634
-./bin 50 10 1  5.65s user 0.00s system 99% cpu 5.647 total
- ==> 2054455634/5.65 == 363,620,466 per second
-
-
- time ./bin 50 10 0
 forward:
  ct=2054455634
 ./bin 50 10 0  5.55s user 0.00s system 99% cpu 5.557 total

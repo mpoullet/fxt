@@ -1,6 +1,6 @@
 
 
-#include "comb/mixedradix-lex.h"
+#include "comb/mixedradix.h"
 #include "perm/rotate.h"
 #include "perm/perminvert.h"
 // demo-include "perm/perminvert.cc"
@@ -48,7 +48,7 @@ main(int argc, char **argv)
     ulong n = 4;
     NXARG(n, "Number of elements");
 
-    mixedradix_lex M(n-1, 0);  // falling factorial
+    mixedradix M(n-1, 0);  // falling factorial
 //    mixedradix_gray M(n-1, 0);  // falling factorial
     const ulong *m = M.data();
     ulong *x = new ulong[n];   // permutation

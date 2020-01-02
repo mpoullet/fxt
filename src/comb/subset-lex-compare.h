@@ -1,7 +1,7 @@
 #if !defined  HAVE_SUBSET_LEX_COMPARE_H__
 #define       HAVE_SUBSET_LEX_COMPARE_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014 Joerg Arndt
+// Copyright (C) 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -9,18 +9,18 @@
 
 
 template <typename Type>
-inline int subset_lex_compare(const Type *a, ulong na,
-                              const Type *b, ulong nb,
+inline int subset_lex_compare(const Type *a, const Type *b, ulong n,
                               bool rlq=false)
 // Compare a[] and b[] with repect to subset-lex order.
 // Return +1 if a[] >> b[], -1 if a[] << b[], 0 if a[]==b[].
 {
     ulong ea = 0;  // last index such that a[ea-1] != 0
-    for (ulong j=0; j<na; ++j)  if ( a[j] != 0 )  ea = j + 1;
+    for (ulong j=0; j<n; ++j)
+        if ( a[j] != 0 )  ea = j + 1;
 
     ulong eb = 0;  // last index such that b[eb-1] != 0
-    for (ulong j=0; j<nb; ++j)  if ( b[j] != 0 )  eb = j + 1;
-
+    for (ulong j=0; j<n; ++j)
+        if ( b[j] != 0 )  eb = j + 1;
 
     const ulong m = (ea < eb ? ea : eb);  // min(ea, eb)
     for (ulong j=0; j<m; ++j)

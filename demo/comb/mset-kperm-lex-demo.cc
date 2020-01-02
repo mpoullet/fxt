@@ -50,7 +50,8 @@ main(int argc, char **argv)
     const ulong n = P.num_parts();
 
     cout << "multiplicities: ( ";
-    for (ulong i=0; i<k; ++i)  cout << P.r_[i] << (i<k-1?", ":" ");
+    for (ulong i=0; i<k; ++i)
+        cout << P.multiplicities()[i] << (i<k-1?", ":" ");
     cout << ")";
 //    cout << "  k=" << P.k_ << "  n=" << P.n_;
     cout << "  k=" << P.num_sorts() << "  n=" << P.num_parts();

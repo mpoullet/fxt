@@ -1,7 +1,7 @@
 #if !defined  HAVE_HILBERT_NDIM_REC_H__
 #define       HAVE_HILBERT_NDIM_REC_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -27,9 +27,8 @@ public:
     ulong P[32];  // size == max dim
     ulong Q[32];  // size == max dim
 
-private:
-    hilbert_ndim_rec(const hilbert_ndim_rec&);  // forbidden
-    hilbert_ndim_rec & operator = (const hilbert_ndim_rec&);  // forbidden
+    hilbert_ndim_rec(const hilbert_ndim_rec&) = delete;
+    hilbert_ndim_rec & operator = (const hilbert_ndim_rec&) = delete;
 
 public:
     explicit hilbert_ndim_rec(ulong dd)

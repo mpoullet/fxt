@@ -1,7 +1,7 @@
 #if !defined  HAVE_PERM_REV_H__
 #define       HAVE_PERM_REV_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -19,9 +19,8 @@ public:
     ulong *p_;  // permutation
     ulong n_;   // permutations of n elements
 
-private:  // have pointer data
-    perm_rev(const perm_rev&);  // forbidden
-    perm_rev & operator = (const perm_rev&);  // forbidden
+    perm_rev(const perm_rev&) = delete;
+    perm_rev & operator = (const perm_rev&) = delete;
 
 public:
     explicit perm_rev(ulong n)

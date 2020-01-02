@@ -1,7 +1,7 @@
 #if !defined HAVE_WEAKLY_UNIMODAL_RGS_LEX_H__
 #define      HAVE_WEAKLY_UNIMODAL_RGS_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -37,9 +37,8 @@ public:
     ulong mv_;  // value of maximal digit(s)
     ulong m1_;  // maximal digit value allowed
 
-private:  // have pointer data
-    weakly_unimodal_rgs_lex(const weakly_unimodal_rgs_lex&);  // forbidden
-    weakly_unimodal_rgs_lex & operator = (const weakly_unimodal_rgs_lex&);  // forbidden
+    weakly_unimodal_rgs_lex(const weakly_unimodal_rgs_lex&) = delete;
+    weakly_unimodal_rgs_lex & operator = (const weakly_unimodal_rgs_lex&) = delete;
 
 public:
     explicit weakly_unimodal_rgs_lex(ulong n, ulong m)

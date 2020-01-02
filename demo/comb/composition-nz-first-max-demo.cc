@@ -40,23 +40,8 @@ main(int argc, char **argv)
     ulong ct = 0;
 
 #ifdef TIMING
-//    bool bq = 0;
-//    NXARG(bq, "With benchmark: whether to generate in backward order");
-#ifdef COMPOSITION_NZ_FIRST_MAX_FIXARRAYS
-    cout << "COMPOSITION_NZ_FIRST_MAX_FIXARRAYS defined." << endl;
-#endif
-//    if ( !bq )
-//    {
-//        cout << "forward:" << endl;
-        P.first();
-        do  { ++ct; }  while ( P.next() );
-//    }
-//    else
-//    {
-//        cout << "backward:" << endl;
-//        P.last();
-//        do  { ++ct; }  while ( P.prev() );
-//    }
+    P.first();
+    do  { ++ct; }  while ( P.next() );
 
 #else  // TIMING
 
@@ -107,16 +92,6 @@ arg 1: 35 == n  [compositions of n]  default=8
  ct=1394632365
 ./bin 35 0  5.98s user 0.00s system 99% cpu 5.985 total
  ==> 1394632365/5.98 == 233,216,114 per second
-
-
-With COMPOSITION_NZ_FIRST_MAX_FIXARRAYS defined:
-
-% time ./bin 35 0
-arg 1: 35 == n  [compositions of n]  default=8
-COMPOSITION_NZ_FIRST_MAX_FIXARRAYS defined.
- ct=1394632365
-./bin 35 0  5.97s user 0.00s system 99% cpu 5.980 total
-
 
 */
 

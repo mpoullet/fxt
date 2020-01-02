@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_NZ_ODD_SUBSET_LEX_H__
 #define      HAVE_COMPOSITION_NZ_ODD_SUBSET_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014, 2015 Joerg Arndt
+// Copyright (C) 2013, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -32,9 +32,8 @@ public:
     ulong n_;   // composition of n
     ulong m_;   // current composition has m parts
 
-private:  // have pointer data
-    composition_nz_odd_subset_lex(const composition_nz_odd_subset_lex&);  // forbidden
-    composition_nz_odd_subset_lex & operator = (const composition_nz_odd_subset_lex&);  // forbidden
+    composition_nz_odd_subset_lex(const composition_nz_odd_subset_lex&) = delete;
+    composition_nz_odd_subset_lex & operator = (const composition_nz_odd_subset_lex&) = delete;
 
 public:
     explicit composition_nz_odd_subset_lex(ulong n)

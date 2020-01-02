@@ -1,7 +1,7 @@
 #if !defined  HAVE_PERM_GRAY_FFACT_H__
 #define       HAVE_PERM_GRAY_FFACT_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -24,8 +24,8 @@ public:
     ulong sw1_, sw2_;  // indices of elements swapped most recently
 
 private:  // have pointer data
-    perm_gray_ffact(const perm_gray_ffact&);  // forbidden
-    perm_gray_ffact & operator = (const perm_gray_ffact&);  // forbidden
+    perm_gray_ffact(const perm_gray_ffact&) = delete;
+    perm_gray_ffact & operator = (const perm_gray_ffact&) = delete;
 
 public:
     explicit perm_gray_ffact(ulong n)
@@ -89,7 +89,6 @@ public:
         ulong j = 0;
         ulong m1 = n_ - 1;  // nine in falling factorial base
         ulong ij;
-//        while ( j<n_-1 )
         while ( (ij=i_[j]) )
         {
             ulong im = i_[j];
@@ -116,7 +115,6 @@ public:
         ulong j = 0;
         ulong m1 = n_ - 1;
         ulong ij;
-//        while ( j<n_-1 )
         while ( (ij=i_[j]) )
         {
             ulong im = -i_[j];

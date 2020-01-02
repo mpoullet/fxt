@@ -1,7 +1,7 @@
 #if !defined HAVE_MPARTITION_H__
 #define      HAVE_MPARTITION_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -21,9 +21,8 @@ public:
     ulong n_;   // integer partitions of n  (must have n>0)
     ulong m_;   // ... into m parts  (must have 0<m<=n)
 
-private:  // have pointer data
-    mpartition(const mpartition&);  // forbidden
-    mpartition & operator = (const mpartition&);  // forbidden
+    mpartition(const mpartition&) = delete;
+    mpartition & operator = (const mpartition&) = delete;
 
 public:
     explicit mpartition(ulong n, ulong m)

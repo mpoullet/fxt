@@ -1,7 +1,7 @@
 #if !defined  HAVE_DEQUE_H__
 #define       HAVE_DEQUE_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -27,9 +27,8 @@ public:
 
     ulong  gq_;  // grow gq elements if necessary, 0 for "never grow"
 
-private:  // have pointer data
-    deque(const deque&);  // forbidden
-    deque & operator = (const deque&);  // forbidden
+    deque(const deque&) = delete;
+    deque & operator = (const deque&) = delete;
 
 public:
     explicit deque(ulong n, ulong growq=0)

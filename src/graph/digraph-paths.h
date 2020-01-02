@@ -1,7 +1,7 @@
 #if !defined  HAVE_DIGRAPH_PATHS_H__
 #define       HAVE_DIGRAPH_PATHS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -38,9 +38,8 @@ public:
     // function to impose condition with all_cond_paths():
     bool (*cfunc_)(digraph_paths &, ulong ns);  // can set pfdone_
 
-private:  // have pointer data
-    digraph_paths(const digraph_paths&);  // forbidden
-    digraph_paths & operator = (const digraph_paths&);  // forbidden
+    digraph_paths(const digraph_paths&) = delete;
+    digraph_paths & operator = (const digraph_paths&) = delete;
 
 public:
     // graph/digraph.cc:

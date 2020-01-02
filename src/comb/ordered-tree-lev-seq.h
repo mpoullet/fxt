@@ -1,7 +1,7 @@
 #if !defined  HAVE_ORDERED_TREE_LEV_SEQ_H__
 #define       HAVE_ORDERED_TREE_LEV_SEQ_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014, 2015 Joerg Arndt
+// Copyright (C) 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -31,9 +31,8 @@ private:
 private:
     tree_lev_seq_aux aux;
 
-private:  // have pointer data
-    ordered_tree_lev_seq(const ordered_tree_lev_seq&);  // forbidden
-    ordered_tree_lev_seq & operator = (const ordered_tree_lev_seq&);  // forbidden
+    ordered_tree_lev_seq(const ordered_tree_lev_seq&) = delete;
+    ordered_tree_lev_seq & operator = (const ordered_tree_lev_seq&) = delete;
 
 
 public:

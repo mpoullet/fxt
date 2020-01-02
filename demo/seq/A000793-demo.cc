@@ -69,7 +69,7 @@ main(int argc, char **argv)
           );
 
 
-    composition_nz_restrpref P(n, cond_all);
+    composition_nz_restrpref P(n);
 
     switch ( c )
     {

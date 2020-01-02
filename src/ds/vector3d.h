@@ -1,7 +1,7 @@
 #if !defined HAVE_VECTOR3D_H__
 #define      HAVE_VECTOR3D_H__
 // This file is part of the FXT library.
-// Copyright (C) 2017 Joerg Arndt
+// Copyright (C) 2017, 2018 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -19,12 +19,12 @@ protected:
     Type x_, y_, z_;
 
 private:
-    vector3d()  { ; }  // default constructor for ...
+    constexpr vector3d() = default;  // default constructor for ...
 public:
     static vector3d * new_array(ulong n)  { return new vector3d[n]; }
 
 public:
-    explicit vector3d(const Type & tx, const Type & ty, const Type & tz)
+    explicit constexpr vector3d(const Type & tx, const Type & ty, const Type & tz)
         : x_(tx), y_(ty), z_(tz)
     { ; }
 

@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_2FALL_ASC_SUBSET_LEX_H__
 #define      HAVE_PARTITION_2FALL_ASC_SUBSET_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2014 Joerg Arndt
+// Copyright (C) 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -13,7 +13,7 @@
 #include "fxttypes.h"
 
 
-//#define PARTITION_2FALL_ASC_SUBSET_LEX_FIXARRAYS  // default on
+//#define PARTITION_2FALL_ASC_SUBSET_LEX_FIXARRAYS  // default off
 // speedup with GCC 4.9.0
 
 
@@ -36,10 +36,8 @@ public:
     ulong a_[62];
 #endif
 
-private:  // have pointer data
-    partition_2fall_asc_subset_lex(const partition_2fall_asc_subset_lex&);  // forbidden
-    partition_2fall_asc_subset_lex & operator = (const partition_2fall_asc_subset_lex&);  // forbidden
-
+    partition_2fall_asc_subset_lex(const partition_2fall_asc_subset_lex&) = delete;
+    partition_2fall_asc_subset_lex & operator = (const partition_2fall_asc_subset_lex&) = delete;
 
 private:
     ulong mers_t(ulong s)

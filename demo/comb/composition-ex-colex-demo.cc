@@ -12,6 +12,8 @@
 
 //% Compositions of n into exactly k parts in co-lexicographic (colex) order.
 
+// Cf. comb/composition-nz-demo.cc  compositions into any number of nonzero parts
+
 //#define TIMING  // uncomment to disable printing
 
 int

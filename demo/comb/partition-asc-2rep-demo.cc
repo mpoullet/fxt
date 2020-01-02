@@ -95,7 +95,7 @@ main(int argc, char **argv)
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
-## gcc 4.5.0:
+## GCC 4.5.0:
  time ./bin 160
 arg 1: 160 == n  [integer partitions of n]  default=14
 arg 2: 0 == aa  [Whether to render as ASCII art]  default=0
@@ -103,7 +103,7 @@ arg 2: 0 == aa  [Whether to render as ASCII art]  default=0
 ./bin 160  6.72s user 0.00s system 99% cpu 6.725 total
  ==> 1176931746/6.72 == 175,138,652 per second
 
-## gcc 4.8.0:
+## GCC 4.8.0:
  time ./bin 160
 arg 1: 160 == n  [integer partitions of n]  default=14
 arg 2: 0 == aa  [Whether to render as ASCII art]  default=0

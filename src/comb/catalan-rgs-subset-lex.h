@@ -1,7 +1,7 @@
 #if !defined  HAVE_CATALAN_RGS_SUBSET_LEX_H__
 #define       HAVE_CATALAN_RGS_SUBSET_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -31,9 +31,8 @@ public:
     ulong n_;   // Number of digits (paren pairs)
     char *str_;  // paren string
 
-private:  // have pointer data
-    catalan_rgs_subset_lex(const catalan_rgs_subset_lex&);  // forbidden
-    catalan_rgs_subset_lex & operator = (const catalan_rgs_subset_lex&);  // forbidden
+    catalan_rgs_subset_lex(const catalan_rgs_subset_lex&) = delete;
+    catalan_rgs_subset_lex & operator = (const catalan_rgs_subset_lex&) = delete;
 
 public:
     explicit catalan_rgs_subset_lex(ulong n)

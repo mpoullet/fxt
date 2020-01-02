@@ -5,7 +5,7 @@
 
 #include "comb/fact2perm.h"
 #include "perm/perminvert.h"
-#include "comb/mixedradix-lex.h"
+#include "comb/mixedradix.h"
 
 
 #include "jjassert.h"
@@ -29,7 +29,7 @@ main(int argc, char **argv)
 
     perm_mv0 P(n);
 
-    mixedradix_lex M(n-1, 0);  // falling factorial basis
+    mixedradix M(n-1, 0);  // falling factorial basis
     M.first();
 
     ulong ct = 0;

@@ -1,7 +1,7 @@
 #if !defined HAVE_BITARRAY_H__
 #define      HAVE_BITARRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -56,9 +56,8 @@ public:
 #endif  // BITS_USE_ASM
     }
 
-private:  // have pointer data
-    bitarray(const bitarray&);  // forbidden
-    bitarray & operator = (const bitarray&);  // forbidden
+    bitarray(const bitarray&) = delete;
+    bitarray & operator = (const bitarray&) = delete;
 
 private:
     ulong ctor_core(ulong nbits)

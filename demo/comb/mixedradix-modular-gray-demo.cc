@@ -8,8 +8,9 @@
 #include "fxtio.h"
 #include "jjassert.h"
 
-//% Modular mixed radix Gray code.
-//% Implementation following Knuth (loopless algorithm).
+#include <cstdlib>  // strtoul()
+
+//% Modular mixed radix Gray code, CAT algorithm.
 
 //#define TIMING  // uncomment to disable printing
 
@@ -40,12 +41,8 @@ main(int argc, char **argv)
         cout << " " << setw(4) << ct << ":  ";
         M.print("    ", true );
 //        cout << setw(6) << M.to_num();
-
-//        ulong sd = 0;  // sum of digits
-//        for (ulong j=0; j<n; ++j)  sd += M.data()[j];
-//        cout << setw(3) << sd;
-
         cout << setw(6) << M.pos();
+//        print_vec("  ", M.x_, n);
         cout << endl;
 #endif  // TIMING
         ++ct;
@@ -64,33 +61,33 @@ Timing:
 
  time ./bin 30 2  ## binary is worst case
  ct=1073741824
-./bin 30 2  6.35s user 0.00s system 99% cpu 6.351 total
- ==> 1073741824/6.35 == 169,093,200 per second
+./bin 30 2  7.07s user 0.03s system 100% cpu 7.104 total
+ ==> 1073741824/7.07 == 151,872,959 per second
 
  time ./bin 16 4
  ct=4294967296
-./bin 16 4  21.73s user 0.04s system 99% cpu 21.780 total
- ==> 4294967296/21.73 == 197,651,509 per second
+./bin 16 4  17.53s user 0.05s system 100% cpu 17.576 total
+ ==> 4294967296/17.53 == 245,006,691 per second
 
  time ./bin 10 8
  ct=1073741824
-./bin 10 8  4.19s user 0.02s system 99% cpu 4.210 total
- ==> 1073741824/4.19 == 256,262,965 per second
+./bin 10 8  4.06s user 0.01s system 99% cpu 4.069 total
+ ==> 1073741824/4.01 == 267,766,040 per second
 
  time ./bin 8 16
  ct=4294967296
-./bin 8 16  17.26s user 0.04s system 100% cpu 17.298 total
- ==> 4294967296/17.26 == 248,839,356 per second
+./bin 8 16  14.47s user 0.04s system 99% cpu 14.519 total
+ ==> 4294967296/14.47 == 296,818,748 per second
 
  time ./bin 12 1  ## rising factorial
  ct=6227020800
-./bin 12 1  37.24s user 0.05s system 100% cpu 37.289 total
- ==> 6227020800/37.24 == 167,213,233 per second
+./bin 12 1  27.63s user 0.06s system 100% cpu 27.693 total
+ ==> 6227020800/27.63 == 225,371,726 per second
 
  time ./bin 12 0  ## falling factorial
  ct=6227020800
-./bin 12 0  26.45s user 0.04s system 100% cpu 26.488 total
- ==> 6227020800/26.45 == 235,426,117 per second
+./bin 12 0  22.02s user 0.03s system 100% cpu 22.052 total
+ ==> 6227020800/22.01 == 282,917,800 per second
 
 */
 

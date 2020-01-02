@@ -1,7 +1,7 @@
 #if !defined  HAVE_PERM_HEAP_H__
 #define       HAVE_PERM_HEAP_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -23,8 +23,8 @@ public:
     ulong sw1_, sw2_;   // indices of swapped elements
 
 private:  // have pointer data
-    perm_heap(const perm_heap&);  // forbidden
-    perm_heap & operator = (const perm_heap&);  // forbidden
+    perm_heap(const perm_heap&) = delete;
+    perm_heap & operator = (const perm_heap&) = delete;
 
 public:
     explicit perm_heap(ulong n)
@@ -62,7 +62,7 @@ public:
 
         ulong k = j+1;
         ulong x = ( k&1 ? d_[j] : 0 );
-        swap2(p_[k], p_[x]);  // omit statement to just compute swaps
+        swap2( p_[k], p_[x] );  // omit statement to just compute swaps
         sw1_ = k;  sw2_ = x;
 
         ++d_[j];

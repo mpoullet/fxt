@@ -1,7 +1,7 @@
 #if !defined  HAVE_WEIGHTED_OR_CONVOLUTION_H__
 #define       HAVE_WEIGHTED_OR_CONVOLUTION_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012 Joerg Arndt
+// Copyright (C) 2010, 2012, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -67,7 +67,7 @@ inline void weighted_or_convolution(Type * restrict f, Type * restrict g, ulong 
 
 
 template <typename Type>
-inline void weighted_or_auto_convolution(Type * restrict f, ulong ldn, Type w)
+inline void weighted_or_auto_convolution(Type * f, ulong ldn, Type w)
 // Compute the weighted self- OR-convolution h[] of f[]:
 //  h[k] = sum(i | j == k,  f[i]*f[j] * (w)**bitcount(i&j))
 // Result written to f[].

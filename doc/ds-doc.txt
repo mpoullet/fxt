@@ -22,6 +22,12 @@ class bitarray;
 class bitarray2d;
 // Two-dimensional bit-array.
 
+// ========== HEADER FILE src/ds/bounding-box-3d.h: ==========
+
+class bounding_box_3d;
+// 3-dimensional bounding box that can grow to contain
+// coordinates given in the update() method.
+
 // ========== HEADER FILE src/ds/bounding-box.h: ==========
 
 class bounding_box;

@@ -1,6 +1,6 @@
 
 #include "comb/arrangement-lex.h"
-// demo-include comb/perm-lex-inv.h
+// demo-include comb/perm-lex.h
 
 #include "comb/comb-print.h"
 

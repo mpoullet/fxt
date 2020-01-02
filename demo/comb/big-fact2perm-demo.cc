@@ -3,11 +3,10 @@
 // demo-include "comb/big-fact2perm.cc"
 #include "ds/left-right-array.h"
 
-#include "comb/mixedradix-lex.h"
+#include "comb/mixedradix.h"
 #include "comb/fact2perm.h"
 
 #include "comb/comb-print.h"
-#include "comb/mixedradix.h"
 
 #include "aux0/swap.h"
 
@@ -51,7 +50,7 @@ main(int argc, char **argv)
 
     left_right_array LR(n);
 
-    mixedradix_lex M(n1, rq);
+    mixedradix M(n1, rq);
     M.print_nines(" Nines: ");  cout << endl;
 
     const ulong *a = M.data();  // factorial number

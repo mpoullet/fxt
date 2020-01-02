@@ -1,7 +1,7 @@
 #if !defined  HAVE_NECKLACE2BITPOL_H__
 #define       HAVE_NECKLACE2BITPOL_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,9 +25,8 @@ public:
     ulong e_;  // a^b
     ulong bp_;  // result as bit-vector
 
-private:  // have pointer data
-    necklace2bitpol(const necklace2bitpol&);  // forbidden
-    necklace2bitpol & operator = (const necklace2bitpol&);  // forbidden
+    necklace2bitpol(const necklace2bitpol&) = delete;
+    necklace2bitpol & operator = (const necklace2bitpol&) = delete;
 
 public:
     explicit necklace2bitpol(ulong n, ulong c=0, ulong a=0)

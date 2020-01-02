@@ -2,7 +2,6 @@
 #include "comb/kperm-gray.h"
 
 #include "comb/comb-print.h"
-#include "comb/mixedradix.h"
 
 #include "comb/check-kpermgen.h"
 
@@ -51,7 +50,7 @@ main(int argc, char **argv)
     bool dfz = true;  // whether to print dots for zeros
     const ulong *x = P.data();
     const ulong *ix = P.invdata();
-    const ulong *a = P.d_;
+    const ulong *a = P.mr_digits();
 
     check_kpermgen C(n, k);
     C.first(P.data());

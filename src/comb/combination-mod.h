@@ -1,7 +1,7 @@
 #if !defined  HAVE_COMBINATION_MOD_H__
 #define       HAVE_COMBINATION_MOD_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -20,9 +20,8 @@ public:
     ulong *a_;  // aux: actual start position of moves
     ulong n_, k_;  // Combination (n choose k)
 
-private:  // have pointer data
-    combination_mod(const combination_mod&);  // forbidden
-    combination_mod & operator = (const combination_mod&);  // forbidden
+    combination_mod(const combination_mod&) = delete;
+    combination_mod & operator = (const combination_mod&) = delete;
 
 public:
     explicit combination_mod(ulong n, ulong k)

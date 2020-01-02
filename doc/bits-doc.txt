@@ -3,7 +3,7 @@
 
 // ========== HEADER FILE src/bits/average.h: ==========
 
-static inline ulong average(ulong x, ulong y);
+static inline ulong floor_average(ulong x, ulong y);
 // Return floor( (x+y)/2 )
 // Result is correct even if (x+y) wouldn't fit into a ulong
 // Use:      x+y == ((x&y)<<1) + (x^y)

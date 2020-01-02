@@ -1,7 +1,7 @@
 #if !defined  HAVE_MOTZKIN_RGS_LEX_H__
 #define       HAVE_MOTZKIN_RGS_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2014 Joerg Arndt
+// Copyright (C) 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -14,7 +14,6 @@
 
 //#define MOTZKIN_RGS_LEX_FIXARRAYS  // default off
 // GCC 4.8.0: slowdown
-
 
 class motzkin_rgs_lex
 // Motzkin restricted growth strings (RGS):
@@ -42,8 +41,8 @@ public:
 #endif
 
 private:  // have pointer data
-    motzkin_rgs_lex(const motzkin_rgs_lex&);  // forbidden
-    motzkin_rgs_lex & operator = (const motzkin_rgs_lex&);  // forbidden
+    motzkin_rgs_lex(const motzkin_rgs_lex&) = delete;
+    motzkin_rgs_lex & operator = (const motzkin_rgs_lex&) = delete;
 
 public:
     explicit motzkin_rgs_lex(ulong n, ulong i=1)

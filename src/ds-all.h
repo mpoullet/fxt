@@ -1,7 +1,7 @@
 #if !defined HAVE_DS_ALL_H__
 #define      HAVE_DS_ALL_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2017, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2017, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -27,6 +27,7 @@
 
 #include "ds/vector3d.h"
 #include "ds/point3d.h"
+#include "ds/bounding-box-3d.h"
 #include "ds/array3d.h"
 #include "ds/centered-array3d.h"
 

@@ -1,5 +1,5 @@
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012 Joerg Arndt
+// Copyright (C) 2010, 2012, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -17,7 +17,7 @@ perm2ffact_swp(const ulong *x, ulong n, ulong *fc)
 {
     if ( n==0 )  return;
 
-    ALLOCA(ulong, t, n);
+    ALLOCA(ulong, t, n);  // copy of permutation
     for (ulong k=0; k<n; ++k)  t[k] = x[k];
     ALLOCA(ulong, ti, n);  // inverse permutation
     for (ulong k=0; k<n; ++k)  ti[t[k]] = k;
@@ -81,7 +81,7 @@ perm2rfact_swp(const ulong *x, ulong n, ulong *fc)
 {
     if ( n==0 )  return;
 
-    ALLOCA(ulong, t, n);
+    ALLOCA(ulong, t, n);  // copy of permutation
     for (ulong k=0; k<n; ++k)  t[k] = x[k];
     ALLOCA(ulong, ti, n);  // inverse permutation
     for (ulong k=0; k<n; ++k)  ti[t[k]] = k;

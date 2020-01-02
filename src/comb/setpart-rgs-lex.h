@@ -1,7 +1,7 @@
 #if !defined  HAVE_SETPART_RGS_LEX_H__
 #define       HAVE_SETPART_RGS_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -23,9 +23,8 @@ public:
     ulong *m_;   // m[k+1] = max(s[0], s[1], ..., s[k]) + 1
     ulong *s_;   // RGS
 
-private:  // have pointer data
-    setpart_rgs_lex(const setpart_rgs_lex&);  // forbidden
-    setpart_rgs_lex & operator = (const setpart_rgs_lex&);  // forbidden
+    setpart_rgs_lex(const setpart_rgs_lex&) = delete;
+    setpart_rgs_lex & operator = (const setpart_rgs_lex&) = delete;
 
 public:
     explicit setpart_rgs_lex(ulong n)

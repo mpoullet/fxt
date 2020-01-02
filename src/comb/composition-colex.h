@@ -1,7 +1,7 @@
 #if !defined HAVE_COMPOSITION_COLEX_H__
 #define      HAVE_COMPOSITION_COLEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2014 Joerg Arndt
+// Copyright (C) 2010, 2012, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -18,9 +18,8 @@ public:
     ulong n_, k_;  // composition of n into k parts
     ulong *x_;     // data (k elements)
 
-private:  // have pointer data
-    composition_colex(const composition_colex&);  // forbidden
-    composition_colex & operator = (const composition_colex&);  // forbidden
+    composition_colex(const composition_colex&) = delete;
+    composition_colex & operator = (const composition_colex&) = delete;
 
 public:
     explicit composition_colex(ulong n, ulong k)
@@ -91,6 +90,5 @@ public:
 };
 // -------------------------
 
-#undef MAX_ARRAY_LEN
 
 #endif  // !defined HAVE_COMPOSITION_COLEX_H__

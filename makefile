@@ -440,7 +440,7 @@ TMP2=$(TMPDIR)/tmp-2
 .PHONY: chkdblfiles  ##x find filenames that exist more than once
 chkdblfiles:
 	: '[$@]'
-	find . -type f  | grep -v attic | grep -E -v '.*\.o$$' > $(TMP1)
+	find . -type f  | grep -v attic | grep -vF '.git/' | grep -E -v '.*\.o$$' > $(TMP1)
 	-for f in $$(cat $(TMP1)); do echo $$(basename $$f); done  | sort | uniq -d > $(TMP2)
 	-for f in $$(cat $(TMP2)); do echo "$$f:"; find . -name $$f; echo ; done
 	rm -fv  $(TMP1) $(TMP2)
@@ -874,6 +874,11 @@ zbak dist:
 	cd ..  &&  tar -czf $(ZBAK) $(EXCL) $(PROJ)
 	ls -ltr $(MYZBAKDIR)/ | tail -5
 
+.PHONY: snapshot ##x create snapshot ~/fxt.tar.gz
+snapshot: clobber
+	cd ..  &&  tar -czf $(HOME)/fxt.tar.gz $(EXCL) $(PROJ)
+
+
 #CHKZBAK=$(HOME)/bin/chkzbak.sh
 .PHONY: chkzbak  ##x check how up-to-date the last archived backup is
 chkzbak: diff-old
@@ -957,10 +962,10 @@ demo2web: chkdemo
 	test -n $(WEBDIR)
 	test -d $(WEBDIR)
 	test -d $(WEBDEMOLOC)
-	rsync --version >/dev/null ## make sure we have rsync
+	rsync --version > /dev/null ## make sure we have rsync
 	perl -v > /dev/null ## make sure we have perl
-	rsync -avW demo/  $(WEBDEMOLOC)/
-	rsync -aW demo/  $(WEBDEMOLOC)/ --delete
+	rsync -avW --exclude='attic/' demo/  $(WEBDEMOLOC)/
+	rsync -aW  --exclude='attic/' demo/  $(WEBDEMOLOC)/ --delete # why does this delete so much?
 	WEBDEMOLOC=$(WEBDEMOLOC) FXTLOC=$$PWD scripts/demo2web.sh
 
 

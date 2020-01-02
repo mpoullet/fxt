@@ -1,5 +1,6 @@
 
 #include "comb/mixedradix-subset-lex.h"
+#include "comb/mixedradix-subset-lex-rank.h"
 
 #include "comb/comb-print.h"
 
@@ -70,39 +71,22 @@ main(int argc, char **argv)
 
 #else
 
-    const ulong *x = M.data();
-//    ulong Z[64];
     do
     {
-//        if ( M.card() > 5 )  continue;
-//        if ( ! is_young_tab_rgs(x, n, Z, 0) )  continue;
-//        if ( ! is_schroeder_rgs(x, n, 0) )  continue;  // strange order
-//        if ( ! is_catalan_step_rgs(x, n) )  continue;  // strange order
-//        if ( ! is_dyck_rgs(x, n) )  continue;
 
         cout << setw(4) << ct << ":";
         M.print("  ", true );
 
-        print_multi_deltaset_as_set("    ", x, n, true);
-
-#if 0
-        int q1, q2;
-        if ( ct > 0 )
-        {
-            q1 = subset_lex_compare(x, n, Z, n);
-            jjassert( q1 );
-            cout << "  " << (q1==+1 ? '+' : '-');
-
-            q2 = subset_lex_compare(Z, n, x, n);
-//            cout << "  " << (q2==+1 ? '+' : '-');
-
-            jjassert( q2 = -q1 );
-        }
-        for (ulong j=0; j<n; ++j)  Z[j] = x[j];
-        if ( ct )  jjassert( q1 == +1 );
-#endif
+//        cout << setw(4) << M.track() << "";
+//        print_multi_deltaset_as_set("    ", M.data(), n, true);
+        print_multi_deltaset_as_set_alph("    ", M.data(), n, false );
 
         cout << endl;
+
+#if 1
+        jjassert( ct == M.rank() );
+        jjassert( M.OK() );
+#endif
 
         ++ct;
     }

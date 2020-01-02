@@ -10,12 +10,14 @@
 
 //% Catalan paths in lexicographic order, CAT algorithm.
 
+// Cf. comb/catalan-flat-path-lex-demo.cc
+
 //#define TIMING  // uncomment to disable printing
 
 int
 main(int argc, char **argv)
 {
-    ulong n = 4;
+    ulong n = 5;
     NXARG(n, "Length of paths is 2*n (n>=1)");
 //    jjassert( n>=1 );
 
@@ -98,22 +100,15 @@ main(int argc, char **argv)
 // -------------------------
 
 /*
-Timing: (AMD Phenom II X4 945 3000MHz)
+Timing: (Intel Xeon CPU E3-1275 V2 @ 3.50GHz)
 
- time ./bin 18
-arg 1: 18 == n  [Length of paths is 2*n (n>=1)]  default=5
- ct=477638700
-./bin 18  4.18s user 0.00s system 99% cpu 4.183 total
- ==> 477638700/4.18 == 114,267,631 per second
+GCC 6.3.0:
 
-
-Following with CATALAN_PATH_LEX_NO_FLAT_STEPS *not* defined:
- time ./bin 18
-arg 1: 18 == n  [Length of paths is 2*n (n>=1)]  default=4
-FLAT STEPS allowed.
+ time ./bin 19
+arg 1: 19 == n  [Length of paths is 2*n (n>=1)]  default=5
  ct=1767263190
-./bin 18  11.26s user 0.00s system 99% cpu 11.268 total
- ==> 1767263190/11.26 == 156,950,549 per second
+./bin 19  8.67s user 0.00s system 100% cpu 8.671 total
+ ==> 1767263190/8.67 == 203,836,584 per second
 
 */
 

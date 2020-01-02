@@ -1,7 +1,7 @@
 #if !defined  HAVE_SETPART_ZERO_MAP_RGS_H__
 #define       HAVE_SETPART_ZERO_MAP_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -25,9 +25,8 @@ public:
     ulong *a_;  // RGS
     ulong n_;   // length of RGS
 
-private:  // have pointer data
-    setpart_zero_map_rgs(const setpart_zero_map_rgs&);  // forbidden
-    setpart_zero_map_rgs & operator = (const setpart_zero_map_rgs&);  // forbidden
+    setpart_zero_map_rgs(const setpart_zero_map_rgs&) = delete;
+    setpart_zero_map_rgs & operator = (const setpart_zero_map_rgs&) = delete;
 
 public:
     explicit setpart_zero_map_rgs(ulong n)

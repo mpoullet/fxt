@@ -1,7 +1,7 @@
 #if !defined  HAVE_MAP23_RGS_H__
 #define       HAVE_MAP23_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2013, 2014 Joerg Arndt
+// Copyright (C) 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -20,9 +20,8 @@ public:
     ulong *a_;  // digits of the RGS: a_[k] <= a[k-1] + 1
     ulong n_;   // Number of digits (paren pairs)
 
-private:  // have pointer data
-    map23_rgs(const map23_rgs&);  // forbidden
-    map23_rgs & operator = (const map23_rgs&);  // forbidden
+    map23_rgs(const map23_rgs&) = delete;
+    map23_rgs & operator = (const map23_rgs&) = delete;
 
 public:
     explicit map23_rgs(ulong n)

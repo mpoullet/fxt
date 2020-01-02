@@ -1,7 +1,7 @@
 #if !defined HAVE_ARRAY3D_H__
 #define      HAVE_ARRAY3D_H__
 // This file is part of the FXT library.
-// Copyright (C) 2017, 2018 Joerg Arndt
+// Copyright (C) 2017, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -37,8 +37,8 @@ protected:
     ulong num_elem_;  // number of elements
 
 private:  // have pointer data
-    array3d(const array3d&);  // forbidden
-    array3d & operator = (const array3d&);  // forbidden
+    array3d(const array3d&) = delete;
+    array3d & operator = (const array3d&) = delete;
 
 public:
     explicit array3d(ulong nx, ulong ny, ulong nz, Type *f=nullptr)
@@ -48,7 +48,7 @@ public:
         nz_ = nz;
         num_elem_ = nx_ * ny_ * nz_;
 
-        if ( 0 != f )  // data supplied
+        if ( nullptr != f )  // data supplied
         {
             f_ = f;
             myfq_ = false;
@@ -112,7 +112,7 @@ public:
         for (ulong j=0; j< num_elem_; ++j)  f_[j] = 0;
     }
 
-    void fill(Type v)
+    void fill(const Type & v)
     {
         for (ulong j=0; j< num_elem_; ++j)  f_[j] = v;
     }

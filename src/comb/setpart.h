@@ -1,7 +1,7 @@
 #if !defined  HAVE_SETPART_H__
 #define       HAVE_SETPART_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -27,9 +27,8 @@ public:
     //   dr0=+1  ==> start with partition  {{1,2,3,...,n}}
     //   dr0=-1  ==> start with partition  {{1},{2},{3},...,{n}}}
 
-private:  // have pointer data
-    setpart(const setpart&);  // forbidden
-    setpart & operator = (const setpart&);  // forbidden
+    setpart(const setpart&) = delete;
+    setpart & operator = (const setpart&) = delete;
 
 public:
     explicit setpart(int n, bool xdr=true, int dr0=+1)

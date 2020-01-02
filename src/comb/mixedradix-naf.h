@@ -1,38 +1,29 @@
 #if !defined HAVE_MIXEDRADIX_NAF_H__
 #define      HAVE_MIXEDRADIX_NAF_H__
 // This file is part of the FXT library.
-// Copyright (C) 2011, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2011, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
-#include "comb/mixedradix.h"
+#include "comb/mixedradix-aux.h"
 #include "comb/is-mixedradix-num.h"
 #include "comb/comb-print.h"
 
 #include "fxttypes.h"
 
 
-// If defined, an array is used instead of a pointer:
-//#define MIXEDRADIX_NAF_MAX_ARRAY_LEN 128  // default off
-
-
 class mixedradix_naf
 // Mixed radix non-adjacent forms (NAF), counting order.
 {
-public:
-#ifndef MIXEDRADIX_NAF_MAX_ARRAY_LEN
+protected:
     ulong *a_;  // digits
     ulong *m1_;  // nines (radix minus one) for each digit
-#else
-    ulong a_[MIXEDRADIX_NAF_MAX_ARRAY_LEN+3];
-    ulong m1_[MIXEDRADIX_NAF_MAX_ARRAY_LEN+3];
-#endif
     ulong n_;   // Number of digits
     ulong j_;   // position of last change
 
 private:  // have pointer data
-    mixedradix_naf(const mixedradix_naf&);  // forbidden
-    mixedradix_naf & operator = (const mixedradix_naf&);  // forbidden
+    mixedradix_naf(const mixedradix_naf&) = delete;
+    mixedradix_naf & operator = (const mixedradix_naf&) = delete;
 
 private:
     void set_sentinels()
@@ -62,10 +53,9 @@ public:
     {
         n_ = n;
 
-#ifndef MIXEDRADIX_NAF_MAX_ARRAY_LEN
         a_ = new ulong[n_+3];
         m1_ = new ulong[n_+3];
-#endif
+
         set_sentinels();
         mixedradix_init(n_, mm, m, m1_);
         first();
@@ -73,13 +63,13 @@ public:
 
     ~mixedradix_naf()
     {
-#ifndef MIXEDRADIX_NAF_MAX_ARRAY_LEN
         delete [] m1_;
         delete [] a_;
-#endif
     }
 
     const ulong * data()  const  { return a_; }
+    const ulong * nines()  const  { return m1_; }
+    ulong num_digits()  const  { return n_; }
 
     void first()
     {
@@ -169,7 +159,6 @@ public:
 };
 // -------------------------
 
-//#undef MIXEDRADIX_NAF_MAX_ARRAY_LEN  // better leave in
 
 
 #endif  // !defined HAVE_MIXEDRADIX_NAF_H__

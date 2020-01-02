@@ -19,7 +19,7 @@
 #define CHECK_UNRANK  // define to check the unranking method
 
 #ifdef CHECK_UNRANK
-#include "comb/mixedradix-lex.h"
+#include "comb/mixedradix.h"
 #endif  // CHECK_UNRANK
 
 
@@ -50,7 +50,7 @@ main(int argc, char **argv)
     ulong ndt = 0;  // number of transitions that are no derangements
 
 #ifdef CHECK_UNRANK
-    mixedradix_lex M(n-1, 0);  // falling factorial
+    mixedradix M(n-1, 0);  // falling factorial
 #endif
     do
     {

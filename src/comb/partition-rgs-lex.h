@@ -1,7 +1,7 @@
 #if !defined HAVE_PARTITION_RGS_LEX_H__
 #define      HAVE_PARTITION_RGS_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -22,9 +22,8 @@ public:
     ulong *st_; // stats (a partition of n)
     ulong n_;   // length of the RGS.
 
-private:  // have pointer data
-    partition_rgs_lex(const partition_rgs_lex&);  // forbidden
-    partition_rgs_lex & operator = (const partition_rgs_lex&);  // forbidden
+    partition_rgs_lex(const partition_rgs_lex&) = delete;
+    partition_rgs_lex & operator = (const partition_rgs_lex&) = delete;
 
 public:
     explicit partition_rgs_lex(ulong n)

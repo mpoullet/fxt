@@ -1,11 +1,11 @@
 #if !defined HAVE_MIXEDRADIX_NAF_GRAY_H__
 #define      HAVE_MIXEDRADIX_NAF_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
-#include "comb/mixedradix.h"
+#include "comb/mixedradix-aux.h"
 #include "comb/is-mixedradix-num.h"
 #include "comb/comb-print.h"
 //#include "perm/reverse.h"
@@ -13,30 +13,21 @@
 #include "fxttypes.h"
 
 
-// If defined, an array is used instead of a pointer:
-//#define MIXEDRADIX_NAF_GRAY_MAX_ARRAY_LEN 128  // default off
-
 
 class mixedradix_naf_gray
 // Gray code for mixed radix non-adjacent forms (NAF).
 {
-public:
-#ifndef MIXEDRADIX_NAF_GRAY_MAX_ARRAY_LEN
+protected:
     ulong *a_;  // digits
     ulong *d_;  // directions, or zero for track fixed at zero
     ulong *m1_;  // nines (radix minus one) for each digit
-#else
-    ulong a_[MIXEDRADIX_NAF_GRAY_MAX_ARRAY_LEN+3];
-    ulong d_[MIXEDRADIX_NAF_GRAY_MAX_ARRAY_LEN+2];
-    ulong m1_[MIXEDRADIX_NAF_GRAY_MAX_ARRAY_LEN+2];
-#endif
     ulong n_;   // Number of digits
     ulong j_;   // position of last change
     int dm_;    // direction of last change
 
 private:  // have pointer data
-    mixedradix_naf_gray(const mixedradix_naf_gray&);  // forbidden
-    mixedradix_naf_gray & operator = (const mixedradix_naf_gray&);  // forbidden
+    mixedradix_naf_gray(const mixedradix_naf_gray&) = delete;
+    mixedradix_naf_gray & operator = (const mixedradix_naf_gray&) = delete;
 
 public:
     explicit mixedradix_naf_gray(ulong n, ulong mm, const ulong *m = nullptr)
@@ -44,11 +35,9 @@ public:
     {
         n_ = n;
 
-#ifndef MIXEDRADIX_NAF_GRAY_MAX_ARRAY_LEN
         a_ = new ulong[n_+3];
         d_ = new ulong[n_+2];
         m1_ = new ulong[n_+2];
-#endif
         set_sentinels();
 
         mixedradix_init(n_, mm, m, m1_);
@@ -58,14 +47,15 @@ public:
 
     ~mixedradix_naf_gray()
     {
-#ifndef MIXEDRADIX_NAF_GRAY_MAX_ARRAY_LEN
         delete [] a_;
         delete [] d_;
         delete [] m1_;
-#endif
     }
 
     const ulong * data()  const  { return a_; }
+    const ulong * nines()  const  { return m1_; }
+    const ulong * directions()  const  { return d_; }
+    ulong num_digits()  const  { return n_; }
 
 private:
     void set_sentinels()

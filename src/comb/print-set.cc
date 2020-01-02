@@ -1,5 +1,5 @@
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2011, 2012, 2018 Joerg Arndt
+// Copyright (C) 2010, 2011, 2012, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -8,7 +8,6 @@
 #include "fxtio.h"
 #include "fxtio.h"
 
-//#include "fxtalloca.h"
 #include "fxttypes.h"
 
 // Enable heuristic check like asserting that

@@ -1,5 +1,5 @@
 
-#include "comb/perm-rev2.h"
+#include "comb/perm-rev.h"
 
 #define PERM_STAR_WITH_INVERSE  // make sure inverse is computed
 #include "comb/perm-star.h"
@@ -38,7 +38,7 @@ main(int argc, char **argv)
     ulong ct = 0;
 #endif
 
-    perm_rev2 P(n);  P.first();
+    perm_rev P(n);  P.first();
     ulong *x = new ulong[n];
     const ulong *r = P.data();
     for (ulong k=0; k<n; ++k)  x[k] = k;
@@ -61,7 +61,7 @@ main(int argc, char **argv)
 
         i0 = i1;
     }
-    while ( P.next()!=n );
+    while ( P.next() );
 #ifndef TIMING
     cout << " ct=" << ct << endl;
 #endif

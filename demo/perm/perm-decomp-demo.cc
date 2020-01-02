@@ -18,6 +18,15 @@
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+template <typename Type>
+inline void swap(Type *f, Type *g, ulong n)
+// Swap arrays
+{
+    for (ulong k=0; k<n; ++k)
+        std::swap( f[k], g[k] );
+}
+// -------------------------
+
 template <typename Type1, typename Type2>
 inline bool compare(const Type1 *f, const Type2 *g, ulong n)
 // Return whether both arrays are identical.

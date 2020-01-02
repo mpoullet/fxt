@@ -1,7 +1,7 @@
 #if !defined HAVE_SMOOTH_RFACT_RGS_H__
 #define      HAVE_SMOOTH_RFACT_RGS_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -22,9 +22,8 @@ public:
     ulong j_;    // position of last change
 
 
-private:  // have pointer data
-    smooth_rfact_rgs(const smooth_rfact_rgs&);  // forbidden
-    smooth_rfact_rgs & operator = (const smooth_rfact_rgs&);  // forbidden
+    smooth_rfact_rgs(const smooth_rfact_rgs&) = delete;
+    smooth_rfact_rgs & operator = (const smooth_rfact_rgs&) = delete;
 
 public:
     explicit smooth_rfact_rgs(ulong n)

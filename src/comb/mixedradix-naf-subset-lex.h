@@ -1,11 +1,11 @@
 #if !defined HAVE_MIXEDRADIX_NAF_SUBSET_LEX_H__
 #define      HAVE_MIXEDRADIX_NAF_SUBSET_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
-#include "comb/mixedradix.h"
+#include "comb/mixedradix-aux.h"
 #include "comb/is-mixedradix-num.h"
 #include "comb/comb-print.h"
 
@@ -17,7 +17,7 @@ class mixedradix_naf_subset_lex
 // Mixed radix non-adjacent forms (NAF), subset-lex order.
 // Loopless generation.
 {
-public:
+protected:
 #ifndef MIXEDRADIX_NAF_SUBSET_LEX_FIXARRAYS
     ulong *iset_;  // Set of positions of nonzero digits
     // Internally the empty set is represented with one element pointing to a zero,
@@ -35,8 +35,8 @@ public:
 
 
 private:  // have pointer data
-    mixedradix_naf_subset_lex(const mixedradix_naf_subset_lex&);  // forbidden
-    mixedradix_naf_subset_lex & operator = (const mixedradix_naf_subset_lex&);  // forbidden
+    mixedradix_naf_subset_lex(const mixedradix_naf_subset_lex&) = delete;
+    mixedradix_naf_subset_lex & operator = (const mixedradix_naf_subset_lex&) = delete;
 
 public:
     explicit mixedradix_naf_subset_lex(ulong n, ulong mm, const ulong *m = nullptr)
@@ -64,7 +64,10 @@ public:
     }
 
     const ulong * data()  const  { return a_; }
+    const ulong * nines()  const  { return m1_; }
     const ulong * iset()  const  { return iset_; }
+    ulong num_digits()  const  { return n_; }
+
     ulong iset_size()  const
     {
 #if 1  // Report size zero for empty set:

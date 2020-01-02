@@ -1,7 +1,7 @@
 #if !defined  HAVE_COMBINATION_REC_H__
 #define       HAVE_COMBINATION_REC_H__
 // This file is part of the FXT library.
-// Copyright (C) 2010, 2012, 2013, 2014, 2018 Joerg Arndt
+// Copyright (C) 2010, 2012, 2013, 2014, 2018, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -29,9 +29,8 @@ public:
     ulong rct_;  // count recursions (==work)
     void (*visit_)(const comb_rec &);  // function to call with each combination
 
-private:  // have pointer data
-    comb_rec(const comb_rec&);  // forbidden
-    comb_rec & operator = (const comb_rec&);  // forbidden
+    comb_rec(const comb_rec&) = delete;
+    comb_rec & operator = (const comb_rec&) = delete;
 
 public:
     explicit comb_rec(ulong n, ulong k)

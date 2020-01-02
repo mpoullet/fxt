@@ -2,7 +2,7 @@
 // Description:
 //% Generate all cyclic permutations in minimal-change order, CAT algorithm.
 
-arg 1: 5 == n  [Cyclic permutations of n elements.]  default=5
+arg 1: 5 == n  [Cyclic permutations of n elements, n >= 2.]  default=5
    0:    [ 4 0 1 2 3 ]    [ . . . ]    (4, 3, 2, 1, 0)
    1:    [ 3 4 1 2 0 ]    [ 1 . . ]    (4, 0, 3, 2, 1)
    2:    [ 3 0 4 2 1 ]    [ 2 . . ]    (4, 1, 0, 3, 2)

@@ -1,7 +1,7 @@
 #if !defined  HAVE_DYCK_RGS_SUBSET_LEX_H__
 #define       HAVE_DYCK_RGS_SUBSET_LEX_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2015 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -34,9 +34,8 @@ public:
     ulong i_;   // k-ary Dyck words: i = k - 1
     char *str_; // Dyck word
 
-private:  // have pointer data
-    dyck_rgs_subset_lex(const dyck_rgs_subset_lex&);  // forbidden
-    dyck_rgs_subset_lex & operator = (const dyck_rgs_subset_lex&);  // forbidden
+    dyck_rgs_subset_lex(const dyck_rgs_subset_lex&) = delete;
+    dyck_rgs_subset_lex & operator = (const dyck_rgs_subset_lex&) = delete;
 
 public:
     explicit dyck_rgs_subset_lex(ulong n, ulong k)

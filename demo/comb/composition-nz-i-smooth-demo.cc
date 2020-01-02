@@ -82,7 +82,7 @@ main(int argc, char **argv)
 /*
 Timing: (AMD Phenom II X4 945 3000MHz)
 
-gcc 4.5.0:
+GCC 4.5.0:
 
  time ./bin 40
 arg 1: 40 == n  [Internally smooth compositions of n]  default=8
@@ -92,7 +92,7 @@ arg 2: 0 == aa  [Whether to render as ASCII art]  default=0
   ==> 591766826/7.10 == 83,347,440 per second
 
 
-gcc 4.8.0:
+GCC 4.8.0:
 
  time ./bin 40
 arg 1: 40 == n  [Internally smooth compositions of n]  default=5

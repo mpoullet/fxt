@@ -1,7 +1,7 @@
 #if !defined HAVE_BINARY_SL_GRAY_H__
 #define      HAVE_BINARY_SL_GRAY_H__
 // This file is part of the FXT library.
-// Copyright (C) 2012, 2013, 2014, 2015 Joerg Arndt
+// Copyright (C) 2012, 2013, 2014, 2015, 2019 Joerg Arndt
 // License: GNU General Public License version 3 or later,
 // see the file COPYING.txt in the main directory.
 
@@ -36,9 +36,8 @@ public:
     ulong j_;   // position of last change; returned by pos()
     int dm_;    // direction of last change; returned by dir()
 
-private:  // have pointer data
-    binary_sl_gray(const binary_sl_gray&);  // forbidden
-    binary_sl_gray & operator = (const binary_sl_gray&);  // forbidden
+    binary_sl_gray(const binary_sl_gray&) = delete;
+    binary_sl_gray & operator = (const binary_sl_gray&) = delete;
 
 public:
     explicit binary_sl_gray(ulong n)
